@@ -33,6 +33,7 @@ bool EnemyChase::Execute()
 	if (m_timeExit <= EXITTIME)		//タイムより下なら
 	{
 		MoveParts();
+		Chase();
 		return false;
 	}
 	else
@@ -50,6 +51,7 @@ void EnemyChase::MoveParts()
 {
 	// 手を動かす
 	MoveHand();
+
 }
 
 /// <summary>
@@ -74,4 +76,18 @@ void EnemyChase::MoveHand()
 
 	rightHand->SetAddQuaternion(rightQuaternion);
 	leftHand->SetAddQuaternion(leftQuaternion);
+}
+
+void EnemyChase::Chase()
+{
+	// TODO プレイヤーの位置を取得するようにする。今は仮の値
+	DirectX::SimpleMath::Vector2 length = (DirectX::SimpleMath::Vector2(40 - m_enemy->GetPosition().x, 50 - m_enemy->GetPosition().z));
+
+	float r = atan2(length.y, length.x);
+
+	auto velocity = DirectX::SimpleMath::Vector3(0.5f * cos(r), 0.0f, 0.5f * sin(r));
+
+	m_enemy->SetPosition(m_enemy->GetPosition() + m_enemy->GetVelocity());
+	m_enemy->SetVelocity(velocity * 0.25f);
+	
 }

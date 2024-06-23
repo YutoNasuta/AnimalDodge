@@ -34,7 +34,13 @@ public:
     void SetMass(const float& mass) override { m_mass = mass; }		// 質量を設定
 
 
+
     EnemyBody* GetBody() const { return m_body; }
+
+public: //プロパティ
+
+    DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
+    void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 
 public:
     Enemy(

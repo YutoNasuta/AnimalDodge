@@ -29,5 +29,5 @@ private:
 
 	void MoveParts();
 	void MoveHand();
-	void MoveBody();
+	void Chase();
 };
