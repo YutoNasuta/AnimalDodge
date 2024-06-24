@@ -10,7 +10,7 @@
 #include "Game/CommonResources.h"
 #include "Libraries/NakashiLib/InputManager.h"
 #include"Game/Enemy/BehaviorTree/BehaviorTreeBuilder.h"
-#include"Libraries/NakashiLib/BehaviorNode.h"
+#include"Game/Enemy/BehaviorTree/BehaviorTreeExecute.h"
 #include"Game/BlackBoard.h"
 
 Enemy::Enemy(IComponent* parent,
@@ -55,7 +55,7 @@ void Enemy::Initialize()
 
     m_behaviorTreeBuilder = std::make_unique<BehaviorTreeBuilder>(m_blackBoard);
     auto tree =  m_behaviorTreeBuilder->BuildTree(this);
-    m_behaviorExecutor = std::make_unique<NakashiLib::BehaviorTreeExecutor>(std::move(tree));
+    m_behaviorExecutor = std::make_unique<BehaviorTreeExecute>(std::move(tree));
 }
 
 void Enemy::Update(

@@ -17,10 +17,8 @@ class BehaviorTreeBuilder;
 
 class BlackBoard;
 
-namespace NakashiLib
-{
-    class BehaviorTreeExecutor;
-}
+class BehaviorTreeExecute;
+
 
 class Enemy : public EnemyBase 
 {
@@ -92,7 +90,7 @@ private:
 
     // ビヘイビアツリーノード実行用
     std::unique_ptr<BehaviorTreeBuilder> m_behaviorTreeBuilder;
-    std::unique_ptr<NakashiLib::BehaviorTreeExecutor> m_behaviorExecutor;
+    std::unique_ptr<BehaviorTreeExecute> m_behaviorExecutor;
 
     EnemyBody* m_body;
 };

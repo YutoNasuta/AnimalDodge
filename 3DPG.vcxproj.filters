@@ -249,6 +249,7 @@
     </ClInclude>
     <ClInclude Include="Game\Enemy\BehaviorTree\State\EnemyChasePlayer.h" />
     <ClInclude Include="Game\BlackBoard.h" />
+    <ClInclude Include="Game\Enemy\BehaviorTree\BehaviorTreeExecute.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -397,6 +398,7 @@
     </ClCompile>
     <ClCompile Include="Game\Enemy\BehaviorTree\State\EnemyChasePlayer.cpp" />
     <ClCompile Include="Game\BlackBoard.cpp" />
+    <ClCompile Include="Game\Enemy\BehaviorTree\BehaviorTreeExecute.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

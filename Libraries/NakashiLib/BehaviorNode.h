@@ -186,32 +186,7 @@ namespace NakashiLib
 		std::unique_ptr<IBehaviorNode> m_falseNode;
 	};
 
-	/// <summary>
-	/// ノード実行メソッド
-	/// </summary>
-	class BehaviorTreeExecutor 
-	{
-	public:
-		// コンストラクタ
-		BehaviorTreeExecutor(std::unique_ptr<IBehaviorNode> root)
-			: behaviorTreeRoot(std::move(root)) {}
 
-		// 実行する
-		void Update() {
-			if (behaviorTreeRoot) {
-				behaviorTreeRoot->Execute();
-			}
-		}
-
-		// リセットする
-		void Reset(std::unique_ptr<IBehaviorNode> newRoot)
-		{
-			behaviorTreeRoot = std::move(newRoot);
-		}
-
-	private:
-		std::unique_ptr<IBehaviorNode> behaviorTreeRoot;
-	};
 
 }
 

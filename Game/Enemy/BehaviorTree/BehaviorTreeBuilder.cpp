@@ -11,6 +11,8 @@
 #include"Game/BlackBoard.h"
 
 BehaviorTreeBuilder::BehaviorTreeBuilder(BlackBoard* blackboard)
+	:
+	m_nodeNumber{}
 {
 	m_blackBoard = blackboard;
 }
