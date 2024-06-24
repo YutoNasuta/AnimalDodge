@@ -8,6 +8,7 @@
 #include"Libraries/NakashiLib/BehaviorNode.h"
 #include"Game/CommonResources.h"
 class Enemy;
+class BlackBoard;
 
 class EnemyChase : public NakashiLib::ActionNode
 {
@@ -15,7 +16,7 @@ class EnemyChase : public NakashiLib::ActionNode
 
 public:
 	// コンストラクタ
-	EnemyChase(Enemy* enemy);
+	EnemyChase(Enemy* enemy , BlackBoard* blackboard);
 	// 実行する
 	bool Execute() override;
 
@@ -23,6 +24,7 @@ private:
 	// エネミー取得
 	Enemy* m_enemy;
 	CommonResources* m_commonResources;
+	BlackBoard* m_blackBoard;
 
 	float m_timeExit;
 	const float EXITTIME = 10;

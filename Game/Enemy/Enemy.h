@@ -15,6 +15,8 @@ class EnemyBody;
 
 class BehaviorTreeBuilder;
 
+class BlackBoard;
+
 namespace NakashiLib
 {
     class BehaviorTreeExecutor;
@@ -46,7 +48,8 @@ public:
     Enemy(
         IComponent* parent,
         const DirectX::SimpleMath::Vector3& position,
-        const DirectX::SimpleMath::Quaternion& quaternion);
+        const DirectX::SimpleMath::Quaternion& quaternion,
+        BlackBoard* blackboard);
     ~Enemy();
 
     void Initialize() override;
@@ -65,8 +68,11 @@ public:
     const float GetDebug() const { return Debug; }
 
 private:
+    // 共通リソース
     CommonResources* m_commonResources;
 
+    // ブラックボード
+    BlackBoard* m_blackBoard;
 
     float Number;
     float Debug;

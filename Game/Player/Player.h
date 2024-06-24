@@ -24,6 +24,7 @@ class PlayerTake;
 class PlayerThrow;
 
 class PlayerBody;
+class BlackBoard;
 
 class Player : public PlayerBase
 {
@@ -103,7 +104,8 @@ public:
 	Player(
 		IComponent* parent,
 		const DirectX::SimpleMath::Vector3& position, 
-		const DirectX::SimpleMath::Quaternion& quaternion);
+		const DirectX::SimpleMath::Quaternion& quaternion,
+		BlackBoard* blackboard);
 	// デストラクタ
 	~Player();
 	// 初期化する
@@ -125,6 +127,8 @@ private:
 	DirectX::SimpleMath::Vector3 m_ground;
 	// ノード番号
 	int m_nodeNumber;
+	// ブラックボード取得
+	BlackBoard* m_blackBoard;
 	
 	//　ステート用+++++++++++++++++++++++++++++++++++++++++++++++
 	IState* m_currentState;						// 現在の状態

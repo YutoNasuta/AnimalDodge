@@ -18,8 +18,8 @@ class StageCase;
 class GenerateStage
 {
 private:
-	static const unsigned int LAND_HEIGHT = 22;
-	static const unsigned int LAND_WIDTH = 22;
+	static const unsigned int LAND_HEIGHT = 23;
+	static const unsigned int LAND_WIDTH = 23;
 	static const unsigned int STAGE_QUANTITY = 4;
 
 	float m_landScape[LAND_HEIGHT][LAND_WIDTH];

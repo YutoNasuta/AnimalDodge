@@ -24,6 +24,7 @@
 #include"Game/Stage/GenerateStage.h"
 #include"Libraries/NakashiLib/CollisionMesh.h"
 #include"Libraries/NakashiLib/CreateRay.h"
+#include"Game/BlackBoard.h"
 
 const DirectX::SimpleMath::Vector3 PlayScene::HOME_POSITION = DirectX::SimpleMath::Vector3(10.0f, 10.0f, 10.0f);
 
@@ -85,7 +86,7 @@ void PlayScene::Initialize()
 		0.1f, 100.0f
 	);
 
-
+	m_blackBoard = std::make_unique<BlackBoard>();
 	
 
 
@@ -112,7 +113,8 @@ void PlayScene::Initialize()
 	m_player = std::make_unique<Player>(
 		nullptr,
 		DirectX::SimpleMath::Vector3(0.0f, 0.5f, 0.0f),
-		DirectX::SimpleMath::Quaternion::CreateFromAxisAngle(DirectX::SimpleMath::Vector3::UnitY, DirectX::XMConvertToRadians(0.0f)));
+		DirectX::SimpleMath::Quaternion::CreateFromAxisAngle(DirectX::SimpleMath::Vector3::UnitY, DirectX::XMConvertToRadians(0.0f)),
+		m_blackBoard.get());
 	
 	m_player->Initialize();
 	m_player->SetPosition(DirectX::SimpleMath::Vector3(HOME_POSITION));
@@ -126,7 +128,8 @@ void PlayScene::Initialize()
 	m_enemy = std::make_unique<Enemy>(
 		nullptr,
 		DirectX::SimpleMath::Vector3(0.0f, 0.5f, 0.0f),
-		DirectX::SimpleMath::Quaternion::CreateFromAxisAngle(DirectX::SimpleMath::Vector3::UnitY, DirectX::XMConvertToRadians(0.0f)));
+		DirectX::SimpleMath::Quaternion::CreateFromAxisAngle(DirectX::SimpleMath::Vector3::UnitY, DirectX::XMConvertToRadians(0.0f)),
+		m_blackBoard.get());
 
 	m_enemy->Initialize();
 

@@ -11,10 +11,12 @@
 #include "Libraries/NakashiLib/InputManager.h"
 #include"Game/Enemy/BehaviorTree/BehaviorTreeBuilder.h"
 #include"Libraries/NakashiLib/BehaviorNode.h"
+#include"Game/BlackBoard.h"
 
 Enemy::Enemy(IComponent* parent,
     const DirectX::SimpleMath::Vector3& position,
-    const DirectX::SimpleMath::Quaternion& quaternion
+    const DirectX::SimpleMath::Quaternion& quaternion,
+    BlackBoard* blackboard
 )
     :
     EnemyBase(parent , position , quaternion),
@@ -29,6 +31,7 @@ Enemy::Enemy(IComponent* parent,
     m_mass{}
 {
     m_commonResources = CommonResources::GetInstance();
+    m_blackBoard = blackboard;
 }
 
 Enemy::~Enemy()
@@ -50,7 +53,7 @@ void Enemy::Initialize()
     m_body = body.get();									// 呼び出し用bodyに格納
     SetChild(std::move(body));					// プレイヤーの子にbodyを設定
 
-    m_behaviorTreeBuilder = std::make_unique<BehaviorTreeBuilder>();
+    m_behaviorTreeBuilder = std::make_unique<BehaviorTreeBuilder>(m_blackBoard);
     auto tree =  m_behaviorTreeBuilder->BuildTree(this);
     m_behaviorExecutor = std::make_unique<NakashiLib::BehaviorTreeExecutor>(std::move(tree));
 }

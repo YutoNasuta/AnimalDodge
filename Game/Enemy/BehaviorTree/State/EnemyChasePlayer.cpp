@@ -11,15 +11,17 @@
 #include"Game/Enemy/Parts/EnemyBody.h"
 #include"Game/Enemy/Parts/EnemyLeftHand.h"
 #include"Game/Enemy/Parts/EnemyRightHand.h"
+#include"Game/BlackBoard.h"
 /// <summary>
 /// コンストラクタ
 /// </summary>
 /// <param name="enemy">敵</param>
-EnemyChase::EnemyChase(Enemy* enemy)
+EnemyChase::EnemyChase(Enemy* enemy , BlackBoard* blackboard)
 {
 	m_enemy = enemy;
 	m_commonResources = CommonResources::GetInstance();
 	m_timeExit = 0;
+	m_blackBoard = blackboard;
 }
 
 /// <summary>
@@ -80,8 +82,9 @@ void EnemyChase::MoveHand()
 
 void EnemyChase::Chase()
 {
+	
 	// TODO プレイヤーの位置を取得するようにする。今は仮の値
-	DirectX::SimpleMath::Vector2 length = (DirectX::SimpleMath::Vector2(40 - m_enemy->GetPosition().x, 50 - m_enemy->GetPosition().z));
+	DirectX::SimpleMath::Vector2 length = (DirectX::SimpleMath::Vector2(m_blackBoard->GetPlayerPosition().x - m_enemy->GetPosition().x, m_blackBoard->GetPlayerPosition().z - m_enemy->GetPosition().z));
 
 	float r = atan2(length.y, length.x);
 

@@ -248,6 +248,7 @@
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClInclude>
     <ClInclude Include="Game\Enemy\BehaviorTree\State\EnemyChasePlayer.h" />
+    <ClInclude Include="Game\BlackBoard.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -395,6 +396,7 @@
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClCompile>
     <ClCompile Include="Game\Enemy\BehaviorTree\State\EnemyChasePlayer.cpp" />
+    <ClCompile Include="Game\BlackBoard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

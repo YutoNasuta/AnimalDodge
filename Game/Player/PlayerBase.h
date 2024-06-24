@@ -10,6 +10,7 @@
 
 // ‘O•ûéŒ¾
 class CommonResources;
+class BlackBoard;
 
 class PlayerBase : public IComponent
 {

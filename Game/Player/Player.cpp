@@ -10,6 +10,7 @@
 #include"Game/CommonResources.h"
 #include"Libraries/NakashiLib/InputManager.h"
 #include"Framework/DeviceResources.h"
+#include"Game/BlackBoard.h"
 
 /// <summary>
 /// コンストラクタ
@@ -20,7 +21,8 @@
 Player::Player(
 	IComponent* parent, 
 	const DirectX::SimpleMath::Vector3& position, 
-	const DirectX::SimpleMath::Quaternion& quaternion
+	const DirectX::SimpleMath::Quaternion& quaternion,
+	BlackBoard* blackboard
 )
 	:
 	PlayerBase(parent , position , quaternion),
@@ -47,9 +49,11 @@ Player::Player(
 	m_runnning{},
 	m_throw{},
 	m_taking{},
-	m_nodeNumber(0)
+	m_nodeNumber(0),
+	m_blackBoard()
 {
 	m_commonResources = CommonResources::GetInstance();
+	m_blackBoard = blackboard;
 }
 
 /// <summary>
@@ -104,6 +108,7 @@ void Player::Update(
 		m_position + GetInitialPosition(),
 		m_quaternion
 	);
+	m_blackBoard->SetPlayerPosition(m_position);
 }
 
 /// <summary>

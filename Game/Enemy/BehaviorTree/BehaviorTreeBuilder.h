@@ -8,6 +8,7 @@
 #include<memory>
 #include"Libraries/NakashiLib/BehaviorNode.h"
 
+class BlackBoard;
 namespace NakashiLib
 {
 	class IBehaviorNode;
@@ -18,6 +19,8 @@ class Enemy;
 class BehaviorTreeBuilder
 {
 public:
+	BehaviorTreeBuilder(BlackBoard* blackboard);
+	~BehaviorTreeBuilder();
 	std::unique_ptr<NakashiLib::IBehaviorNode> BuildTree(Enemy* enemy);
 
 	int GetNodeNumber() { return m_nodeNumber; }
@@ -25,4 +28,5 @@ public:
 private:
 	// ツリーノードの番号を知る
 	int m_nodeNumber;
+	BlackBoard* m_blackBoard;
 };

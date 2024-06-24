@@ -19,7 +19,7 @@ class Enemy;
 class Player;
 
 class GenerateStage;
-
+class BlackBoard;
 
 
 namespace mylib
@@ -84,6 +84,8 @@ private:
 	DirectX::SimpleMath::Vector3 m_ballRayPosition;
 
 	std::unique_ptr<NakashiLib::CreateRay> m_ray[2];
+
+	std::unique_ptr<BlackBoard> m_blackBoard;
 
 
 public:
