@@ -9,6 +9,8 @@
 #include"Libraries/NakashiLib/PerlinNoise.h"
 #include"Libraries/NakashiLib/CollisionMesh.h"
 #include"StageCase.h"
+#include"Game/CommonResources.h"
+#include "framework/DeviceResources.h"
 
 /// <summary>
 /// コンストラクタ
@@ -23,6 +25,7 @@ GenerateStage::GenerateStage()
 	m_scale{ 10 },
 	m_landScape{}
 {
+	m_commonResources = CommonResources::GetInstance();
 }
 
 /// <summary>
@@ -38,10 +41,11 @@ GenerateStage::~GenerateStage()
 /// </summary>
 /// <param name="device">デバイス</param>
 /// <param name="context">デバイスコンテキスト</param>
-void GenerateStage::Initialize(
-	ID3D11Device* device,
-	ID3D11DeviceContext* context)
+void GenerateStage::Initialize()
 {
+	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
+	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
+
 	// パーリンノイズの作成
 	CreatePerlinNoise();
 	
@@ -60,11 +64,12 @@ void GenerateStage::Initialize(
 /// <param name="view">ビュー</param>
 /// <param name="projection">プロジェクション</param>
 void GenerateStage::Render( 
-	DirectX::CommonStates* states, 
 	const DirectX::SimpleMath::Matrix& view, 
 	const DirectX::SimpleMath::Matrix& projection
 )
 {
+	auto states = m_commonResources->GetCommonStates();
+
 	m_collisionMesh->DrawMeshTexture(states, view, projection);
 
 #ifdef _DEBUG

@@ -14,6 +14,7 @@ namespace NakashiLib
 }
 
 class StageCase;
+class CommonResources;
 
 class GenerateStage
 {
@@ -33,18 +34,16 @@ private:
 	float m_normalHeight;
 	int m_correctionHeight;
 	int m_scale;
+	CommonResources* m_commonResources;
 
 public:
 	//コンストラクタ
 	GenerateStage();
 	~GenerateStage();
 
-	void Initialize(
-		ID3D11Device* device,
-		ID3D11DeviceContext* context);
+	void Initialize();
 
 	void Render(
-		DirectX::CommonStates* states,
 		const DirectX::SimpleMath::Matrix& view, 
 		const DirectX::SimpleMath::Matrix& projection);
 

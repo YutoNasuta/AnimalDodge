@@ -134,9 +134,9 @@ void PlayScene::Initialize()
 	m_enemy->Initialize();
 
 	m_stage = std::make_unique<GenerateStage>();
-	m_stage->Initialize(device , context);
+	m_stage->Initialize();
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		m_ray[i] = std::make_unique<NakashiLib::CreateRay>();
 		m_ray[i]->Initialize(context, 1.0f);
@@ -203,6 +203,7 @@ void PlayScene::Update(float elapsedTime)
 
 	m_ray[0]->Update(m_player->GetPosition());
 	m_ray[1]->Update(m_ball->GetPosition());
+	m_ray[2]->Update(m_enemy->GetPosition());
 
 	DirectX::SimpleMath::Vector3 hitposition;
 	DirectX::SimpleMath::Vector3 normal;
@@ -213,6 +214,11 @@ void PlayScene::Update(float elapsedTime)
 	DirectX::SimpleMath::Vector3 normal2;
 	int number2;
 	int ishit2;
+
+	DirectX::SimpleMath::Vector3 hitposition3;
+	DirectX::SimpleMath::Vector3 normal3;
+	int number3;
+	int ishit3;
 
 	
 	ishit = m_stage->GetCollisionMesh()->IntersectRay(m_ray[0]->GetRay(), &hitposition, &normal, &number);
@@ -231,6 +237,12 @@ void PlayScene::Update(float elapsedTime)
 	{
 		
 		m_ball->SetGround(hitposition2);
+	}
+
+	ishit3 = m_stage->GetCollisionMesh()->IntersectRay(m_ray[2]->GetRay(), &hitposition3, &normal3, &number3);
+	if (ishit3)
+	{
+		m_enemy->SetPosition(hitposition3);
 	}
 
 	//	ステップタイマーの取得
@@ -300,7 +312,7 @@ void PlayScene::Render()
 	//	デバイスコンテキストの取得
 	auto device = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
 
-	m_stage->Render(states, m_tpsCamera->GetViewMatrix(), m_tpsCamera->GetProjectionMatrix());
+	m_stage->Render( m_tpsCamera->GetViewMatrix(), m_tpsCamera->GetProjectionMatrix());
 	
 
 	m_gridFloor->Render(device, m_tpsCamera->GetViewMatrix(), m_tpsCamera->GetProjectionMatrix());

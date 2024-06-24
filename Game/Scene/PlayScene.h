@@ -83,7 +83,7 @@ private:
 	DirectX::SimpleMath::Vector3 m_rayPosition;
 	DirectX::SimpleMath::Vector3 m_ballRayPosition;
 
-	std::unique_ptr<NakashiLib::CreateRay> m_ray[2];
+	std::unique_ptr<NakashiLib::CreateRay> m_ray[3];
 
 	std::unique_ptr<BlackBoard> m_blackBoard;
 
