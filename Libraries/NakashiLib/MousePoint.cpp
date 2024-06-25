@@ -13,10 +13,10 @@
 /// </summary>
 NakashiLib::MousePoint::MousePoint()
 	:
-	previousMousePos{},
-	currentMousePos{},
-	DeltaX{},
-	DeltaY{},
+	m_previousMousePos{},
+	m_currentMousePos{},
+	m_deltaX{},
+	m_deltaY{},
 	m_mouseMove{}
 {
 
@@ -37,10 +37,10 @@ void NakashiLib::MousePoint::Update()
 {
 	if (m_mouseMove == false) { return; }								//処理をしない
 
-	GetCursorPos(&currentMousePos);
+	GetCursorPos(&m_currentMousePos);
 
-	DeltaX = currentMousePos.x - previousMousePos.x;					//マウス座標の差分計算
-	DeltaY = currentMousePos.y - previousMousePos.y;					//Y軸
+	m_deltaX = m_currentMousePos.x - m_previousMousePos.x;					//マウス座標の差分計算
+	m_deltaY = m_currentMousePos.y - m_previousMousePos.y;					//Y軸
 
 	POINT center = { Screen::CENTER_X , Screen::CENTER_Y };				//マウスを中央に固定させるために、どこにするのかを決める。
 
@@ -48,10 +48,9 @@ void NakashiLib::MousePoint::Update()
 			
 	SetCursorPos(center.x, center.y);									//マウスを中央に固定
 
-	previousMousePos = center;											//過去のマウスポインタの位置を変更させる
+	m_previousMousePos = center;										//過去のマウスポインタの位置を変更させる
 
 	Sleep(0);															//何フレで移動させるのか
-
 }
 
 

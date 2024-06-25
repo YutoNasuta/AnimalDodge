@@ -20,6 +20,7 @@ class Player;
 
 class GenerateStage;
 class BlackBoard;
+class CharacterCollision;
 
 
 namespace mylib
@@ -86,6 +87,9 @@ private:
 	std::unique_ptr<NakashiLib::CreateRay> m_ray[3];
 
 	std::unique_ptr<BlackBoard> m_blackBoard;
+
+	// “–‚½‚è”»’è‚ðŒÄ‚Ô
+	std::unique_ptr<CharacterCollision> m_characterCollision;
 
 
 public:

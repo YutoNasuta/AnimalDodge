@@ -170,7 +170,7 @@ void PlayerThrow::AddForce()
 	const auto& mouseState = m_commonResources->GetInputManager()->GetMouseState();
 	if (mouseState.leftButton == 1)
 	{
-		float force = 0.02f;
+		float force = 0.05f;
 		if (m_player->GetForceCharge() <= 4.0f)
 			m_player->SetForceCharge(m_player->GetForceCharge() + force);	//—Í‚ğ{‚·‚é
 	}

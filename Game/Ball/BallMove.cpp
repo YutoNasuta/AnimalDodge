@@ -119,7 +119,7 @@ void BallMove::Update()
 		// ‘¬“x‚Ì”½“]
 		m_ball->SetVelocity(DirectX::SimpleMath::Vector3(m_ball->GetVelocity().x, -m_ball->GetVelocity().y, m_ball->GetVelocity().z));
 		// Œ¸‘¬—¦i‚W‚T“j‚ð“K—p
-		m_ball->SetVelocity(m_ball->GetVelocity() * 0.85f);
+		m_ball->SetVelocity(m_ball->GetVelocity() * 0.65f);
 	}
 	// ‘¬“x‚ª‚È‚­‚È‚Á‚Ä‚«‚½‚ç
 	if (m_ball->GetVelocity().Length() < 0.1f)

@@ -14,7 +14,7 @@
 // 重力加速度 m/s^2
 const float Ball::GRAVITATION_ACCELERATION = -0.0980665f;
 // 質量 kg
-const float Ball::MASS = 0.00450f;
+const float Ball::MASS = 0.450f;
 // 半径 m
 const float Ball::RADIUS = 0.0011f;
 // 直径 m
@@ -23,13 +23,13 @@ const float Ball::DIAMETER = 0.0022f;
 const float Ball::DRAG_COEFFICIENT = 0.002f;
 // 空気密度(ρ) kg/m^3
 const float Ball::AIR_DENSITY = 0.0122f;
-//サッカーボール直径断面積 m^2
+//ボール直径断面積 m^2
 const float Ball::CROSS_SECTION = (0.25f * DirectX::XM_PI) * DIAMETER * DIAMETER;
 // 空気抵抗係数(k)
 // ボールに働く空気抵抗はボールの速度の二乗に比例する
 const float Ball::AIR_RESISTANCE = -0.5f * AIR_DENSITY * CROSS_SECTION * DRAG_COEFFICIENT;
 // 摩擦係数
-const float Ball::FRICTION = -0.0004f;
+const float Ball::FRICTION = -0.004f;
 // 交差判定距離
 const float Ball::INTERSECT_JUDGEMENT_DISTANCE = 10.0f;
 
@@ -55,6 +55,7 @@ Ball::Ball()
 	m_radius{RADIUS}
 {
 	m_commonResources = CommonResources::GetInstance();
+	m_friction = FRICTION;
 }
 
 /// <summary>

@@ -50,7 +50,8 @@ Player::Player(
 	m_throw{},
 	m_taking{},
 	m_nodeNumber(0),
-	m_blackBoard()
+	m_blackBoard(),
+	m_playerBoundingSphere{}
 {
 	m_commonResources = CommonResources::GetInstance();
 	m_blackBoard = blackboard;
@@ -89,6 +90,8 @@ void Player::Initialize()
 
 	m_currentState = m_standing.get();			// 初期の状態は立ち状態
 	m_currentState->OnEnter();					// 最初のステート状態に移行
+
+	m_playerBoundingSphere = CreateBoundingSphere(11.0f);	// 境界球の作成
 }
 
 /// <summary>
@@ -105,10 +108,11 @@ void Player::Update(
 	m_currentState->Update();											// ステートパターンを回す
 
 	PlayerBase::Update(														// ベースの更新
-		m_position + GetInitialPosition(),
-		m_quaternion
+		m_position + GetInitialPosition() + position,
+		m_quaternion * quaternion
 	);
 	m_blackBoard->SetPlayerPosition(m_position);
+	m_playerBoundingSphere.Center = m_position;
 }
 
 /// <summary>
@@ -123,6 +127,8 @@ void Player::Render(
 {
 	// パーツを描画
  	PlayerBase::Render(view , projection);
+
+	
 }
 
 /// <summary>
@@ -138,3 +144,13 @@ void Player::ChangeState(
 	m_currentState->OnEnter();		// 次のステートに入る
 }
 
+// 砲塔境界球を作成する
+DirectX::BoundingSphere Player::CreateBoundingSphere(const float& radius)
+{
+	// 境界球を宣言する
+	DirectX::BoundingSphere turretBoundingSphere;
+	// 境界球の半径を設定する
+	turretBoundingSphere.Radius = radius;
+	// 境界球を返す
+	return turretBoundingSphere;
+}

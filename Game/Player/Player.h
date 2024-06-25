@@ -98,7 +98,10 @@ public:
 	
 	// ノード番号取得
 	int GetNodeNumber() const { return m_nodeNumber; }
-	
+
+	// バウンディングボックス設定
+	DirectX::BoundingSphere GetBoundingSphere() { return m_playerBoundingSphere; }
+	void SetBoundingSphereCenter(DirectX::SimpleMath::Vector3 boundingSphere) { m_playerBoundingSphere.Center = boundingSphere; }
 public:
 	// コンストラクタ
 	Player(
@@ -118,7 +121,8 @@ public:
 	void Render(
 		const DirectX::SimpleMath::Matrix& view , 
 		const DirectX::SimpleMath::Matrix& projection) override;
-
+	// 境界球を作成
+	DirectX::BoundingSphere CreateBoundingSphere(const float& radius);
 
 private:
 	// 共通リソース
@@ -155,6 +159,9 @@ private:
 	DirectX::SimpleMath::Matrix m_cameraView;			 // カメラのビュー行列
 	DirectX::SimpleMath::Matrix m_cameraProjection;		 // カメラプロジェクション
 	DirectX::SimpleMath::Quaternion m_cameraQuaternion;	 // カメラの回転角
+
+	//  当たり判定用++++++++++++++++++++++++++++++++++++++++++++++++
+	DirectX::BoundingSphere m_playerBoundingSphere;			// プレイヤー当たり判定球
 
 
 	PlayerBody* m_body;

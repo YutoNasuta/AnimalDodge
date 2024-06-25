@@ -25,6 +25,7 @@
 #include"Libraries/NakashiLib/CollisionMesh.h"
 #include"Libraries/NakashiLib/CreateRay.h"
 #include"Game/BlackBoard.h"
+#include"Game/Collision/CharacterCollision.h"
 
 const DirectX::SimpleMath::Vector3 PlayScene::HOME_POSITION = DirectX::SimpleMath::Vector3(10.0f, 10.0f, 10.0f);
 
@@ -88,9 +89,6 @@ void PlayScene::Initialize()
 
 	m_blackBoard = std::make_unique<BlackBoard>();
 	
-
-
-
 	// 回転角を初期化する（度）
 	m_angle = 0;
 
@@ -142,7 +140,7 @@ void PlayScene::Initialize()
 		m_ray[i]->Initialize(context, 1.0f);
 	}
 	
-
+	m_characterCollision = std::make_unique<CharacterCollision>();
 	
 
 }
@@ -250,13 +248,15 @@ void PlayScene::Update(float elapsedTime)
 	DirectX::SimpleMath::Vector3 position = DirectX::SimpleMath::Vector3::Zero;
 	DirectX::SimpleMath::Quaternion quaternion = DirectX::SimpleMath::Quaternion::CreateFromAxisAngle(DirectX::SimpleMath::Vector3::UnitY, DirectX::XMConvertToRadians(0.0f));
 	
-	m_tpsCamera->Update(m_player->GetBody()->GetPosition());
+	m_tpsCamera->Update(m_player->GetPosition());
 	m_player->SetCameraQuaternion(m_tpsCamera->GetCameraRotate());
 	m_player->Update( position, quaternion);
 	
 	m_ball->Update(elapsedTime);
 
 	m_enemy->Update( position, quaternion);
+
+	m_characterCollision->CheckHit(m_player.get(), m_enemy.get());
 }
 
 //---------------------------------------------------------
@@ -308,13 +308,11 @@ void PlayScene::Render()
 
 	m_enemy->Render(m_tpsCamera->GetViewMatrix(), m_tpsCamera->GetProjectionMatrix());
 
-
 	//	デバイスコンテキストの取得
 	auto device = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
 
-	m_stage->Render( m_tpsCamera->GetViewMatrix(), m_tpsCamera->GetProjectionMatrix());
+	m_stage->Render(m_tpsCamera->GetViewMatrix(), m_tpsCamera->GetProjectionMatrix());
 	
-
 	m_gridFloor->Render(device, m_tpsCamera->GetViewMatrix(), m_tpsCamera->GetProjectionMatrix());
 
 	

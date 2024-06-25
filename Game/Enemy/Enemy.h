@@ -42,6 +42,8 @@ public: //プロパティ
     DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
     void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 
+    DirectX::BoundingSphere GetBoundingSphere() { return m_enemyBoundingSphere; }
+    DirectX::SimpleMath::Vector3 GetBoundingCenter() { return m_enemyCenter; }
 public:
     Enemy(
         IComponent* parent,
@@ -64,6 +66,11 @@ public:
     const float GetNumber() const { return Number; }
     void SetDebug(float value) { Debug = value; }
     const float GetDebug() const { return Debug; }
+
+    
+
+    // 境界球を作成
+    DirectX::BoundingSphere CreateBoundingSphere(const float& radius);
 
 private:
     // 共通リソース
@@ -93,4 +100,7 @@ private:
     std::unique_ptr<BehaviorTreeExecute> m_behaviorExecutor;
 
     EnemyBody* m_body;
+
+    DirectX::BoundingSphere m_enemyBoundingSphere;			// プレイヤー当たり判定球
+    DirectX::SimpleMath::Vector3 m_enemyCenter;			// プレイヤーの中心
 };
