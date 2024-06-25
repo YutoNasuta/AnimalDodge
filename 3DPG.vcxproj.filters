@@ -251,6 +251,7 @@
     <ClInclude Include="Game\BlackBoard.h" />
     <ClInclude Include="Game\Enemy\BehaviorTree\BehaviorTreeExecute.h" />
     <ClInclude Include="Game\Collision\CharacterCollision.h" />
+    <ClInclude Include="Game\Collision\BallCollision.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -401,6 +402,7 @@
     <ClCompile Include="Game\BlackBoard.cpp" />
     <ClCompile Include="Game\Enemy\BehaviorTree\BehaviorTreeExecute.cpp" />
     <ClCompile Include="Game\Collision\CharacterCollision.cpp" />
+    <ClCompile Include="Game\Collision\BallCollision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

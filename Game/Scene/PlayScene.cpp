@@ -26,6 +26,7 @@
 #include"Libraries/NakashiLib/CreateRay.h"
 #include"Game/BlackBoard.h"
 #include"Game/Collision/CharacterCollision.h"
+#include"Game/Collision/BallCollision.h"
 
 const DirectX::SimpleMath::Vector3 PlayScene::HOME_POSITION = DirectX::SimpleMath::Vector3(10.0f, 10.0f, 10.0f);
 
@@ -122,6 +123,7 @@ void PlayScene::Initialize()
 
 	m_ball = std::make_unique<Ball>();
 	m_ball->Initialize(m_player.get());
+	m_ball->SetPosition(DirectX::SimpleMath::Vector3(HOME_POSITION));
 
 	m_enemy = std::make_unique<Enemy>(
 		nullptr,
@@ -141,7 +143,7 @@ void PlayScene::Initialize()
 	}
 	
 	m_characterCollision = std::make_unique<CharacterCollision>();
-	
+	m_ballCollision = std::make_unique<BallCollision>();
 
 }
 
@@ -257,6 +259,7 @@ void PlayScene::Update(float elapsedTime)
 	m_enemy->Update( position, quaternion);
 
 	m_characterCollision->CheckHit(m_player.get(), m_enemy.get());
+	m_ballCollision->DetectCollisionBallToWall(m_ball.get(), m_stage.get());
 }
 
 //---------------------------------------------------------
@@ -296,6 +299,7 @@ void PlayScene::Render()
 	debugString->AddString("PlayerForce:: %f", m_player->GetForceCharge());
 	debugString->AddString("EnemyDebug:: %f", m_enemy->GetDebug());
 	debugString->AddString("EnemyNumber:: %f", m_enemy->GetNumber());
+	debugString->AddString("B:Position:: %f , %f , %f", m_ball->GetPosition().x, m_ball->GetPosition().y, m_ball->GetPosition().z);
 	//debugString->AddString("ballDebug:: %f", m_ball->GetDebugLog());
 	//m_ray->Render();
 #endif

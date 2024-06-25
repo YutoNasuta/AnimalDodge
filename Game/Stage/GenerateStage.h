@@ -34,6 +34,7 @@ private:
 	float m_normalHeight;
 	int m_correctionHeight;
 	int m_scale;
+	float m_stageCaseHeight;
 	CommonResources* m_commonResources;
 
 public:
@@ -52,7 +53,7 @@ public:		// プロパティ
 
 	NakashiLib::CollisionMesh* GetCollisionMesh() { return m_collisionMesh.get(); }
 	StageCase* GetStageCase(int number) { return m_stageCase[number].get(); }
-
+	int GetStageCaseMax() { return STAGE_QUANTITY; }
 private:
 	// パーリンノイズ作成
 	void CreatePerlinNoise();

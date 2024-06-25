@@ -23,7 +23,8 @@ GenerateStage::GenerateStage()
 	m_octaves{ 10},
 	m_normalHeight{1.5f},
 	m_scale{ 10 },
-	m_landScape{}
+	m_landScape{},
+	m_stageCaseHeight{20}
 {
 	m_commonResources = CommonResources::GetInstance();
 }
@@ -187,10 +188,10 @@ void GenerateStage::CreateStageCase()
 	// 各辺に応じたBoxのサイズを作成
 	DirectX::SimpleMath::Vector3 boxSize[STAGE_QUANTITY] =
 	{
-		{static_cast<float>(LAND_HEIGHT) * m_scale, static_cast<float>(m_correctionHeight) * m_scale, 5.0f},
-		{static_cast<float>(LAND_HEIGHT) * m_scale, static_cast<float>(m_correctionHeight) * m_scale, 5.0f},
-		{5.0f, static_cast<float>(m_correctionHeight) * m_scale, static_cast<float>(LAND_WIDTH) * m_scale},
-		{5.0f, static_cast<float>(m_correctionHeight) * m_scale, static_cast<float>(LAND_WIDTH) * m_scale}		
+		{static_cast<float>(LAND_HEIGHT) * m_scale, static_cast<float>(m_correctionHeight) * m_scale / 2 + m_stageCaseHeight, 5.0f},
+		{static_cast<float>(LAND_HEIGHT) * m_scale, static_cast<float>(m_correctionHeight) * m_scale / 2 + m_stageCaseHeight, 5.0f},
+		{5.0f, static_cast<float>(m_correctionHeight) * m_scale / 2 + m_stageCaseHeight, static_cast<float>(LAND_WIDTH) * m_scale},
+		{5.0f, static_cast<float>(m_correctionHeight) * m_scale / 2 + m_stageCaseHeight, static_cast<float>(LAND_WIDTH) * m_scale}
 	};
 
 	// ステージの外側の場所を作る

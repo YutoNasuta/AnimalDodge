@@ -21,7 +21,7 @@ class Player;
 class GenerateStage;
 class BlackBoard;
 class CharacterCollision;
-
+class BallCollision;
 
 namespace mylib
 {
@@ -90,7 +90,7 @@ private:
 
 	// “–‚½‚è”»’è‚ðŒÄ‚Ô
 	std::unique_ptr<CharacterCollision> m_characterCollision;
-
+	std::unique_ptr<BallCollision> m_ballCollision;
 
 public:
 	PlayScene();
