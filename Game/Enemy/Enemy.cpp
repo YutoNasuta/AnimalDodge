@@ -57,7 +57,7 @@ void Enemy::Initialize()
     auto tree =  m_behaviorTreeBuilder->BuildTree(this);
     m_behaviorExecutor = std::make_unique<BehaviorTreeExecute>(std::move(tree));
 
-    m_enemyBoundingSphere = CreateBoundingSphere(11.0f);	// ‹«ŠE‹…‚Ìì¬
+    m_enemyBoundingSphere = CreateBoundingSphere(1.0f);	// ‹«ŠE‹…‚Ìì¬
 }
 
 void Enemy::Update(
@@ -73,8 +73,8 @@ void Enemy::Update(
     );
 
     m_behaviorExecutor->Update();
-    m_enemyCenter = m_position + GetInitialPosition() + DirectX::SimpleMath::Vector3(0.0f, 8.0f, 0.0f);
-    m_enemyBoundingSphere.Center = m_enemyCenter;
+ 
+    m_enemyBoundingSphere.Center = m_position;
 }
 
 

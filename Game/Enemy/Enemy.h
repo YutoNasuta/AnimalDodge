@@ -43,7 +43,7 @@ public: //プロパティ
     void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 
     DirectX::BoundingSphere GetBoundingSphere() { return m_enemyBoundingSphere; }
-    DirectX::SimpleMath::Vector3 GetBoundingCenter() { return m_enemyCenter; }
+    void SetBoundingSphereCenter(DirectX::SimpleMath::Vector3 boundingSphere) { m_enemyBoundingSphere.Center = boundingSphere; }
 public:
     Enemy(
         IComponent* parent,
@@ -66,8 +66,6 @@ public:
     const float GetNumber() const { return Number; }
     void SetDebug(float value) { Debug = value; }
     const float GetDebug() const { return Debug; }
-
-    
 
     // 境界球を作成
     DirectX::BoundingSphere CreateBoundingSphere(const float& radius);

@@ -67,6 +67,9 @@ public:
 	void Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
 	void Finalize();
 
+	// 境界球を作成
+	DirectX::BoundingSphere CreateBoundingSphere(const float& radius);
+
 private:
 	// 共通ステート
 	CommonResources* m_commonResources;
@@ -126,6 +129,9 @@ private:
 	// 地面位置
 	DirectX::SimpleMath::Vector3 m_ground;
 
+	// 当たり判定
+	DirectX::BoundingSphere m_ballBoundingSphere;
+
 public:	// プロパティ
 	// 位置の設定
 	const DirectX::SimpleMath::Vector3 GetPosition() const {  return m_position; }
@@ -157,5 +163,9 @@ public:	// プロパティ
 	// 地面設定
 	const DirectX::SimpleMath::Vector3 GetGround() const { return m_ground; }
 	void SetGround(const DirectX::SimpleMath::Vector3& ground) { m_ground = ground; }
+
+	// バウンディングボックス設定
+	DirectX::BoundingSphere GetBoundingSphere() { return m_ballBoundingSphere; }
+	void SetBoundingSphereCenter(DirectX::SimpleMath::Vector3 boundingSphere) { m_ballBoundingSphere.Center = boundingSphere; }
 	
 };

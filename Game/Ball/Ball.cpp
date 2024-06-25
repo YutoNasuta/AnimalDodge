@@ -56,6 +56,7 @@ Ball::Ball()
 {
 	m_commonResources = CommonResources::GetInstance();
 	m_friction = FRICTION;
+	m_ballBoundingSphere = CreateBoundingSphere(1.0f);
 }
 
 /// <summary>
@@ -95,7 +96,7 @@ void Ball::Initialize(Player* player)
 /// <param name="elapsedTime">時間</param>
 void Ball::Update(float elapsedTime)
 {
-
+	m_ballBoundingSphere.Center = m_position;
 	m_currentState->Update();
 }
 
@@ -138,4 +139,15 @@ void Ball::ChangeState(IState* currentState)
 	m_currentState->OnExit();		// 現在のステートを出る
 	m_currentState = currentState;	// ステート変更
 	m_currentState->OnEnter();		// 次のステートに入る
+}
+
+// 砲塔境界球を作成する
+DirectX::BoundingSphere Ball::CreateBoundingSphere(const float& radius)
+{
+	// 境界球を宣言する
+	DirectX::BoundingSphere turretBoundingSphere;
+	// 境界球の半径を設定する
+	turretBoundingSphere.Radius = radius;
+	// 境界球を返す
+	return turretBoundingSphere;
 }

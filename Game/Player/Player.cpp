@@ -91,7 +91,7 @@ void Player::Initialize()
 	m_currentState = m_standing.get();			// 初期の状態は立ち状態
 	m_currentState->OnEnter();					// 最初のステート状態に移行
 
-	m_playerBoundingSphere = CreateBoundingSphere(11.0f);	// 境界球の作成
+	m_playerBoundingSphere = CreateBoundingSphere(1.0f);	// 境界球の作成
 }
 
 /// <summary>
