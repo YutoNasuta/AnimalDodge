@@ -258,7 +258,7 @@ void PlayScene::Update(float elapsedTime)
 
 	m_enemy->Update( position, quaternion);
 
-	m_characterCollision->CheckHit(m_player.get(), m_enemy.get());
+	m_characterCollision->DetectCollisionPlayerToEnemy(m_player.get(), m_enemy.get());
 	m_ballCollision->DetectCollisionBallToWall(m_ball.get(), m_stage.get());
 }
 

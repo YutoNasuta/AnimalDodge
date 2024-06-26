@@ -82,7 +82,7 @@ void Player::Initialize()
 	SetChild(std::move(body));							// プレイヤーの子にbodyを設定
 	
 	
-	m_standing = std::make_unique<PlayerStanding>(this);		// 立ち状態
+	m_standing = std::make_unique<PlayerStanding>(this);	// 立ち状態
 	m_jumping = std::make_unique<PlayerJumping>(this);		// ジャンプ状態
 	m_runnning = std::make_unique<PlayerRunning>(this);		// 移動状態
 	m_taking = std::make_unique<PlayerTake>(this);			// 取る状態

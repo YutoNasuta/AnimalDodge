@@ -9,16 +9,23 @@
 
 class Player;
 class Enemy;
+class GenerateStage;
 
 class CharacterCollision
 {
 public:
 	CharacterCollision();
 	~CharacterCollision();
-	void CheckHit(Player* player , Enemy* enemy);
+	void DetectCollisionPlayerToEnemy(Player* player , Enemy* enemy);
+
+	void DetectCollisionPlayerToWall(Player* player, GenerateStage* stage);
 
 private:
 	// 当たったかどうか
-	bool m_isHit;
+	bool m_isEnemyHit;
+	bool m_isWallHit;
+
+	// 当たったステージケース番号格納用
+	int m_stageCaseNumber;
 
 };
