@@ -241,17 +241,14 @@
     <ClInclude Include="Game\Player\StatePattern\State\PlayerStanding.h">
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Player\StatePattern\State\PlayerTake.h">
-      <Filter>Game\Player\StatePattern\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player\StatePattern\State\PlayerThrow.h">
-      <Filter>Game\Player\StatePattern\State</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Enemy\BehaviorTree\State\EnemyChasePlayer.h" />
     <ClInclude Include="Game\BlackBoard.h" />
     <ClInclude Include="Game\Enemy\BehaviorTree\BehaviorTreeExecute.h" />
     <ClInclude Include="Game\Collision\CharacterCollision.h" />
     <ClInclude Include="Game\Collision\BallCollision.h" />
+    <ClInclude Include="Game\Factory\PlayerFactory.h" />
+    <ClInclude Include="Game\Player\StatePattern\State\PlayerDash.h" />
+    <ClInclude Include="Game\Player\StatePattern\State\PlayerAttack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -392,17 +389,14 @@
     <ClCompile Include="Game\Player\StatePattern\State\PlayerStanding.cpp">
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Player\StatePattern\State\PlayerTake.cpp">
-      <Filter>Game\Player\StatePattern\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player\StatePattern\State\PlayerThrow.cpp">
-      <Filter>Game\Player\StatePattern\State</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Enemy\BehaviorTree\State\EnemyChasePlayer.cpp" />
     <ClCompile Include="Game\BlackBoard.cpp" />
     <ClCompile Include="Game\Enemy\BehaviorTree\BehaviorTreeExecute.cpp" />
     <ClCompile Include="Game\Collision\CharacterCollision.cpp" />
     <ClCompile Include="Game\Collision\BallCollision.cpp" />
+    <ClCompile Include="Game\Factory\PlayerFactory.cpp" />
+    <ClCompile Include="Game\Player\StatePattern\State\PlayerDash.cpp" />
+    <ClCompile Include="Game\Player\StatePattern\State\PlayerAttack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

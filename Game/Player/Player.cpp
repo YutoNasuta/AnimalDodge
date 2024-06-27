@@ -12,6 +12,7 @@
 #include"Framework/DeviceResources.h"
 #include"Game/BlackBoard.h"
 
+
 /// <summary>
 /// コンストラクタ
 /// </summary>
@@ -47,8 +48,6 @@ Player::Player(
 	m_currentState{},
 	m_jumping{},
 	m_runnning{},
-	m_throw{},
-	m_taking{},
 	m_nodeNumber(0),
 	m_blackBoard(),
 	m_playerBoundingSphere{}
@@ -85,8 +84,8 @@ void Player::Initialize()
 	m_standing = std::make_unique<PlayerStanding>(this);	// 立ち状態
 	m_jumping = std::make_unique<PlayerJumping>(this);		// ジャンプ状態
 	m_runnning = std::make_unique<PlayerRunning>(this);		// 移動状態
-	m_taking = std::make_unique<PlayerTake>(this);			// 取る状態
-	m_throw = std::make_unique<PlayerThrow>(this);			// 投げ状態
+	m_dash = std::make_unique<PlayerDash>(this);			// ダッシュ状態
+	m_attack = std::make_unique<PlayerAttack>(this);		// 攻撃状態
 
 	m_currentState = m_standing.get();			// 初期の状態は立ち状態
 	m_currentState->OnEnter();					// 最初のステート状態に移行

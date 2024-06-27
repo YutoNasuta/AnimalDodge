@@ -21,10 +21,7 @@
 /// コンストラクタ
 /// </summary>
 /// <param name="player">プレイヤー</param>
-/// <param name="resource">共通リソース</param>
-PlayerRunning::PlayerRunning(
-	Player* player
-)
+PlayerRunning::PlayerRunning(Player* player)
 :
 	m_player(player)
 {
@@ -64,7 +61,6 @@ void PlayerRunning::Initialize()
 /// <summary>
 /// 更新処理
 /// </summary>
-/// <param name="keyboardStateTracker">キーボード</param>
 void PlayerRunning::Update()
 {
 	auto keyboardStateTracker = m_commonResources->GetInputManager()->GetKeyboardState();
@@ -161,13 +157,13 @@ void PlayerRunning::ChangeStateKey(
 		m_player->ChangeState(m_player->GetJumping());
 	}
 	const auto& mouseState = m_commonResources->GetInputManager()->GetMouseState();		//マウスの情報取得
-	if (mouseState.rightButton == 1 && m_player->GetBallTakeFlag() == false)			// 受け状態に変更	
+	if (mouseState.rightButton == 1)			// 受け状態に変更	
 	{
-		m_player->ChangeState(m_player->GetTake());
+		m_player->ChangeState(m_player->GetDash());
 	}
-	if (mouseState.leftButton == 1 && m_player->GetBallTakeFlag() == true)				// 投げ状態に変更
+	if (mouseState.leftButton == 1 )				// 投げ状態に変更
 	{
-		m_player->ChangeState(m_player->GetThrow());
+		m_player->ChangeState(m_player->GetAttack());
 	}
 }
 

@@ -121,7 +121,7 @@ void PlayerJumping::ChangeStateKey(
 	const auto& mouseState = m_commonResources->GetInputManager()->GetMouseState(); 
 	 if(mouseState.rightButton)
 	{
-		m_player->ChangeState(m_player->GetTake());		// ó‚¯ó‘Ô‚É‘JˆÚ
+		m_player->ChangeState(m_player->GetAttack());		// ó‚¯ó‘Ô‚É‘JˆÚ
 	}
 	m_player->ChangeState(m_player->GetStanding());		// —§‚¿ó‘Ô‚É‘JˆÚ‚·‚é
 }

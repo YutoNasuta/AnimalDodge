@@ -21,7 +21,7 @@ public:
 	~PlayerRunning();
 	// ‰Šú‰»
 	void Initialize() override;
-	// —§‚¿ó‘Ô
+	// XV
 	void Update() override;
 	// —§‚¿‚Ì•`‰æ
 	void Render() override;

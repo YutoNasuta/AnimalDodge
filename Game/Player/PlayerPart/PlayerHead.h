@@ -27,6 +27,9 @@ public:
 	void SetMass(const float& mass) override { m_mass = mass; }
 
 	DirectX::Model* GetModel() override { return m_model; }
+
+	void SetAddQuaternion(const DirectX::SimpleMath::Quaternion& quaternion) { m_addQuaternion = quaternion; }
+	DirectX::SimpleMath::Quaternion GetAddQuaternion() const { return m_addQuaternion; }
 public:
 	// コンストラクタ
 	PlayerHead(IComponent* parent, 
@@ -64,5 +67,8 @@ private:
 	DirectX::SimpleMath::Matrix m_worldMatrix;
 	// ノード番号
 	int m_nodeNumber;
+
+	// 追加のクォータニオン
+	DirectX::SimpleMath::Quaternion m_addQuaternion;
 	
 };

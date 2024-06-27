@@ -15,6 +15,7 @@
 #include"Game/Player/PlayerPart/PlayerLeg.h"
 #include"Libraries/NakashiLib/InputManager.h"
 #include"Game/Player/PlayerPart/PlayerTail.h"
+#include"Game/Factory/PlayerFactory.h"
 
 /// <summary>
 /// コンストラクタ
@@ -153,8 +154,8 @@ void PlayerBody::Update(
 	m_worldMatrix =
 		DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_addQuaternion)
 		* DirectX::SimpleMath::Matrix::CreateTranslation(GetInitialPosition())
-		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_quaternion)
-		* DirectX::SimpleMath::Matrix::CreateTranslation(m_position)
+		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(quaternion)
+		* DirectX::SimpleMath::Matrix::CreateTranslation(position)
 		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(GetInitialQuaternion());
 }
 

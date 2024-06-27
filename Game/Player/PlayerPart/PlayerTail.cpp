@@ -69,13 +69,13 @@ void PlayerTail::Update(
 {
 	
 
-	DirectX::SimpleMath::Vector3 localPosition = position;
-	DirectX::SimpleMath::Quaternion localQuaternion = quaternion;
+	//DirectX::SimpleMath::Vector3 localPosition = position;
+	//DirectX::SimpleMath::Quaternion localQuaternion = quaternion;
 
-	localPosition += m_velocity;
-	m_position = localPosition;
+	//localPosition += m_velocity;
+	//m_position = localPosition;
 
-	m_quaternion = quaternion;			// 現在の回転角を更新する
+	//m_quaternion = quaternion;			// 現在の回転角を更新する
 
 	PlayerBase::Update(			//ベースを更新
 		m_position,
@@ -85,8 +85,8 @@ void PlayerTail::Update(
 		= DirectX::SimpleMath::Matrix::CreateTranslation(DirectX::SimpleMath::Vector3(0.0f, 0.5f, 0.2f))
 		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_addQuaternion)
 		* DirectX::SimpleMath::Matrix::CreateTranslation(GetInitialPosition())
-		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_quaternion)
-		* DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
+		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(quaternion)
+		* DirectX::SimpleMath::Matrix::CreateTranslation(position);
 
 
 }

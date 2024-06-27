@@ -6,12 +6,12 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma once
 #include"Interface/IComponent.h"
-
+#include"Game/BlackBoard.h"
 class IPlayerFactory
 {
 public:
 	// ÉvÉåÉCÉÑÅ[ê∂ê¨
-	virtual std::unique_ptr<IComponent> CreatePlayer(IComponent* parent, const DirectX::SimpleMath::Vector3& initialPosition, const DirectX::SimpleMath::Quaternion& initialQuaternion) = 0;
+	virtual std::unique_ptr<IComponent> CreatePlayer(IComponent* parent, const DirectX::SimpleMath::Vector3& initialPosition, const DirectX::SimpleMath::Quaternion& initialQuaternion , BlackBoard* blackboard) = 0;
 	// ì™ê∂ê¨
 	virtual std::unique_ptr<IComponent> CreatePlayerHead(IComponent* parent, const DirectX::SimpleMath::Vector3& initialPosition, const DirectX::SimpleMath::Quaternion& initialQuaternion) = 0;
 	// ì∑ê∂ê¨

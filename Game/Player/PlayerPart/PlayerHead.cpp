@@ -81,10 +81,12 @@ void PlayerHead::Update(
 		m_quaternion
 	);
 
-	m_worldMatrix = DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_quaternion)
-		* DirectX::SimpleMath::Matrix::CreateTranslation(m_position)
-		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(GetInitialQuaternion())
-		* DirectX::SimpleMath::Matrix::CreateTranslation(GetInitialPosition());
+	m_worldMatrix = 
+		DirectX::SimpleMath::Matrix::CreateTranslation(DirectX::SimpleMath::Vector3(0.0f, 0.0f, 0.0f))
+		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_addQuaternion)
+		* DirectX::SimpleMath::Matrix::CreateTranslation(GetInitialPosition())
+		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(quaternion)
+		* DirectX::SimpleMath::Matrix::CreateTranslation(position);
 
 }
 

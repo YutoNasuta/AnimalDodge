@@ -227,8 +227,11 @@ void PlayScene::Update(float elapsedTime)
 	{
 		m_ground.y = hitposition.y;
 		m_player->SetGround(m_ground);
-		if(m_player->GetNowState() != m_player->GetJumping())
-		m_player->SetPosition(hitposition + DirectX::SimpleMath::Vector3(0.0f,0.4f,0.0f));
+		if (m_player->GetNowState() != m_player->GetJumping() || m_player->GetNowState() != m_player->GetAttack())
+		{
+			m_player->SetPosition(hitposition + DirectX::SimpleMath::Vector3(0.0f, 0.4f, 0.0f));
+		}
+		
 	}
 
 	ishit2 = m_stage->GetCollisionMesh()->IntersectRay(m_ray[1]->GetRay(), &hitposition2, &normal2, &number2);
@@ -289,8 +292,8 @@ void PlayScene::Render()
 	if (m_player->GetNowState() == m_player->GetStanding()) { debugString->AddString("P::standing"); }
 	else if (m_player->GetNowState() == m_player->GetJumping()) { debugString->AddString("P::Jumping"); }
 	else if (m_player->GetNowState() == m_player->GetRunning()) { debugString->AddString("P::Runnning"); }
-	else if (m_player->GetNowState() == m_player->GetTake()) { debugString->AddString("P::Take"); }
-	else if (m_player->GetNowState() == m_player->GetThrow()) { debugString->AddString("P::Throw"); }
+	else if (m_player->GetNowState() == m_player->GetAttack()) { debugString->AddString("P::Attack"); }
+	else if (m_player->GetNowState() == m_player->GetDash()) { debugString->AddString("P::Dash"); }
 
 
 	if (m_ball->GetNowState() == m_ball->GetMove()) { debugString->AddString("B::Move"); }

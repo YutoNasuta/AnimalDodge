@@ -14,6 +14,7 @@
 #include"Game/Player/PlayerPart/PlayerLeftHand.h"
 #include"Game/Player/PlayerPart/PlayerRightHand.h"
 #include"Game/Player/PlayerPart/PlayerTail.h"
+#include"Game/Player/PlayerPart/PlayerHead.h"
 #include"Framework/StepTimer.h"
 /// <summary>
 /// コンストラクタ
@@ -100,11 +101,11 @@ void PlayerStanding::ChangeStateKey(
 	const auto& mouseState = m_commonResources->GetInputManager()->GetMouseState();		// マウスの状態取得
 	if (mouseState.rightButton == 1 && m_player->GetBallTakeFlag() == false)			// 右ボタンが押された　かつ　ボールをもっていない
 	{
-		m_player->ChangeState(m_player->GetTake());				// 受け状態に変更
+		//m_player->ChangeState(m_player->GetTake());				// 受け状態に変更
 	}
-	if (mouseState.leftButton == 1 && m_player->GetBallTakeFlag() == true)				// 左ボタンが押された　かつ　ボールを持っている
+	if (mouseState.leftButton == 1)				// 左ボタンが押された　かつ　ボールを持っている
 	{
-		m_player->ChangeState(m_player->GetThrow());			// 投げ状態に変更
+		m_player->ChangeState(m_player->GetAttack());			// 投げ状態に変更
 	}
 }
 
@@ -119,6 +120,8 @@ void PlayerStanding::MoveChild()
 {
 	MoveHand();
 	MoveTail();
+	MoveBody();
+	MoveHead();
 }
 
 /// <summary>
@@ -166,4 +169,27 @@ void PlayerStanding::MoveTail()
 
 
 	tail->SetAddQuaternion(swingQuaternion);
+}
+
+void PlayerStanding::MoveBody()
+{
+	auto body = m_player->GetBody();
+	DirectX::SimpleMath::Quaternion InitialPoint = body->GetInitialQuaternion();
+
+	DirectX::SimpleMath::Quaternion SlerpRotationBody =
+		DirectX::SimpleMath::Quaternion::Slerp(body->GetAddQUaternion(), InitialPoint, 0.2f);
+
+	body->SetAddQuaternion(SlerpRotationBody);
+
+}
+
+void PlayerStanding::MoveHead()
+{
+	auto head = m_player->GetBody()->GetHead();
+	DirectX::SimpleMath::Quaternion InitialPoint = head->GetInitialQuaternion();
+
+	DirectX::SimpleMath::Quaternion SlerpRotationHead =
+		DirectX::SimpleMath::Quaternion::Slerp(head->GetAddQuaternion(), InitialPoint, 0.2f);
+
+	head->SetAddQuaternion(SlerpRotationHead);
 }

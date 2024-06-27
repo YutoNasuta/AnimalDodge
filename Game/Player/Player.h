@@ -12,16 +12,16 @@
 #include"Game/Player/StatePattern/State/PlayerStanding.h"
 #include"StatePattern/State/PlayerJumping.h"
 #include"StatePattern/State/PlayerRunning.h"
-#include"StatePattern/State/PlayerTake.h"
-#include"StatePattern/State/PlayerThrow.h"
+#include"StatePattern/State/PlayerDash.h"
+#include"StatePattern/State/PlayerAttack.h"
 
 // 前方宣言
 class CommonResources;
 class PlayerStanding;
 class PlayerJumping;
 class PlayerRunning;
-class PlayerTake;
-class PlayerThrow;
+class PlayerDash;
+class PlayerAttack;
 
 class PlayerBody;
 class BlackBoard;
@@ -47,8 +47,8 @@ public:
 	PlayerStanding* GetStanding() { return m_standing.get(); }		// 立ち状態取得
 	PlayerJumping* GetJumping() { return m_jumping.get(); }			// ジャンプ状態取得
 	PlayerRunning* GetRunning() { return m_runnning.get(); }		// 走る状態取得
-	PlayerTake* GetTake() { return m_taking.get(); }				// 取る状態取得
-	PlayerThrow* GetThrow() { return m_throw.get(); }				// 投げ状態取得
+	PlayerDash* GetDash() { return m_dash.get(); }					// ダッシュ状態
+	PlayerAttack* GetAttack() { return m_attack.get(); }			// アタック状態
 
 	// 状態を遷移する
 	void ChangeState(IState* currentState);	
@@ -139,8 +139,8 @@ private:
 	std::unique_ptr<PlayerStanding> m_standing;	// 立ち状態
 	std::unique_ptr<PlayerJumping> m_jumping;	// ジャンプ状態
 	std::unique_ptr<PlayerRunning> m_runnning;	// 走り状態
-	std::unique_ptr<PlayerTake> m_taking;		// 取る状態
-	std::unique_ptr<PlayerThrow> m_throw;		// 投げ状態
+	std::unique_ptr<PlayerDash> m_dash;			// ダッシュ状態
+	std::unique_ptr<PlayerAttack> m_attack;
 
 	//  プレイヤーの情報+++++++++++++++++++++++++++++++++++++++++++
 	int m_partID;								 // ID

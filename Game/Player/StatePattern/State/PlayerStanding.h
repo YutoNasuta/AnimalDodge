@@ -39,6 +39,10 @@ public:
 	void MoveHand();
 	// ‚µ‚Á‚Û‚Ì“®‚«
 	void MoveTail();
+	// “ª‚Ì“®‚«
+	void MoveHead();
+	// “·‘Ì‚Ì“®‚«
+	void MoveBody();
 
 private:
 	Player* m_player;
