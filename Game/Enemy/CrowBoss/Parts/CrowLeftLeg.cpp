@@ -81,8 +81,7 @@ void CrowLeftLeg::Update(
 		m_quaternion);
 
 	m_worldMatrix 				//çsóÒÇÃïœçX
-		= DirectX::SimpleMath::Matrix::CreateTranslation(DirectX::SimpleMath::Vector3(0.0f, 0.5f, 0.2f))
-		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_addQuaternion)
+		= DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_addQuaternion)
 		* DirectX::SimpleMath::Matrix::CreateTranslation(GetInitialPosition())
 		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_quaternion)
 		* DirectX::SimpleMath::Matrix::CreateTranslation(m_position);

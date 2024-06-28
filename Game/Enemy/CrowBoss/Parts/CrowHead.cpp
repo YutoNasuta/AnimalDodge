@@ -61,8 +61,6 @@ CrowHead::~CrowHead()
 void CrowHead::Initialize()
 {
 
-
-
 	ModelInitialize();
 	ChildInitialize();
 
@@ -73,14 +71,13 @@ void CrowHead::Initialize()
 /// <summary>
 /// 子供の初期化
 /// </summary>
-/// <param name="resources">共通リソース</param>
 void CrowHead::ChildInitialize()
 {
-	// 腕を子オブジェクトに
+	// 羽を子オブジェクトに
 	auto rightWing =
 		std::make_unique<CrowRightWing>(
 			this,
-			DirectX::SimpleMath::Vector3(-6.0f, 4.0f, 0.0f),
+			DirectX::SimpleMath::Vector3(-5.0f, 5.0f, 0.0f),
 			DirectX::SimpleMath::Quaternion::Identity);
 	m_rightWing = rightWing.get();
 	SetChild(std::move(rightWing));
@@ -88,7 +85,7 @@ void CrowHead::ChildInitialize()
 	auto leftWing =
 		std::make_unique<CrowLeftWing>(
 			this,
-			DirectX::SimpleMath::Vector3(0.0f, 4.0f, 0.0f),
+			DirectX::SimpleMath::Vector3(5.0f, 5.0f, 0.0f),
 			DirectX::SimpleMath::Quaternion::Identity);
 	m_leftWing = leftWing.get();
 	SetChild(std::move(leftWing));
@@ -96,15 +93,14 @@ void CrowHead::ChildInitialize()
 	// 足を子オブジェクトに
 	auto rightLeg = std::make_unique<CrowRightLeg>(
 		this,
-		DirectX::SimpleMath::Vector3(0.0f, -0.6f, 0.0f),
+		DirectX::SimpleMath::Vector3(-2.0f, 0.0f, 0.0f),
 		DirectX::SimpleMath::Quaternion::Identity);
 	m_rightLeg = rightLeg.get();
 	SetChild(std::move(rightLeg));
 
-	// しっぽを子オブジェクトに
 	auto leftLeg = std::make_unique<CrowLeftLeg>(
 		this,
-		DirectX::SimpleMath::Vector3(0.0f, -0.5f, -0.8f),
+		DirectX::SimpleMath::Vector3(2.0f, 0.0f, 0.0f),
 		DirectX::SimpleMath::Quaternion::Identity);
 	m_leftLeg = leftLeg.get();
 	SetChild(std::move(leftLeg));
