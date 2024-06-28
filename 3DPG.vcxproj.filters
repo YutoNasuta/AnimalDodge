@@ -248,7 +248,9 @@
     <ClInclude Include="Game\Collision\BallCollision.h" />
     <ClInclude Include="Game\Factory\PlayerFactory.h" />
     <ClInclude Include="Game\Player\StatePattern\State\PlayerDash.h" />
-    <ClInclude Include="Game\Player\StatePattern\State\PlayerAttack.h" />
+    <ClInclude Include="Game\Player\StatePattern\State\PlayerFirstAttack.h" />
+    <ClInclude Include="Game\Player\StatePattern\State\PlayerSecondAttack.h" />
+    <ClInclude Include="Game\Player\StatePattern\State\PlayerThirdAttack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -396,7 +398,9 @@
     <ClCompile Include="Game\Collision\BallCollision.cpp" />
     <ClCompile Include="Game\Factory\PlayerFactory.cpp" />
     <ClCompile Include="Game\Player\StatePattern\State\PlayerDash.cpp" />
-    <ClCompile Include="Game\Player\StatePattern\State\PlayerAttack.cpp" />
+    <ClCompile Include="Game\Player\StatePattern\State\PlayerFirstAttack.cpp" />
+    <ClCompile Include="Game\Player\StatePattern\State\PlayerSecondAttack.cpp" />
+    <ClCompile Include="Game\Player\StatePattern\State\PlayerThirdAttack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

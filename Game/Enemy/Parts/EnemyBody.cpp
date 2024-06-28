@@ -81,7 +81,7 @@ void EnemyBody::ChildInitialize()
 	auto rightHand =
 		std::make_unique<EnemyRightHand>(
 			this,
-			DirectX::SimpleMath::Vector3(-1.0f, 0.5f, 0.0f),
+			DirectX::SimpleMath::Vector3(-6.0f, 4.0f, 0.0f),
 			DirectX::SimpleMath::Quaternion::Identity);
 	m_rightHand = rightHand.get();
 	SetChild(std::move(rightHand));
@@ -89,7 +89,7 @@ void EnemyBody::ChildInitialize()
 	auto leftHand =
 		std::make_unique<EnemyLeftHand>(
 			this,
-			DirectX::SimpleMath::Vector3(1.0f, 0.5f, 0.0f),
+			DirectX::SimpleMath::Vector3(0.0f, 4.0f, 0.0f),
 			DirectX::SimpleMath::Quaternion::Identity);
 	m_leftHand = leftHand.get();
 	SetChild(std::move(leftHand));

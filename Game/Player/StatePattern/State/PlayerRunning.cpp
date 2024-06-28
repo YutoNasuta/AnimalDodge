@@ -163,7 +163,7 @@ void PlayerRunning::ChangeStateKey(
 	}
 	if (mouseState.leftButton == 1 )				// “Š‚°ó‘Ô‚É•ÏX
 	{
-		m_player->ChangeState(m_player->GetAttack());
+		m_player->ChangeState(m_player->GetFirstAttack());
 	}
 }
 

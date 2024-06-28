@@ -41,7 +41,7 @@ PlayerJumping::~PlayerJumping()
 /// </summary>
 void PlayerJumping::OnEnter()
 {
-	m_player->SetVelocity(DirectX::SimpleMath::Vector3(m_player->GetVelocity().x, m_player->GetVelocity().y + 1.1f, m_player->GetVelocity().z));
+	m_player->SetVelocity(DirectX::SimpleMath::Vector3(m_player->GetVelocity().x, m_player->GetVelocity().y + 1.5f, m_player->GetVelocity().z));
 	m_player->SetAngle(m_player->GetQuaternion());
 }
 
@@ -121,7 +121,7 @@ void PlayerJumping::ChangeStateKey(
 	const auto& mouseState = m_commonResources->GetInputManager()->GetMouseState(); 
 	 if(mouseState.rightButton)
 	{
-		m_player->ChangeState(m_player->GetAttack());		// ó‚¯ó‘Ô‚É‘JˆÚ
+		m_player->ChangeState(m_player->GetFirstAttack());		// ó‚¯ó‘Ô‚É‘JˆÚ
 	}
 	m_player->ChangeState(m_player->GetStanding());		// —§‚¿ó‘Ô‚É‘JˆÚ‚·‚é
 }

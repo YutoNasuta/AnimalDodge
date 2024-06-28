@@ -25,7 +25,7 @@ PlayerDash::PlayerDash(Player* player)
 	m_dashDuration(0.2f)
 {
 	m_commonResources = CommonResources::GetInstance();
-	m_dashSpeed = 2.0f;
+	m_dashSpeed = 1.5f;
 }
 
 /// <summary>
@@ -172,14 +172,14 @@ void PlayerDash::MoveTail()
 
 void PlayerDash::MovePlayer()
 {
-	DirectX::SimpleMath::Vector3 direction = m_player->GetVelocity() * 0.15f;		// 停止処理
+	DirectX::SimpleMath::Vector3 direction = m_player->GetVelocity() * 0.15f;
 
 	direction.y = 0.0f;			// y軸成分をゼロに
 
 	direction.Normalize();		// 移動量の正規化
 
 	// ジャンプの高さを加味
-	float jumpHeight = 1.0f;  // ジャンプの高さを設定（適宜調整）
+	float jumpHeight = 1.0f;	// ジャンプの高さを設定（適宜調整）
 	float jumpDuration = 0.5f;  // ジャンプの持続時間（適宜調整）
 
 	// 時間経過に基づくジャンプの高さの補間

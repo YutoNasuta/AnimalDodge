@@ -85,7 +85,9 @@ void Player::Initialize()
 	m_jumping = std::make_unique<PlayerJumping>(this);		// ジャンプ状態
 	m_runnning = std::make_unique<PlayerRunning>(this);		// 移動状態
 	m_dash = std::make_unique<PlayerDash>(this);			// ダッシュ状態
-	m_attack = std::make_unique<PlayerAttack>(this);		// 攻撃状態
+	m_firstAttack = std::make_unique<PlayerFirstAttack>(this);		// 攻撃状態
+	m_secondAttack = std::make_unique<PlayerSecondAttack>(this);	// 二回目の攻撃
+	m_thirdAttack = std::make_unique<PlayerThirdAttack>(this);
 
 	m_currentState = m_standing.get();			// 初期の状態は立ち状態
 	m_currentState->OnEnter();					// 最初のステート状態に移行
@@ -112,6 +114,7 @@ void Player::Update(
 	);
 	m_blackBoard->SetPlayerPosition(m_position);
 	m_playerBoundingSphere.Center = m_position;
+
 }
 
 /// <summary>

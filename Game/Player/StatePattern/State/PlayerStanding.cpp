@@ -89,10 +89,7 @@ void PlayerStanding::ChangeStateKey(
 	const DirectX::Keyboard::State& keyboardStateTracker
 )
 {
-	if (keyboardStateTracker.IsKeyDown(DirectX::Keyboard::Space))	 //スペースキーを押したとき
-	{
-		m_player->ChangeState(m_player->GetJumping());			// ジャンプ状態に遷移する
-	}
+	
 	if (keyboardStateTracker.IsKeyDown(DirectX::Keyboard::Keys::D) || keyboardStateTracker.IsKeyDown(DirectX::Keyboard::Keys::A) ||
 		keyboardStateTracker.IsKeyDown(DirectX::Keyboard::Keys::W) || keyboardStateTracker.IsKeyDown(DirectX::Keyboard::Keys::S))			// WASDのどれかを押したとき
 	{
@@ -105,7 +102,11 @@ void PlayerStanding::ChangeStateKey(
 	}
 	if (mouseState.leftButton == 1)				// 左ボタンが押された　かつ　ボールを持っている
 	{
-		m_player->ChangeState(m_player->GetAttack());			// 投げ状態に変更
+		m_player->ChangeState(m_player->GetFirstAttack());			// 投げ状態に変更
+	}
+	if (keyboardStateTracker.IsKeyDown(DirectX::Keyboard::Space))	 //スペースキーを押したとき
+	{
+		m_player->ChangeState(m_player->GetJumping());			// ジャンプ状態に遷移する
 	}
 }
 
