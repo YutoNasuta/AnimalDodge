@@ -1,17 +1,17 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/09
-// <file>			Enemy.h
+// <file>			Crow.h
 // <概要>			エネミーの中心核
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma once
 #include"pch.h"
 #include"Interface/IComponent.h"
-#include"Game/Enemy/EnemyBase.h"
+#include"Game/Enemy/CrowBoss/CrowBase.h"
 
 class CommonResources;
 
-class EnemyBody;
+class CrowHead;
 
 class BehaviorTreeBuilder;
 
@@ -20,7 +20,7 @@ class BlackBoard;
 class BehaviorTreeExecute;
 
 
-class Enemy : public EnemyBase 
+class Crow : public CrowBase 
 {
 public:
     // インタフェース用++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -35,22 +35,22 @@ public:
 
 
 
-    EnemyBody* GetBody() const { return m_body; }
+    CrowHead* GetHead() const { return m_head; }
 
 public: //プロパティ
 
     DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
     void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 
-    DirectX::BoundingSphere GetBoundingSphere() { return m_enemyBoundingSphere; }
-    void SetBoundingSphereCenter(DirectX::SimpleMath::Vector3 boundingSphere) { m_enemyBoundingSphere.Center = boundingSphere; }
+    DirectX::BoundingSphere GetBoundingSphere() { return m_crowBoundingSphere; }
+    void SetBoundingSphereCenter(DirectX::SimpleMath::Vector3 boundingSphere) { m_crowBoundingSphere.Center = boundingSphere; }
 public:
-    Enemy(
+    Crow(
         IComponent* parent,
         const DirectX::SimpleMath::Vector3& position,
         const DirectX::SimpleMath::Quaternion& quaternion,
         BlackBoard* blackboard);
-    ~Enemy();
+    ~Crow();
 
     void Initialize() override;
     void Update(
@@ -97,8 +97,8 @@ private:
     std::unique_ptr<BehaviorTreeBuilder> m_behaviorTreeBuilder;
     std::unique_ptr<BehaviorTreeExecute> m_behaviorExecutor;
 
-    EnemyBody* m_body;
+    CrowHead* m_head;
 
-    DirectX::BoundingSphere m_enemyBoundingSphere;			// プレイヤー当たり判定球
-    DirectX::SimpleMath::Vector3 m_enemyCenter;			// プレイヤーの中心
+    DirectX::BoundingSphere m_crowBoundingSphere;			// プレイヤー当たり判定球
+    DirectX::SimpleMath::Vector3 m_CrowCenter;			// プレイヤーの中心
 };

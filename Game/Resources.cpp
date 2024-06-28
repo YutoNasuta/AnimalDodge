@@ -42,12 +42,10 @@ void NakashiLib::Resources::CreateModels()
 	ResourcesManager->CreateModel(L"PlayerTail",		 L"Player/PlayerTail.cmo");
 
 	// エネミーのパーツ生成
-	ResourcesManager->CreateModel(L"EnemyBody",		     L"Crow/CrowHead.cmo");
-	ResourcesManager->CreateModel(L"EnemyLeftHand",		 L"Crow/CrowLeftWing.cmo");
-	ResourcesManager->CreateModel(L"EnemyRightHand",	 L"Crow/CrowRightWing.cmo");
-	ResourcesManager->CreateModel(L"EnemyHead",			 L"Enemy/EnemyHead.cmo");
-	ResourcesManager->CreateModel(L"EnemyLeg",			 L"Crow/CrowLeg.cmo");
-	ResourcesManager->CreateModel(L"EnemyTail",			 L"Enemy/EnemyTail.cmo");
+	ResourcesManager->CreateModel(L"CrowHead",		     L"Crow/CrowHead.cmo");
+	ResourcesManager->CreateModel(L"CrowLeftWing",		 L"Crow/CrowLeftWing.cmo");
+	ResourcesManager->CreateModel(L"CrowRightWing",		 L"Crow/CrowRightWing.cmo");
+	ResourcesManager->CreateModel(L"CrowLeg",			 L"Crow/CrowLeg.cmo");
 }
 
 /// <summary>

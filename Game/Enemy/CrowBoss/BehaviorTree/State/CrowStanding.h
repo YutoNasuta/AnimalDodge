@@ -1,27 +1,27 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/09
-// <file>			EnemyStanding.h
+// <file>			CrowStanding.h
 // <概要>			エネミーの立ち状態
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma once
 #include"Libraries/NakashiLib/BehaviorNode.h"
 #include"Game/CommonResources.h"
-class Enemy;
+class Crow;
 
-class EnemyStanding : public NakashiLib::ActionNode
+class CrowStanding : public NakashiLib::ActionNode
 {
 
 
 public:
 	// コンストラクタ
-	EnemyStanding(Enemy* enemy);
+	CrowStanding(Crow* crow);
 	// 実行する
 	bool Execute() override;
 
 private:
 	// エネミー取得
-	Enemy* m_enemy;
+	Crow* m_crow;
 	CommonResources* m_commonResources;
 
 	float m_timeExit;

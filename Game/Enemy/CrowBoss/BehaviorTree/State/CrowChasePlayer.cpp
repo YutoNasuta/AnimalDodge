@@ -1,24 +1,24 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/21
-// <file>			EnemyChase.cpp
+// <file>			CrowChase.cpp
 // <概要>			エネミーの立ち状態
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include"pch.h"
-#include"EnemyChasePlayer.h"
-#include"Game/Enemy/Enemy.h"
+#include"CrowChasePlayer.h"
+#include"Game/Enemy/CrowBoss/Crow.h"
 #include"Framework/StepTimer.h"
-#include"Game/Enemy/Parts/EnemyBody.h"
-#include"Game/Enemy/Parts/EnemyLeftHand.h"
-#include"Game/Enemy/Parts/EnemyRightHand.h"
+#include"Game/Enemy/CrowBoss/Parts/CrowHead.h"
+#include"Game/Enemy/CrowBoss/Parts/CrowLeftWing.h"
+#include"Game/Enemy/CrowBoss/Parts/CrowRightWing.h"
 #include"Game/BlackBoard.h"
 /// <summary>
 /// コンストラクタ
 /// </summary>
-/// <param name="enemy">敵</param>
-EnemyChase::EnemyChase(Enemy* enemy , BlackBoard* blackboard)
+/// <param name="crow">敵</param>
+CrowChase::CrowChase(Crow* crow , BlackBoard* blackboard)
 {
-	m_enemy = enemy;
+	m_crow = crow;
 	m_commonResources = CommonResources::GetInstance();
 	m_timeExit = 0;
 	m_blackBoard = blackboard;
@@ -27,7 +27,7 @@ EnemyChase::EnemyChase(Enemy* enemy , BlackBoard* blackboard)
 /// <summary>
 /// 実行
 /// </summary>
-bool EnemyChase::Execute()
+bool CrowChase::Execute()
 {
 
 	// 時間を計る
@@ -49,7 +49,7 @@ bool EnemyChase::Execute()
 /// <summary>
 /// エネミーパーツを動かす
 /// </summary>
-void EnemyChase::MoveParts()
+void CrowChase::MoveParts()
 {
 	// 手を動かす
 	MoveHand();
@@ -59,11 +59,11 @@ void EnemyChase::MoveParts()
 /// <summary>
 /// 手の動き
 /// </summary>
-void EnemyChase::MoveHand()
+void CrowChase::MoveHand()
 {
 	auto Timer = m_commonResources->GetStepTimer();
-	auto rightHand = m_enemy->GetBody()->GetRightHand();		// 右手取得
-	auto leftHand = m_enemy->GetBody()->GetLeftHand();			// 左手取得
+	auto rightHand = m_crow->GetHead()->GetRightHand();		// 右手取得
+	auto leftHand = m_crow->GetHead()->GetLeftHand();			// 左手取得
 
 	// 振りモーションのパラメーター
 	float swingSpeed = 10.0f;
@@ -80,17 +80,17 @@ void EnemyChase::MoveHand()
 	leftHand->SetAddQuaternion(leftQuaternion);
 }
 
-void EnemyChase::Chase()
+void CrowChase::Chase()
 {
 	
 	// TODO プレイヤーの位置を取得するようにする。今は仮の値
-	DirectX::SimpleMath::Vector2 length = (DirectX::SimpleMath::Vector2(m_blackBoard->GetPlayerPosition().x - m_enemy->GetPosition().x, m_blackBoard->GetPlayerPosition().z - m_enemy->GetPosition().z));
+	DirectX::SimpleMath::Vector2 length = (DirectX::SimpleMath::Vector2(m_blackBoard->GetPlayerPosition().x - m_crow->GetPosition().x, m_blackBoard->GetPlayerPosition().z - m_crow->GetPosition().z));
 
 	float r = atan2(length.y, length.x);
 
 	auto velocity = DirectX::SimpleMath::Vector3(0.5f * cos(r), 0.0f, 0.5f * sin(r));
 
-	m_enemy->SetPosition(m_enemy->GetPosition() + m_enemy->GetVelocity());
-	m_enemy->SetVelocity(velocity * 0.25f);
-	
+	m_crow->SetPosition(m_crow->GetPosition() + m_crow->GetVelocity());
+	m_crow->SetVelocity(velocity * 0.25f);
+	  
 }

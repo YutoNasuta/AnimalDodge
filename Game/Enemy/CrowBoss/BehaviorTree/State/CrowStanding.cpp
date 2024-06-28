@@ -1,23 +1,23 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/09
-// <file>			EnemyStanding.h
+// <file>			CrowStanding.h
 // <概要>			エネミーの立ち状態
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include"pch.h"
-#include"EnemyStanding.h"
-#include"Game/Enemy/Enemy.h"
+#include"CrowStanding.h"
+#include"Game/Enemy/CrowBoss/Crow.h"
 #include"Framework/StepTimer.h"
-#include"Game/Enemy/Parts/EnemyBody.h"
-#include"Game/Enemy/Parts/EnemyLeftHand.h"
-#include"Game/Enemy/Parts/EnemyRightHand.h"
+#include"Game/Enemy/CrowBoss/Parts/CrowHead.h"
+#include"Game/Enemy/CrowBoss/Parts/CrowLeftWing.h"
+#include"Game/Enemy/CrowBoss/Parts/CrowRightWing.h"
 /// <summary>
 /// コンストラクタ
 /// </summary>
 /// <param name="enemy">敵</param>
-EnemyStanding::EnemyStanding(Enemy* enemy)
+CrowStanding::CrowStanding(Crow* crow)
 {
-	m_enemy = enemy;
+	m_crow = crow;
 	m_commonResources = CommonResources::GetInstance();
 	m_timeExit = 0;
 }
@@ -25,7 +25,7 @@ EnemyStanding::EnemyStanding(Enemy* enemy)
 /// <summary>
 /// 実行
 /// </summary>
-bool EnemyStanding::Execute()
+bool CrowStanding::Execute()
 {
 	
 	// 時間を計る
@@ -46,7 +46,7 @@ bool EnemyStanding::Execute()
 /// <summary>
 /// エネミーパーツを動かす
 /// </summary>
-void EnemyStanding::MoveParts()
+void CrowStanding::MoveParts()
 {
 	// 手を動かす
 	MoveHand();
@@ -55,11 +55,11 @@ void EnemyStanding::MoveParts()
 /// <summary>
 /// 手の動き
 /// </summary>
-void EnemyStanding::MoveHand()
+void CrowStanding::MoveHand()
 {
 	auto Timer = m_commonResources->GetStepTimer();
-	auto rightHand = m_enemy->GetBody()->GetRightHand();
-	auto leftHand = m_enemy->GetBody()->GetLeftHand();
+	auto rightHand = m_crow->GetHead()->GetRightHand();
+	auto leftHand = m_crow->GetHead()->GetLeftHand();
 	auto m_normalQuaternion = DirectX::SimpleMath::Quaternion::Identity;
 	// 右手の振りモーションのパラメーター
 	float swingSpeed = 1.0f;

@@ -14,14 +14,14 @@ namespace NakashiLib
 	class IBehaviorNode;
 }
 
-class Enemy;
+class Crow;
 
 class BehaviorTreeBuilder
 {
 public:
 	BehaviorTreeBuilder(BlackBoard* blackboard);
 	~BehaviorTreeBuilder();
-	std::unique_ptr<NakashiLib::IBehaviorNode> BuildTree(Enemy* enemy);
+	std::unique_ptr<NakashiLib::IBehaviorNode> BuildTree(Crow* crow);
 
 	int GetNodeNumber() { return m_nodeNumber; }
 

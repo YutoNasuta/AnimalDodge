@@ -14,7 +14,7 @@
 class CommonResources;
 class Ball;
 class TPSCamera;
-class Enemy;
+class Crow;
 
 class Player;
 
@@ -76,7 +76,7 @@ private:
 
 	std::unique_ptr<Player> m_player;
 
-	std::unique_ptr<Enemy> m_enemy;
+	std::unique_ptr<Crow> m_crowBoss;
 
 	std::unique_ptr<GenerateStage> m_stage;
 

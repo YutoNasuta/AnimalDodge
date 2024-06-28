@@ -1,15 +1,14 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/01
-// <file>			EnemyLeftHand.cpp
-// <概要>		　　プレイヤーの左手パーツ
+// <file>			CrowRightLeg.cpp
+// <概要>		　　プレイヤーの足パーツ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include"pch.h"
-#include"EnemyLeftHand.h"
+#include"CrowRightLeg.h"
 #include"Interface/IComponent.h"
 #include"Libraries/NakashiLib/ResourcesManager.h"
 #include"Game/CommonResources.h"
-#include"Game/Enemy/Parts/EnemyHead.h"
 
 /// <summary>
 /// コンストラクタ
@@ -17,14 +16,14 @@
 /// <param name="parent">親</param>
 /// <param name="position">位置</param>
 /// <param name="quaternion">回転</param>
-EnemyLeftHand::EnemyLeftHand(
+CrowRightLeg::CrowRightLeg(
 	IComponent* parent, 
 	const DirectX::SimpleMath::Vector3& position,
 	const DirectX::SimpleMath::Quaternion& quaternion
 )
-	: EnemyBase(parent , position ,quaternion),
+	: CrowBase(parent , position ,quaternion),
 	m_commonResources{},
-	m_partID{EnemyBase::PartID::HAND_LEFT},
+	m_partID{CrowBase::PartID::LEG},
 	m_model{},
 	m_position{},
 	m_velocity{},
@@ -39,20 +38,23 @@ EnemyLeftHand::EnemyLeftHand(
 /// <summary>
 /// デストラクタ
 /// </summary>
-EnemyLeftHand::~EnemyLeftHand()
+CrowRightLeg::~CrowRightLeg()
 {
-
 }
 
 /// <summary>
 /// 初期化処理
 /// </summary>
 /// <param name="resources">共通リソース</param>
-void EnemyLeftHand::Initialize()
+void CrowRightLeg::Initialize()
 {
-	m_model = m_commonResources->GetResourcesManager()->GetModel(L"EnemyLeftHand");
 
-	EnemyBase::Initialize(m_nodeNumber , m_model);	// 基底クラスのInitialize呼び出し
+
+	m_model = m_commonResources->GetResourcesManager()->GetModel(L"CrowLeg");
+
+
+	// 基底クラスのInitialize呼び出し
+	CrowBase::Initialize(m_nodeNumber , m_model);
 }
 
 /// <summary>
@@ -61,30 +63,27 @@ void EnemyLeftHand::Initialize()
 /// <param name="timer">時間</param>
 /// <param name="position">位置</param>
 /// <param name="quaternion">回転</param>
-void EnemyLeftHand::Update( 
+void CrowRightLeg::Update(
 	const DirectX::SimpleMath::Vector3& position , 
 	const DirectX::SimpleMath::Quaternion& quaternion)
 {
 
 	DirectX::SimpleMath::Vector3 localPosition = position;
-	DirectX::SimpleMath::Quaternion localQuaternion = quaternion;
+	DirectX::SimpleMath::Quaternion localQuaternion = m_quaternion;
 
 	localPosition += m_velocity;
 	m_position = localPosition;
 
 	m_quaternion = quaternion;			// 現在の回転角を更新する
 
-	EnemyBase::Update(			//ベースを更新
+	CrowBase::Update(
 		m_position,
 		m_quaternion);
 
-	m_worldMatrix 				//行列の変更
-		= DirectX::SimpleMath::Matrix::CreateTranslation(DirectX::SimpleMath::Vector3(0.0f, -0.5f, 0.0f))
-		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_addQuaternion)
-		* DirectX::SimpleMath::Matrix::CreateTranslation(GetInitialPosition())
-		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_quaternion)
-		* DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
-
+	m_worldMatrix = DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_quaternion)
+		* DirectX::SimpleMath::Matrix::CreateTranslation(m_position)
+		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(GetInitialQuaternion())
+		* DirectX::SimpleMath::Matrix::CreateTranslation(GetInitialPosition());
 
 }
 
@@ -93,18 +92,17 @@ void EnemyLeftHand::Update(
 /// </summary>
 /// <param name="view">カメラのビュー</param>
 /// <param name="projection">カメラの投影</param>
-void EnemyLeftHand::Render(
+void CrowRightLeg::Render(
 const DirectX::SimpleMath::Matrix& view ,
 const DirectX::SimpleMath::Matrix& projection
 )
 {
-	EnemyBase::Render(m_worldMatrix, view, projection);
+	CrowBase::Render(m_worldMatrix, view, projection);
 }
 
 /// <summary>
 /// 後処理
 /// </summary>
-void EnemyLeftHand::Finalize()
+void CrowRightLeg::Finalize()
 {
-
 }

@@ -8,7 +8,7 @@
 #include"pch.h"
 
 class Player;
-class Enemy;
+class Crow;
 class GenerateStage;
 
 class CharacterCollision
@@ -16,7 +16,7 @@ class CharacterCollision
 public:
 	CharacterCollision();
 	~CharacterCollision();
-	void DetectCollisionPlayerToEnemy(Player* player , Enemy* enemy);
+	void DetectCollisionPlayerToEnemy(Player* player , Crow* crowBoss);
 
 	void DetectCollisionPlayerToWall(Player* player, GenerateStage* stage);
 

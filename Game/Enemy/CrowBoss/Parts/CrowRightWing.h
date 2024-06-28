@@ -1,15 +1,15 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/01
-// <file>			EnemyHead.h
-// <概要>		　　プレイヤーの頭パーツ
+// <file>			CrowRightWing.h
+// <概要>		　　プレイヤーの右手
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma once
-#include"Game/Enemy/EnemyBase.h"
+#include"Game/Enemy/CrowBoss/CrowBase.h"
 #include"Framework/DeviceResources.h"
 class CommonResources;
 
-class EnemyHead : public EnemyBase
+class CrowRightWing : public CrowBase
 {
 public:
 
@@ -27,17 +27,22 @@ public:
 	void SetMass(const float& mass) override { m_mass = mass; }
 
 	DirectX::Model* GetModel() override { return m_model; }
+
+	void SetAddQuaternion(const DirectX::SimpleMath::Quaternion& quaternion) { m_addQuaternion = quaternion; }
+	DirectX::SimpleMath::Quaternion GetAddQUaternion() const { return m_addQuaternion; }
+	DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
+	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 public:
 	// コンストラクタ
-	EnemyHead(IComponent* parent, 
+	CrowRightWing(IComponent* parent, 
 		const DirectX::SimpleMath::Vector3& position, 
 		const DirectX::SimpleMath::Quaternion& quaternion);
 	// デストラクタ
-	 ~EnemyHead() ;
+	 ~CrowRightWing() ;
 	// 初期化する
 	void Initialize() override;
 	// 更新する
-	void Update( 
+	void Update(
 		const DirectX::SimpleMath::Vector3& position, 
 		const DirectX::SimpleMath::Quaternion& quaternion) override;
 	// 描画する
@@ -58,6 +63,8 @@ private:
 	DirectX::SimpleMath::Vector3 m_velocity;
 	// 現在の回転角
 	DirectX::SimpleMath::Quaternion m_quaternion;
+	// 追加のクォータニオン
+	DirectX::SimpleMath::Quaternion m_addQuaternion;
 	// 質量
 	float m_mass;
 	//	ワールド行列

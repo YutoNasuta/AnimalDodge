@@ -1,6 +1,6 @@
 #include"pch.h"
 #include"CharacterCollision.h"
-#include"Game/Enemy/Enemy.h"
+#include"Game/Enemy/CrowBoss/Crow.h"
 #include"Game/Player/Player.h"
 #include"Game/Stage/GenerateStage.h"
 #include"Game/Stage/StageCase.h"
@@ -30,10 +30,10 @@ CharacterCollision::~CharacterCollision()
 /// </summary>
 /// <param name="player">プレイヤー</param>
 /// <param name="enemy">エネミー</param>
-void CharacterCollision::DetectCollisionPlayerToEnemy(Player* player, Enemy* enemy)
+void CharacterCollision::DetectCollisionPlayerToEnemy(Player* player, Crow* crowBoss)
 {
 	// プレイヤーをエネミーのバウンディングボックスを見る
-	m_isEnemyHit = player->GetBoundingSphere().Intersects(enemy->GetBoundingSphere());
+	m_isEnemyHit = player->GetBoundingSphere().Intersects(crowBoss->GetBoundingSphere());
 
 	// 当たっていないならアーリーリターン
 	if (!m_isEnemyHit) { return; }
@@ -41,14 +41,14 @@ void CharacterCollision::DetectCollisionPlayerToEnemy(Player* player, Enemy* ene
 	// 衝突時、押し戻す処理
 	// プレイヤーとエネミーの中心を格納
 	DirectX::SimpleMath::Vector3 playerCenter = player->GetBoundingSphere().Center;
-	DirectX::SimpleMath::Vector3 enemyCenter = enemy->GetBoundingSphere().Center;
+	DirectX::SimpleMath::Vector3 enemyCenter = crowBoss->GetBoundingSphere().Center;
 	// 中心との差分ベクトル
 	DirectX::SimpleMath::Vector3 diffVec = DirectX::SimpleMath::Vector3(playerCenter - enemyCenter);
 
 	// 中心との距離
 	float diffLength = diffVec.Length();
 	// 半径の合計
-	float sumRadius = player->GetBoundingSphere().Radius + enemy->GetBoundingSphere().Radius;
+	float sumRadius = player->GetBoundingSphere().Radius + crowBoss->GetBoundingSphere().Radius;
 	// めり込み距離
 	diffLength = sumRadius - diffLength;
 
@@ -62,8 +62,8 @@ void CharacterCollision::DetectCollisionPlayerToEnemy(Player* player, Enemy* ene
 	player->SetPosition(player->GetPosition() + diffVec);
 	player->SetBoundingSphereCenter(player->GetBoundingSphere().Center + diffVec);
 	// エネミーのポジションを押し戻す
-	enemy->SetPosition(enemy->GetPosition() - diffVec);
-	enemy->SetBoundingSphereCenter(enemy->GetBoundingSphere().Center - diffVec);
+	crowBoss->SetPosition(crowBoss->GetPosition() - diffVec);
+	crowBoss->SetBoundingSphereCenter(crowBoss->GetBoundingSphere().Center - diffVec);
 	
 	return;
 }

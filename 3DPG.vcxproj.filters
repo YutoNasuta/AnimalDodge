@@ -152,31 +152,28 @@
     <ClInclude Include="Game\Player\Player.h">
       <Filter>Game\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\Enemy.h">
+    <ClInclude Include="Game\Enemy\CrowBoss\Crow.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Game\Player\PlayerPart\PlayerTail.h">
       <Filter>Game\Player\Part</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\Parts\EnemyBody.h">
+    <ClInclude Include="Game\Enemy\CrowBoss\Parts\CrowHead.h">
       <Filter>Game\Enemy\Parts</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\Parts\EnemyHead.h">
+    <ClInclude Include="Game\Enemy\CrowBoss\Parts\CrowLeftWing.h">
       <Filter>Game\Enemy\Parts</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\Parts\EnemyLeftHand.h">
+    <ClInclude Include="Game\Enemy\CrowBoss\Parts\CrowRightLeg.h">
       <Filter>Game\Enemy\Parts</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\Parts\EnemyLeg.h">
+    <ClInclude Include="Game\Enemy\CrowBoss\Parts\CrowRightWing.h">
       <Filter>Game\Enemy\Parts</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\Parts\EnemyRightHand.h">
+    <ClInclude Include="Game\Enemy\CrowBoss\Parts\CrowLeftLeg.h">
       <Filter>Game\Enemy\Parts</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\Parts\EnemyTail.h">
-      <Filter>Game\Enemy\Parts</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Enemy\EnemyBase.h">
+    <ClInclude Include="Game\Enemy\CrowBoss\CrowBase.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Game\Team\Team.h">
@@ -230,8 +227,8 @@
     <ClInclude Include="Framework\Graphics.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\BehaviorTree\BehaviorTreeBuilder.h" />
-    <ClInclude Include="Game\Enemy\BehaviorTree\State\EnemyStanding.h" />
+    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeBuilder.h" />
+    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowStanding.h" />
     <ClInclude Include="Game\Player\StatePattern\State\PlayerJumping.h">
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClInclude>
@@ -241,9 +238,9 @@
     <ClInclude Include="Game\Player\StatePattern\State\PlayerStanding.h">
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\BehaviorTree\State\EnemyChasePlayer.h" />
+    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowChasePlayer.h" />
     <ClInclude Include="Game\BlackBoard.h" />
-    <ClInclude Include="Game\Enemy\BehaviorTree\BehaviorTreeExecute.h" />
+    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeExecute.h" />
     <ClInclude Include="Game\Collision\CharacterCollision.h" />
     <ClInclude Include="Game\Collision\BallCollision.h" />
     <ClInclude Include="Game\Factory\PlayerFactory.h" />
@@ -311,31 +308,28 @@
     <ClCompile Include="Game\Player\Player.cpp">
       <Filter>Game\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\Enemy.cpp">
+    <ClCompile Include="Game\Enemy\CrowBoss\Crow.cpp">
       <Filter>Game\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player\PlayerPart\PlayerTail.cpp">
       <Filter>Game\Player\Part</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\Parts\EnemyBody.cpp">
+    <ClCompile Include="Game\Enemy\CrowBoss\Parts\CrowHead.cpp">
       <Filter>Game\Enemy\Parts</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\Parts\EnemyHead.cpp">
+    <ClCompile Include="Game\Enemy\CrowBoss\Parts\CrowLeftWing.cpp">
       <Filter>Game\Enemy\Parts</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\Parts\EnemyLeftHand.cpp">
+    <ClCompile Include="Game\Enemy\CrowBoss\Parts\CrowRightLeg.cpp">
       <Filter>Game\Enemy\Parts</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\Parts\EnemyLeg.cpp">
+    <ClCompile Include="Game\Enemy\CrowBoss\Parts\CrowRightWing.cpp">
       <Filter>Game\Enemy\Parts</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\Parts\EnemyRightHand.cpp">
+    <ClCompile Include="Game\Enemy\CrowBoss\Parts\CrowLeftLeg.cpp">
       <Filter>Game\Enemy\Parts</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\Parts\EnemyTail.cpp">
-      <Filter>Game\Enemy\Parts</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Enemy\EnemyBase.cpp">
+    <ClCompile Include="Game\Enemy\CrowBoss\CrowBase.cpp">
       <Filter>Game\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Game\Team\Team.cpp">
@@ -380,8 +374,8 @@
     <ClCompile Include="Framework\Graphics.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\BehaviorTree\BehaviorTreeBuilder.cpp" />
-    <ClCompile Include="Game\Enemy\BehaviorTree\State\EnemyStanding.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeBuilder.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowStanding.cpp" />
     <ClCompile Include="Game\Player\StatePattern\State\PlayerJumping.cpp">
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClCompile>
@@ -391,9 +385,9 @@
     <ClCompile Include="Game\Player\StatePattern\State\PlayerStanding.cpp">
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\BehaviorTree\State\EnemyChasePlayer.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowChasePlayer.cpp" />
     <ClCompile Include="Game\BlackBoard.cpp" />
-    <ClCompile Include="Game\Enemy\BehaviorTree\BehaviorTreeExecute.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeExecute.cpp" />
     <ClCompile Include="Game\Collision\CharacterCollision.cpp" />
     <ClCompile Include="Game\Collision\BallCollision.cpp" />
     <ClCompile Include="Game\Factory\PlayerFactory.cpp" />

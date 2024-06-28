@@ -1,11 +1,11 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/01
-// <file>			EnemyBase.cpp
+// <file>			CrowBase.cpp
 // <概要>		　　プレイヤーのベース
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include"pch.h"
-#include"EnemyBase.h"
+#include"CrowBase.h"
 #include"Game/CommonResources.h"
 #include"Framework/DeviceResources.h"
 #include "Libraries/Microsoft/DebugDraw.h"
@@ -17,7 +17,7 @@
 /// <param name="parent">親</param>
 /// <param name="position">位置</param>
 /// <param name="quaternion">回転</param>
-EnemyBase::EnemyBase(
+CrowBase::CrowBase(
 	IComponent* parent,
 	const DirectX::SimpleMath::Vector3& position, 
 	const DirectX::SimpleMath::Quaternion& quaternion
@@ -30,7 +30,7 @@ EnemyBase::EnemyBase(
 	m_initialPosition{position},
 	m_initialQuaternion{quaternion},
 	m_mass{},
-	m_enemyParts{},
+	m_crowParts{},
 	m_worldMatrix{},
 	m_collision{}
 {
@@ -40,7 +40,7 @@ EnemyBase::EnemyBase(
 /// <summary>
 /// デストラクタ
 /// </summary>
-EnemyBase::~EnemyBase()
+CrowBase::~CrowBase()
 {
 
 }
@@ -49,7 +49,7 @@ EnemyBase::~EnemyBase()
 /// 初期化
 /// </summary>
 /// <param name="resources">共通リソース</param>
-void EnemyBase::Initialize() 
+void CrowBase::Initialize() 
 {
 }
 
@@ -57,7 +57,7 @@ void EnemyBase::Initialize()
 /// 初期化
 /// </summary>
 /// <param name="model">モデルの取得</param>
-void EnemyBase::Initialize(
+void CrowBase::Initialize(
 	int nodeNumber,
 	DirectX::Model* model
 )
@@ -73,13 +73,13 @@ void EnemyBase::Initialize(
 /// <param name="timer">時間</param>
 /// <param name="position">位置</param>
 /// <param name="quaternion">回転</param>
-void EnemyBase::Update(
+void CrowBase::Update(
 	const DirectX::SimpleMath::Vector3& position, 
 	const DirectX::SimpleMath::Quaternion& quaternion
 )
 {
 	// パーツの更新
-	for (auto& Part : m_enemyParts)
+	for (auto& Part : m_crowParts)
 	{
 		Part->Update(position, quaternion);
 	
@@ -93,14 +93,14 @@ void EnemyBase::Update(
 /// </summary>
 /// <param name="playerPart">プレイヤーのパーツ</param>
 /// <param name="resources">共通リソース</param>
-void EnemyBase::SetChild(
+void CrowBase::SetChild(
 	std::unique_ptr<IComponent> playerPart
 )
 {
 	// 初期化
 	playerPart->Initialize();
 	// パーツの追加
-	m_enemyParts.emplace_back(std::move(playerPart));
+	m_crowParts.emplace_back(std::move(playerPart));
 }
 
 /// <summary>
@@ -108,13 +108,13 @@ void EnemyBase::SetChild(
 /// </summary>
 /// <param name="view">カメラのビュー</param>
 /// <param name="projection">カメラの投影</param>
-void EnemyBase::Render(
+void CrowBase::Render(
 	const DirectX::SimpleMath::Matrix& view ,
 	const DirectX::SimpleMath::Matrix& projection
 )
 {
 	// パーツの描画
-	for (auto& playerPart : m_enemyParts)
+	for (auto& playerPart : m_crowParts)
 	{
 		// パーツを描画
 		playerPart->Render(view , projection);
@@ -128,7 +128,7 @@ void EnemyBase::Render(
 /// <param name="matrix">行列</param>
 /// <param name="view">カメラのビュー</param>
 /// <param name="projection">カメラの投影</param>
-void EnemyBase::Render(
+void CrowBase::Render(
 	const DirectX::SimpleMath::Matrix& matrix ,
 	const DirectX::SimpleMath::Matrix& view ,
 	const DirectX::SimpleMath::Matrix& projection
@@ -142,7 +142,7 @@ void EnemyBase::Render(
 #endif
 
 	// パーツを描画する
-	for (auto& playerPart : m_enemyParts)
+	for (auto& playerPart : m_crowParts)
 	{
 		playerPart->Render(view , projection);
 	}
@@ -156,7 +156,7 @@ void EnemyBase::Render(
 /// <param name="matrix">行列</param>
 /// <param name="view">カメラのビュー</param>
 /// <param name="projection">カメラの投影</param>
-void EnemyBase::DrawModel(
+void CrowBase::DrawModel(
 	const DirectX::SimpleMath::Matrix& matrix,
 	const DirectX::SimpleMath::Matrix& view,
 	const DirectX::SimpleMath::Matrix& projection
@@ -169,7 +169,7 @@ void EnemyBase::DrawModel(
 	m_model->Draw(context, *states, matrix, view, projection);
 }
 
-void EnemyBase::DrawBoundingBox
+void CrowBase::DrawBoundingBox
 (
 	const DirectX::SimpleMath::Matrix& matrix,
 	const DirectX::SimpleMath::Matrix& view,

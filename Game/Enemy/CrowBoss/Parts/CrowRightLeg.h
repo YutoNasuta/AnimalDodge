@@ -1,15 +1,15 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/01
-// <file>			EnemyTail.h
-// <概要>		　　プレイヤーのしっぽパーツ
+// <file>			CrowRightLeg.h
+// <概要>		　　プレイヤーの足パーツ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma once
-#include"Game/Enemy/EnemyBase.h"
+#include"Game/Enemy/CrowBoss/CrowBase.h"
 #include"Framework/DeviceResources.h"
 class CommonResources;
 
-class EnemyTail : public EnemyBase
+class CrowRightLeg : public CrowBase
 {
 public:
 
@@ -28,18 +28,15 @@ public:
 
 	DirectX::Model* GetModel() override { return m_model; }
 
-
-	void SetAddQuaternion(const DirectX::SimpleMath::Quaternion& quaternion) { m_addQuaternion = quaternion; }
-	DirectX::SimpleMath::Quaternion GetAddQUaternion() const { return m_addQuaternion; }
-	DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
-	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
+	DirectX::SimpleMath::Vector3 GetVelocity() const { return  m_velocity; }
+	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity ) { m_velocity = velocity; }
 public:
 	// コンストラクタ
-	EnemyTail(IComponent* parent, 
+	CrowRightLeg(IComponent* parent, 
 		const DirectX::SimpleMath::Vector3& position, 
 		const DirectX::SimpleMath::Quaternion& quaternion);
 	// デストラクタ
-	 ~EnemyTail() ;
+	 ~CrowRightLeg() ;
 	// 初期化する
 	void Initialize() override;
 	// 更新する
@@ -68,8 +65,6 @@ private:
 	float m_mass;
 	//	ワールド行列
 	DirectX::SimpleMath::Matrix m_worldMatrix;
-	// 追加のクォータニオン
-	DirectX::SimpleMath::Quaternion m_addQuaternion;
 	// ノード番号
 	int m_nodeNumber;
 	

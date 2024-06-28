@@ -1,15 +1,15 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/01
-// <file>			EnemyLeftHand.h
+// <file>			CrowLeftWing.h
 // <概要>		　　プレイヤーの左手パーツ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma once
-#include"Game/Enemy/EnemyBase.h"
+#include"Game/Enemy/CrowBoss/CrowBase.h"
 #include"Framework/DeviceResources.h"
 class CommonResources;
 
-class EnemyLeftHand : public EnemyBase
+class CrowLeftWing : public CrowBase
 {
 public:
 
@@ -34,11 +34,11 @@ public:
 	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 public:
 	// コンストラクタ
-	EnemyLeftHand(IComponent* parent, 
+	CrowLeftWing(IComponent* parent, 
 		const DirectX::SimpleMath::Vector3& position, 
 		const DirectX::SimpleMath::Quaternion& quaternion);
 	// デストラクタ
-	 ~EnemyLeftHand() ;
+	 ~CrowLeftWing() ;
 	// 初期化する
 	void Initialize() override;
 	// 更新する

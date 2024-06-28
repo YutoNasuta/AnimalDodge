@@ -1,22 +1,21 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/01
-// <file>			EnemyBody.h
+// <file>			CrowHead.h
 // <概要>			プレイヤーの胴体パーツ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma once
-#include"Game/Enemy/EnemyBase.h"
+#include"Game/Enemy/CrowBoss/CrowBase.h"
 #include"Framework/DeviceResources.h"
 
 // 前方宣言
 class CommonResources;
-class EnemyRightHand;
-class EnemyLeftHand;
-class EnemyLeg;
-class EnemyHead;
-class EnemyTail;
+class CrowRightWing;
+class CrowLeftWing;
+class CrowLeftLeg;
+class CrowRightLeg;
 
-class EnemyBody : public EnemyBase
+class CrowHead : public CrowBase
 {
 public:
 
@@ -46,19 +45,18 @@ public:
 
 
 	// 子取得用
-	EnemyRightHand* GetRightHand() const { return m_rightHand; }
-	EnemyLeftHand* GetLeftHand() const { return m_leftHand; }
-	EnemyLeg* GetLeg() const { return m_leg; }
-	EnemyHead* GetHead() const { return m_head; }
-	EnemyTail* GetTail() const { return m_tail; }
+	CrowRightWing* GetRightHand() const { return m_rightWing; }
+	CrowLeftWing* GetLeftHand() const { return m_leftWing; }
+	CrowLeftLeg* GetLeg() const { return m_leftLeg; }
+	CrowRightLeg* GetTail() const { return m_rightLeg; }
 
 public:
 	// コンストラクタ
-	EnemyBody(IComponent* parent, 
+	CrowHead(IComponent* parent, 
 		const DirectX::SimpleMath::Vector3& position, 
 		const DirectX::SimpleMath::Quaternion& quaternion);
 	// デストラクタ
-	 ~EnemyBody() ;
+	 ~CrowHead() ;
 	// 初期化する
 	void Initialize() override;
 	// 子パーツ初期化用
@@ -98,10 +96,9 @@ private:
 
 
 	// bodyの子取得用
-	EnemyRightHand* m_rightHand;
-	EnemyLeftHand* m_leftHand;
-	EnemyLeg* m_leg;
-	EnemyHead* m_head;
-	EnemyTail* m_tail;
+	CrowRightWing* m_rightWing;
+	CrowLeftWing* m_leftWing;
+	CrowLeftLeg* m_leftLeg;
+	CrowRightLeg* m_rightLeg;
 	
 };

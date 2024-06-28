@@ -6,8 +6,8 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include"pch.h"
 #include"BehaviorTreeBuilder.h"
-#include"State/EnemyStanding.h"
-#include"State/EnemyChasePlayer.h"
+#include"State/CrowStanding.h"
+#include"State/CrowChasePlayer.h"
 #include"Game/BlackBoard.h"
 
 BehaviorTreeBuilder::BehaviorTreeBuilder(BlackBoard* blackboard)
@@ -22,15 +22,15 @@ BehaviorTreeBuilder::~BehaviorTreeBuilder()
 	
 }
 
-std::unique_ptr<NakashiLib::IBehaviorNode> BehaviorTreeBuilder::BuildTree(Enemy* enemy)
+std::unique_ptr<NakashiLib::IBehaviorNode> BehaviorTreeBuilder::BuildTree(Crow* crow)
 {
 	using namespace NakashiLib;		
 
 	// Å‰‚ÌğŒ‚ğì‚é
 	auto root = std::make_unique<SequenceNode>();
 
-	root->AddChild(std::make_unique<EnemyStanding>(enemy));
-	root->AddChild(std::make_unique<EnemyChase>(enemy , m_blackBoard));
+	root->AddChild(std::make_unique<CrowStanding>(crow));
+	root->AddChild(std::make_unique<CrowChase>(crow , m_blackBoard));
 
 	return root;
 

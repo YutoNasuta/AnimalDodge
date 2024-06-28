@@ -1,7 +1,7 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
 // <製作開始日>		2024/06/01
-// <file>			EnemyBase.h
+// <file>			CrowBase.h
 // <概要>		　　エネミーのベース
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma once
@@ -11,7 +11,7 @@
 // 前方宣言
 class CommonResources;
 
-class EnemyBase : public IComponent
+class CrowBase : public IComponent
 {
 public:
 	// 子ID
@@ -51,11 +51,11 @@ public:
 
 public:
 	// コンストラクタ
-	EnemyBase(IComponent* parent, 
+	CrowBase(IComponent* parent, 
 		const DirectX::SimpleMath::Vector3& position,
 		const DirectX::SimpleMath::Quaternion& quaternion);
 	// デストラクタ
-	 ~EnemyBase();
+	 ~CrowBase();
 	// 初期化
 	virtual void Initialize();
 	// 初期化
@@ -105,13 +105,13 @@ private:
 	// 質量
 	float m_mass;
 	// パーツの配列
-	std::vector<std::unique_ptr<IComponent>> m_enemyParts;
+	std::vector<std::unique_ptr<IComponent>> m_crowParts;
 	//	ワールド行列
 	DirectX::SimpleMath::Matrix m_worldMatrix;
 	// 境界ボックス
 	DirectX::BoundingBox m_boundingBox;
 	// 境界ボックス配列
-	std::vector<DirectX::BoundingBox*> m_enemyBoundingBoxes;
+	std::vector<DirectX::BoundingBox*> m_crowBoundingBoxes;
 	bool m_collision;
 
 
