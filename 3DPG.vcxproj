@@ -245,6 +245,7 @@
     <ClInclude Include="Libraries\NakashiLib\CreateRay.h" />
     <ClInclude Include="Libraries\NakashiLib\DebugString.h" />
     <ClInclude Include="Libraries\NakashiLib\DrawVarious.h" />
+    <ClInclude Include="Libraries\NakashiLib\Easing.h" />
     <ClInclude Include="Libraries\NakashiLib\InputManager.h" />
     <ClInclude Include="Libraries\NakashiLib\MousePoint.h" />
     <ClInclude Include="Libraries\NakashiLib\PerlinNoise.h" />
@@ -267,7 +268,7 @@
     <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeExecute.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowChasePlayer.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowStanding.cpp" />
-    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ConditionNode\NearCheckPlayer.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ConditionNode\NearPlayerCheck.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\Crow.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\CrowBase.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\Parts\CrowHead.cpp" />
@@ -307,6 +308,7 @@
     <ClCompile Include="Libraries\NakashiLib\CreateRay.cpp" />
     <ClCompile Include="Libraries\NakashiLib\DebugString.cpp" />
     <ClCompile Include="Libraries\NakashiLib\DrawVarious.cpp" />
+    <ClCompile Include="Libraries\NakashiLib\Easing.cpp" />
     <ClCompile Include="Libraries\NakashiLib\InputManager.cpp" />
     <ClCompile Include="Libraries\NakashiLib\MousePoint.cpp" />
     <ClCompile Include="Libraries\NakashiLib\ResourcesManager.cpp" />

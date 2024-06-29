@@ -249,6 +249,7 @@
     <ClInclude Include="Game\Player\StatePattern\State\PlayerSecondAttack.h" />
     <ClInclude Include="Game\Player\StatePattern\State\PlayerThirdAttack.h" />
     <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\ConditionNode\NearPlayerCheck.h" />
+    <ClInclude Include="Libraries\NakashiLib\Easing.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -396,7 +397,8 @@
     <ClCompile Include="Game\Player\StatePattern\State\PlayerFirstAttack.cpp" />
     <ClCompile Include="Game\Player\StatePattern\State\PlayerSecondAttack.cpp" />
     <ClCompile Include="Game\Player\StatePattern\State\PlayerThirdAttack.cpp" />
-    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ConditionNode\NearCheckPlayer.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ConditionNode\NearPlayerCheck.cpp" />
+    <ClCompile Include="Libraries\NakashiLib\Easing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

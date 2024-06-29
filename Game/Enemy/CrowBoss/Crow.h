@@ -80,8 +80,8 @@ private:
     float Number;
     float Debug;
 
-    //  プレイヤーの情報+++++++++++++++++++++++++++++++++++++++++++
-    int m_partID;								 //ID
+    //  カラスの情報+++++++++++++++++++++++++++++++++++++++++++
+    int m_partID;								 //　ID
     DirectX::SimpleMath::Vector3 m_position;	 //  現在の位置
     DirectX::SimpleMath::Vector3 m_velocity;	 //  現在の速度
     DirectX::SimpleMath::Quaternion m_quaternion;//  現在の回転角
@@ -90,8 +90,7 @@ private:
     float m_mass;								 //  質量
     DirectX::SimpleMath::Vector3 m_acceleration; //  加速度
     DirectX::SimpleMath::Vector3 m_gravity;      //　重力
-    bool m_ballTaking;							 // ボールを持っている状態か持っていない状態か
-    float m_forceCharge;						 // ボールのチャージ量
+    float m_hp;                                  //  HP
 
     // ビヘイビアツリーノード実行用
     std::unique_ptr<BehaviorTreeBuilder> m_behaviorTreeBuilder;
@@ -99,6 +98,6 @@ private:
 
     CrowHead* m_head;
 
-    DirectX::BoundingSphere m_crowBoundingSphere;			// プレイヤー当たり判定球
-    DirectX::SimpleMath::Vector3 m_CrowCenter;			// プレイヤーの中心
+    DirectX::BoundingSphere m_crowBoundingSphere;			// カラス当たり判定球
+    DirectX::SimpleMath::Vector3 m_CrowCenter;			// カラスの中心
 };

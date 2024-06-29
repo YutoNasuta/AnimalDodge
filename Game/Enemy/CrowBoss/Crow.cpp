@@ -26,7 +26,6 @@ Crow::Crow(IComponent* parent,
     m_velocity{},
     Number{ 1 }, 
     Debug{ 1 },
-    m_ballTaking{},
     m_head{},
     m_mass{}
 {

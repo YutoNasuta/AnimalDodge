@@ -46,8 +46,8 @@ bool NearPlayerCheck::CheckNearPlayer()
         std::pow(crowPosition.z - playerPosition.z, 2)
     );
 
-    // 閾値（近いと判定する距離）を設定
-    constexpr float threshold = 100.0f; // この値は適宜調整してください
+    // 近いと判定する距離を設定
+    constexpr float threshold = 50.0f; 
 
     // 距離が閾値より小さいかどうかをチェック
     return distance < threshold;
