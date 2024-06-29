@@ -53,8 +53,8 @@ void Crow::Initialize()
     m_head = head.get();									// 呼び出し用bodyに格納
     SetChild(std::move(head));					// プレイヤーの子にbodyを設定
 
-    m_behaviorTreeBuilder = std::make_unique<BehaviorTreeBuilder>(m_blackBoard);
-    auto tree =  m_behaviorTreeBuilder->BuildTree(this);
+    m_behaviorTreeBuilder = std::make_unique<BehaviorTreeBuilder>(m_blackBoard , this);
+    auto tree =  m_behaviorTreeBuilder->BuildTree();
     m_behaviorExecutor = std::make_unique<BehaviorTreeExecute>(std::move(tree));
 
     m_crowBoundingSphere = CreateBoundingSphere(1.0f);	// 境界球の作成
@@ -75,6 +75,8 @@ void Crow::Update(
     m_behaviorExecutor->Update();
  
     m_crowBoundingSphere.Center = m_position;
+
+    Number = m_behaviorTreeBuilder->GetNodeNumber();
 }
 
 

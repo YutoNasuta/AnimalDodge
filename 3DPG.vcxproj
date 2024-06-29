@@ -191,8 +191,9 @@
     <ClInclude Include="Game\Collision\CharacterCollision.h" />
     <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeBuilder.h" />
     <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeExecute.h" />
-    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowChasePlayer.h" />
-    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowStanding.h" />
+    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowChasePlayer.h" />
+    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowStanding.h" />
+    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\ConditionNode\NearPlayerCheck.h" />
     <ClInclude Include="Game\Factory\PlayerFactory.h" />
     <ClInclude Include="Game\Player\StatePattern\State\PlayerDash.h" />
     <ClInclude Include="Game\Player\StatePattern\State\PlayerFirstAttack.h" />
@@ -264,8 +265,9 @@
     <ClCompile Include="Game\CommonResources.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeBuilder.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeExecute.cpp" />
-    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowChasePlayer.cpp" />
-    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowStanding.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowChasePlayer.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowStanding.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ConditionNode\NearCheckPlayer.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\Crow.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\CrowBase.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\Parts\CrowHead.cpp" />

@@ -6,15 +6,16 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include"pch.h"
 #include"BehaviorTreeBuilder.h"
-#include"State/CrowStanding.h"
-#include"State/CrowChasePlayer.h"
+#include"ActionNode/CrowStanding.h"
+#include"ActionNode/CrowChasePlayer.h"
 #include"Game/BlackBoard.h"
-
-BehaviorTreeBuilder::BehaviorTreeBuilder(BlackBoard* blackboard)
+#include"ConditionNode/NearPlayerCheck.h"
+BehaviorTreeBuilder::BehaviorTreeBuilder(BlackBoard* blackboard , Crow* crow)
 	:
 	m_nodeNumber{}
 {
 	m_blackBoard = blackboard;
+	m_crow = crow;
 }
 
 BehaviorTreeBuilder::~BehaviorTreeBuilder()
@@ -22,16 +23,46 @@ BehaviorTreeBuilder::~BehaviorTreeBuilder()
 	
 }
 
-std::unique_ptr<NakashiLib::IBehaviorNode> BehaviorTreeBuilder::BuildTree(Crow* crow)
+std::unique_ptr<NakashiLib::IBehaviorNode> BehaviorTreeBuilder::BuildTree()
 {
 	using namespace NakashiLib;		
 
 	// 最初の条件を作る
 	auto root = std::make_unique<SequenceNode>();
 
-	root->AddChild(std::make_unique<CrowStanding>(crow));
-	root->AddChild(std::make_unique<CrowChase>(crow , m_blackBoard));
+	// プレイヤーが近くにいるかいないかを判定する
+	auto isNearPlayerCheck = std::make_unique<NakashiLib::ContitionalBranchNode>(
+		[this]() { return std::make_unique<NearPlayerCheck>(m_crow, m_blackBoard)->CheckNearPlayer(); },
+		CloseByPlayer(),
+		NotCloseByPlayer()
+	);
+	root->AddChild(std::move(isNearPlayerCheck));
 
 	return root;
 
+}
+
+/// <summary>
+/// プレイヤーが近くにいる
+/// </summary>
+std::unique_ptr<NakashiLib::IBehaviorNode> BehaviorTreeBuilder::CloseByPlayer()
+{
+	// 構造を増やす
+	auto sequence = std::make_unique<NakashiLib::SequenceNode>();
+
+	// プレイヤーを追う
+	sequence->AddChild(std::make_unique<CrowChase>(m_crow, m_blackBoard));
+
+	return sequence;
+	
+}
+
+std::unique_ptr<NakashiLib::IBehaviorNode> BehaviorTreeBuilder::NotCloseByPlayer()
+{
+
+	auto sequence = std::make_unique<NakashiLib::SequenceNode>();
+
+	sequence->AddChild(std::make_unique<CrowStanding>(m_crow));
+
+	return sequence;
 }

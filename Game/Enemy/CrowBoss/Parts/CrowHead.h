@@ -41,14 +41,14 @@ public:
 	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 
 	void SetAddQuaternion(const DirectX::SimpleMath::Quaternion& quaternion) { m_addQuaternion = quaternion; }
-	DirectX::SimpleMath::Quaternion GetAddQUaternion() const { return m_addQuaternion; }
+	DirectX::SimpleMath::Quaternion GetAddQuaternion() const { return m_addQuaternion; }
 
 
 	// 子取得用
-	CrowRightWing* GetRightHand() const { return m_rightWing; }
-	CrowLeftWing* GetLeftHand() const { return m_leftWing; }
-	CrowLeftLeg* GetLeg() const { return m_leftLeg; }
-	CrowRightLeg* GetTail() const { return m_rightLeg; }
+	CrowRightWing* GetRightWing() const { return m_rightWing; }
+	CrowLeftWing* GetLeftWing() const { return m_leftWing; }
+	CrowLeftLeg* GetLeftLeg() const { return m_leftLeg; }
+	CrowRightLeg* GetRightLeg() const { return m_rightLeg; }
 
 public:
 	// コンストラクタ

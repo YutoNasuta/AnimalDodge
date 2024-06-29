@@ -29,7 +29,7 @@ public:
 	DirectX::Model* GetModel() override { return m_model; }
 
 	void SetAddQuaternion(const DirectX::SimpleMath::Quaternion& quaternion) { m_addQuaternion = quaternion; }
-	DirectX::SimpleMath::Quaternion GetAddQUaternion() const { return m_addQuaternion; }
+	DirectX::SimpleMath::Quaternion GetAddQuaternion() const { return m_addQuaternion; }
 	DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
 	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 public:

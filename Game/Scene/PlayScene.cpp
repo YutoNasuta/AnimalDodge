@@ -300,7 +300,7 @@ void PlayScene::Render()
 
 	debugString->AddString("PlayerForce:: %f", m_player->GetForceCharge());
 	debugString->AddString("EnemyDebug:: %f", m_crowBoss->GetDebug());
-	debugString->AddString("EnemyNumber:: %f", m_crowBoss->GetNumber());
+	debugString->AddString("EnemyTreeNumber:: %f", m_crowBoss->GetNumber());
 	debugString->AddString("B:Position:: %f , %f , %f", m_ball->GetPosition().x, m_ball->GetPosition().y, m_ball->GetPosition().z);
 	//debugString->AddString("ballDebug:: %f", m_ball->GetDebugLog());
 	//m_ray->Render();

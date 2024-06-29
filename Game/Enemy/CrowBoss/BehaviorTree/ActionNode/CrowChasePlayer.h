@@ -16,7 +16,7 @@ class CrowChase : public NakashiLib::ActionNode
 
 public:
 	// コンストラクタ
-	CrowChase(Crow* Ccow , BlackBoard* blackboard);
+	CrowChase(Crow* Crow , BlackBoard* blackboard);
 	// 実行する
 	bool Execute() override;
 

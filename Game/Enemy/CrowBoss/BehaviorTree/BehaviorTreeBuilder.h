@@ -19,14 +19,23 @@ class Crow;
 class BehaviorTreeBuilder
 {
 public:
-	BehaviorTreeBuilder(BlackBoard* blackboard);
+	BehaviorTreeBuilder(BlackBoard* blackboard , Crow* crow);
 	~BehaviorTreeBuilder();
-	std::unique_ptr<NakashiLib::IBehaviorNode> BuildTree(Crow* crow);
+	std::unique_ptr<NakashiLib::IBehaviorNode> BuildTree();
 
 	int GetNodeNumber() { return m_nodeNumber; }
 
 private:
+	// プレイヤーが近くにいる場合
+	std::unique_ptr<NakashiLib::IBehaviorNode> CloseByPlayer();
+	// プレイヤーが近くにいない場合
+	std::unique_ptr<NakashiLib::IBehaviorNode> NotCloseByPlayer();
+
+private:
 	// ツリーノードの番号を知る
 	int m_nodeNumber;
+	// カラス取得用
+	Crow* m_crow;
+	// ブラックボードの取得用
 	BlackBoard* m_blackBoard;
 };

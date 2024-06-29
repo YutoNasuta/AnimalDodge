@@ -28,17 +28,11 @@ CrowStanding::CrowStanding(Crow* crow)
 bool CrowStanding::Execute()
 {
 	
-	// 時間を計る
-	m_timeExit += static_cast<float>(m_commonResources->GetStepTimer()->GetElapsedSeconds());
-	if (m_timeExit <= EXITTIME)		//タイムより下なら
-	{
-		MoveParts();
-		return false;
-	}
-	else
-	{
+	
+		MoveParts();	
+
 		return true;
-	}
+	
 	
 }
 
@@ -58,24 +52,28 @@ void CrowStanding::MoveParts()
 void CrowStanding::MoveHand()
 {
 	auto Timer = m_commonResources->GetStepTimer();
-	auto rightHand = m_crow->GetHead()->GetRightHand();
-	auto leftHand = m_crow->GetHead()->GetLeftHand();
+	auto rightHand = m_crow->GetHead()->GetRightWing();
+	auto leftHand = m_crow->GetHead()->GetLeftWing();
 	auto m_normalQuaternion = DirectX::SimpleMath::Quaternion::Identity;
+
 	// 右手の振りモーションのパラメーター
-	float swingSpeed = 1.0f;
-	float swingAmount = 0.1f;
+	float swingSpeed = 4.0f;
+	float swingAmount = DirectX::XM_PI / 3; // 60度の振り幅
 
 	// 振りモーションを追加
 	float swing = sin(Timer->GetTotalSeconds() * swingSpeed) * swingAmount;
 
+	// 振りモーションをクォータニオンで表現
+	DirectX::SimpleMath::Quaternion swingQuaternionRight = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(swing, 0.0f, swing);
+	DirectX::SimpleMath::Quaternion swingQuaternionLeft = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(-swing, 0.0, -swing);
 
+	// 現在のクォータニオンとswingQuaternionをSLERPで補間
 	DirectX::SimpleMath::Quaternion slerpRotationRight =
-		DirectX::SimpleMath::Quaternion::Slerp(rightHand->GetAddQUaternion(), m_normalQuaternion, 0.2f);
+		DirectX::SimpleMath::Quaternion::Slerp(rightHand->GetAddQuaternion(), swingQuaternionRight, 0.1f);
 	DirectX::SimpleMath::Quaternion slerpRotationLeft =
-		DirectX::SimpleMath::Quaternion::Slerp(leftHand->GetAddQUaternion(), m_normalQuaternion, 0.2f);// 線形補完する
+		DirectX::SimpleMath::Quaternion::Slerp(leftHand->GetAddQuaternion(), swingQuaternionLeft, 0.1f);
 
-	rightHand->SetVelocity(DirectX::SimpleMath::Vector3(0.0f, swing, 0.0f));
+	// 新しいクォータニオンをセット
 	rightHand->SetAddQuaternion(slerpRotationRight);
-	leftHand->SetVelocity(DirectX::SimpleMath::Vector3(0.0f, swing, 0.0f));
 	leftHand->SetAddQuaternion(slerpRotationLeft);
 }

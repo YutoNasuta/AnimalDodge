@@ -228,7 +228,7 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeBuilder.h" />
-    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowStanding.h" />
+    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowStanding.h" />
     <ClInclude Include="Game\Player\StatePattern\State\PlayerJumping.h">
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClInclude>
@@ -238,7 +238,7 @@
     <ClInclude Include="Game\Player\StatePattern\State\PlayerStanding.h">
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowChasePlayer.h" />
+    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowChasePlayer.h" />
     <ClInclude Include="Game\BlackBoard.h" />
     <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeExecute.h" />
     <ClInclude Include="Game\Collision\CharacterCollision.h" />
@@ -248,6 +248,7 @@
     <ClInclude Include="Game\Player\StatePattern\State\PlayerFirstAttack.h" />
     <ClInclude Include="Game\Player\StatePattern\State\PlayerSecondAttack.h" />
     <ClInclude Include="Game\Player\StatePattern\State\PlayerThirdAttack.h" />
+    <ClInclude Include="Game\Enemy\CrowBoss\BehaviorTree\ConditionNode\NearPlayerCheck.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -375,7 +376,7 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeBuilder.cpp" />
-    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowStanding.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowStanding.cpp" />
     <ClCompile Include="Game\Player\StatePattern\State\PlayerJumping.cpp">
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClCompile>
@@ -385,7 +386,7 @@
     <ClCompile Include="Game\Player\StatePattern\State\PlayerStanding.cpp">
       <Filter>Game\Player\StatePattern\State</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\State\CrowChasePlayer.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowChasePlayer.cpp" />
     <ClCompile Include="Game\BlackBoard.cpp" />
     <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\BehaviorTreeExecute.cpp" />
     <ClCompile Include="Game\Collision\CharacterCollision.cpp" />
@@ -395,6 +396,7 @@
     <ClCompile Include="Game\Player\StatePattern\State\PlayerFirstAttack.cpp" />
     <ClCompile Include="Game\Player\StatePattern\State\PlayerSecondAttack.cpp" />
     <ClCompile Include="Game\Player\StatePattern\State\PlayerThirdAttack.cpp" />
+    <ClCompile Include="Game\Enemy\CrowBoss\BehaviorTree\ConditionNode\NearCheckPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
