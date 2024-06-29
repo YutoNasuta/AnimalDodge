@@ -4,15 +4,13 @@
 */
 #pragma once
 #include "Interface/IScene.h"
-#include"Game/Camera/TPSCamera.h"
+#include"Game/PlayScene/Camera/TPSCamera.h"
 
 #include"Libraries/Microsoft/DebugDraw.h"
-
-#include"Game/Ball/Ball.h"
+#include"Game/PlayScene/PlaySceneResources.h"
 
 // 前方宣言
 class CommonResources;
-class Ball;
 class TPSCamera;
 class Crow;
 
@@ -21,8 +19,7 @@ class Player;
 class GenerateStage;
 class BlackBoard;
 class CharacterCollision;
-class BallCollision;
-
+class PlaySceneResources;
 namespace mylib
 {
 	class GridFloor;
@@ -30,7 +27,7 @@ namespace mylib
 
 namespace NakashiLib
 {
-	class Resources;
+	
 	class CollisionMesh;
 	class CreateRay;
 }
@@ -60,7 +57,7 @@ private:
 	int m_angle;
 
 
-	std::unique_ptr<NakashiLib::Resources> m_resources;
+	std::unique_ptr<PlaySceneResources> m_resources;
 
 
 	// 地面位置判定
@@ -68,8 +65,6 @@ private:
 
 	DirectX::SimpleMath::Quaternion m_debugQ;
 
-	// ボール
-	std::unique_ptr<Ball> m_ball;
 
 	// TPSカメラ
 	std::unique_ptr<TPSCamera> m_tpsCamera;
@@ -90,7 +85,6 @@ private:
 
 	// 当たり判定を呼ぶ
 	std::unique_ptr<CharacterCollision> m_characterCollision;
-	std::unique_ptr<BallCollision> m_ballCollision;
 
 public:
 	PlayScene();
@@ -109,6 +103,5 @@ public:
 	DirectX::SimpleMath::Vector3 GetGround() const { return m_ground; }
 
 	// 読み取り専用
-	Ball* GetBall() { return m_ball.get(); }
 	Player* GetPlayer() { return m_player.get(); }
 };

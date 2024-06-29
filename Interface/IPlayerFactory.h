@@ -6,7 +6,7 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma once
 #include"Interface/IComponent.h"
-#include"Game/BlackBoard.h"
+#include"Game/PlayScene/BlackBoard.h"
 class IPlayerFactory
 {
 public:

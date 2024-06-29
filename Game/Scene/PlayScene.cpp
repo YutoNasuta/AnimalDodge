@@ -7,7 +7,7 @@
 #include "Game/CommonResources.h"
 #include "framework/DeviceResources.h"
 
-#include"Game/Resources.h"
+
 
 #include "Libraries/NakashiLib/DebugString.h"
 #include "Libraries/MyLib/GridFloor.h"
@@ -15,18 +15,17 @@
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
 
-#include"Game/Player/Player.h"
-#include"Game/Player/PlayerPart/PlayerBody.h"
-#include"Game/Player/PlayerPart/PlayerLeftHand.h"
-#include"Game/Player/PlayerPart/PlayerRightHand.h"
-#include"Game/Enemy/CrowBoss/Crow.h"
+#include"Game/PlayScene/Player/Player.h"
+#include"Game/PlayScene/Player/PlayerPart/PlayerBody.h"
+#include"Game/PlayScene/Player/PlayerPart/PlayerLeftHand.h"
+#include"Game/PlayScene/Player/PlayerPart/PlayerRightHand.h"
+#include"Game/PlayScene/Enemy/CrowBoss/Crow.h"
 
-#include"Game/Stage/GenerateStage.h"
+#include"Game/PlayScene/Stage/GenerateStage.h"
 #include"Libraries/NakashiLib/CollisionMesh.h"
 #include"Libraries/NakashiLib/CreateRay.h"
-#include"Game/BlackBoard.h"
-#include"Game/Collision/CharacterCollision.h"
-#include"Game/Collision/BallCollision.h"
+#include"Game/PlayScene/BlackBoard.h"
+#include"Game/PlayScene/Collision/CharacterCollision.h"
 
 const DirectX::SimpleMath::Vector3 PlayScene::HOME_POSITION = DirectX::SimpleMath::Vector3(10.0f, 10.0f, 10.0f);
 
@@ -42,7 +41,6 @@ PlayScene::PlayScene()
 	m_angle{},
 	/*m_player{},*/
 	m_ground{},
-	m_ball{},
 	m_tpsCamera{},
 	m_stage{}
 {
@@ -69,7 +67,7 @@ void PlayScene::Initialize()
 	auto states = m_commonResources->GetCommonStates();
 
 
-	m_resources = std::make_unique<NakashiLib::Resources>();
+
 	
 
 
@@ -100,7 +98,7 @@ void PlayScene::Initialize()
 	/*m_player = std::make_unique<Player>(this);
 	m_player->Initialize(m_commonResources);*/
 
-	
+	m_resources = std::make_unique<PlaySceneResources>();
 
 	m_ground = DirectX::SimpleMath::Vector3::Zero;
 
@@ -121,9 +119,7 @@ void PlayScene::Initialize()
 	// tpsカメラを作る
 	m_tpsCamera = std::make_unique<TPSCamera>(m_player->GetPosition());
 
-	m_ball = std::make_unique<Ball>();
-	m_ball->Initialize(m_player.get());
-	m_ball->SetPosition(DirectX::SimpleMath::Vector3(HOME_POSITION));
+
 
 	m_crowBoss = std::make_unique<Crow>(
 		nullptr,
@@ -143,7 +139,7 @@ void PlayScene::Initialize()
 	}
 	
 	m_characterCollision = std::make_unique<CharacterCollision>();
-	m_ballCollision = std::make_unique<BallCollision>();
+
 
 }
 
@@ -164,8 +160,6 @@ void PlayScene::Update(float elapsedTime)
 	m_rayPosition.x = m_player->GetPosition().x;
 	m_rayPosition.z = m_player->GetPosition().z;
 
-	m_ballRayPosition.x = m_ball->GetPosition().x;
-	m_ballRayPosition.y = m_ball->GetPosition().y;
 
 
 	// キーボードステートトラッカーを取得する
@@ -202,7 +196,6 @@ void PlayScene::Update(float elapsedTime)
 	//DirectX::SimpleMath::Ray Ballray{ startVec2 , DirectX::SimpleMath::Vector3::Down };
 
 	m_ray[0]->Update(m_player->GetPosition());
-	m_ray[1]->Update(m_ball->GetPosition());
 	m_ray[2]->Update(m_crowBoss->GetPosition());
 
 	DirectX::SimpleMath::Vector3 hitposition;
@@ -239,7 +232,7 @@ void PlayScene::Update(float elapsedTime)
 	if (ishit2)
 	{
 		
-		m_ball->SetGround(hitposition2);
+		
 	}
 
 	ishit3 = m_stage->GetCollisionMesh()->IntersectRay(m_ray[2]->GetRay(), &hitposition3, &normal3, &number3);
@@ -257,12 +250,11 @@ void PlayScene::Update(float elapsedTime)
 	m_player->SetCameraQuaternion(m_tpsCamera->GetCameraRotate());
 	m_player->Update( position, quaternion);
 	
-	m_ball->Update(elapsedTime);
+
 
 	m_crowBoss->Update( position, quaternion);
 
 	m_characterCollision->DetectCollisionPlayerToEnemy(m_player.get(), m_crowBoss.get());
-	m_ballCollision->DetectCollisionBallToWall(m_ball.get(), m_stage.get());
 }
 
 //---------------------------------------------------------
@@ -295,19 +287,12 @@ void PlayScene::Render()
 	else if (m_player->GetNowState() == m_player->GetDash()) { debugString->AddString("P::Dash"); }
 
 
-	if (m_ball->GetNowState() == m_ball->GetMove()) { debugString->AddString("B::Move"); }
-	else if (m_ball->GetNowState() == m_ball->GetThrow()) { debugString->AddString("B::Throw"); }
-
 	debugString->AddString("PlayerForce:: %f", m_player->GetForceCharge());
 	debugString->AddString("EnemyDebug:: %f", m_crowBoss->GetDebug());
 	debugString->AddString("EnemyTreeNumber:: %f", m_crowBoss->GetNumber());
-	debugString->AddString("B:Position:: %f , %f , %f", m_ball->GetPosition().x, m_ball->GetPosition().y, m_ball->GetPosition().z);
 	//debugString->AddString("ballDebug:: %f", m_ball->GetDebugLog());
 	//m_ray->Render();
 #endif
-
-	m_ball->Render(m_tpsCamera->GetViewMatrix(), m_tpsCamera->GetProjectionMatrix());
-
 
 	
 	m_player->Render(m_tpsCamera->GetViewMatrix(), m_tpsCamera->GetProjectionMatrix());
