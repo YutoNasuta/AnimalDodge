@@ -23,6 +23,12 @@ private:
 	std::unique_ptr<DirectX::BasicEffect> m_basicEffect;
 	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_primitiveBatch;
 
+	// 壁のモデル取得
+	DirectX::Model* m_model;
+
+	DirectX::SimpleMath::Vector3 m_position;
+	DirectX::SimpleMath::Vector3 m_boxSize;
+
 public:
 	// コンストラクタとデストラクタ
 	StageCase();
@@ -30,11 +36,19 @@ public:
 
 	void Initialize();
 	void Update();
-	void Render();
+	void BoundingBoxRender();
+	void DrawModel(
+		const DirectX::SimpleMath::Matrix& view,
+		const DirectX::SimpleMath::Matrix& projection);
+	
 
-	void SetBoundingPosition(
+	void SetPosition(
 		DirectX::SimpleMath::Vector3& position, 
 		DirectX::SimpleMath::Vector3& boxSize);
 
-	 DirectX::BoundingBox GetBoundingBox() const { return m_stageCaseBoundingBox; }
+
+
+	DirectX::BoundingBox GetBoundingBox() const { return m_stageCaseBoundingBox; }
+
+	
 };

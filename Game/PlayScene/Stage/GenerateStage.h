@@ -14,6 +14,7 @@ namespace NakashiLib
 }
 
 class StageCase;
+class SkySphere;
 class CommonResources;
 
 class GenerateStage
@@ -27,6 +28,7 @@ private:
 
 	std::unique_ptr<NakashiLib::CollisionMesh> m_collisionMesh;	
 	std::unique_ptr<StageCase> m_stageCase[STAGE_QUANTITY];
+	std::unique_ptr<SkySphere> m_sky;
 
 	int m_octaves;
 	float m_correction;

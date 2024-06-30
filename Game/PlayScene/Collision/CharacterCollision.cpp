@@ -67,41 +67,88 @@ void CharacterCollision::DetectCollisionPlayerToEnemy(Player* player, Crow* crow
 	
 	return;
 }
-//
-///// <summary>
-///// プレイヤーと壁の当たり判定
-///// </summary>
-///// <param name="player">プレイヤー</param>
-///// <param name="stage">ステージ</param>
-//void CharacterCollision::DetectCollisionPlayerToWall(Player* player, GenerateStage* stage)
-//{
-//	// ステージケースの数を取得
-//	int stageCaseMax = stage->GetStageCaseMax();
-//
-//	for (int i = 0; i < stageCaseMax; i++)
-//	{
-//		m_isWallHit = player->GetBoundingSphere().Intersects(stage->GetStageCase(i)->GetBoundingBox());
-//		if (m_isWallHit) { m_stageCaseNumber = i; break; }
-//	}
-//
-//	if (!m_isWallHit) { return; }
-//
-//	// 衝突時、押し戻す処理
-//	// プレイヤーとエネミーの中心を格納
-//	DirectX::SimpleMath::Vector3 playerCenter = player->GetBoundingSphere().Center;
-//	DirectX::SimpleMath::Vector3 wallCenter = stage->GetStageCase(m_stageCaseNumber)->GetBoundingBox().Center;
-//	// 中心との差分ベクトル
-//	DirectX::SimpleMath::Vector3 diffVec = DirectX::SimpleMath::Vector3(playerCenter - wallCenter);
-//
-//	// 中心との距離
-//	float diffLength = diffVec.Length();
-//	// 半径の合計
-//	float sumRadius = player->GetBoundingSphere().Radius + stage->GetStageCase(m_stageCaseNumber)->GetBoundingBox();
-//	// めり込み距離
-//	diffLength = sumRadius - diffLength;
-//
-//	// 正規化
-//	diffVec.Normalize();
-//	// 押し戻しベクトル
-//	diffVec *= diffLength;
-//}
+
+/// <summary>
+/// プレイヤーと壁の当たり判定
+/// </summary>
+/// <param name="player">プレイヤー</param>
+/// <param name="stage">ステージ</param>
+void CharacterCollision::DetectCollisionPlayerToWall(Player* player, GenerateStage* stage)
+{
+    const float MIN_PUSHBACK_DISTANCE = 0.01f; // 最小押し戻し距離を定義
+
+    for (int i = 0; i < 4; i++)
+    {
+        const auto& wall = stage->GetStageCase(i);
+        if (player->GetBoundingSphere().Intersects(wall->GetBoundingBox()))
+        {
+            // プレイヤーの中心と壁の中心を取得
+            DirectX::SimpleMath::Vector3 playerCenter = player->GetBoundingSphere().Center;
+            DirectX::SimpleMath::Vector3 wallCenter = wall->GetBoundingBox().Center;
+            DirectX::SimpleMath::Vector3 wallExtents = wall->GetBoundingBox().Extents;
+
+            // 壁の各面との距離を計算
+            float distances[6] = {
+                (wallCenter.x - wallExtents.x) - playerCenter.x, // left
+                playerCenter.x - (wallCenter.x + wallExtents.x), // right
+                (wallCenter.y - wallExtents.y) - playerCenter.y, // bottom
+                playerCenter.y - (wallCenter.y + wallExtents.y), // top
+                (wallCenter.z - wallExtents.z) - playerCenter.z, // back
+                playerCenter.z - (wallCenter.z + wallExtents.z)  // front
+            };
+
+            // 最も衝突の深い面を見つける
+            float penetrationDepth = player->GetBoundingSphere().Radius;
+            int minIndex = -1;
+            float minDistance = penetrationDepth;
+
+            for (int j = 0; j < 6; j++)
+            {
+                if (std::abs(distances[j]) < minDistance)
+                {
+                    minDistance = std::abs(distances[j]);
+                    minIndex = j;
+                }
+            }
+
+            // 押し戻しベクトルを計算
+            DirectX::SimpleMath::Vector3 pushBackVector;
+
+            switch (minIndex)
+            {
+            case 0: // left
+                pushBackVector = DirectX::SimpleMath::Vector3(-minDistance, 0.0f, 0.0f);
+                break;
+            case 1: // right
+                pushBackVector = DirectX::SimpleMath::Vector3(minDistance, 0.0f, 0.0f);
+                break;
+            case 2: // bottom
+                pushBackVector = DirectX::SimpleMath::Vector3(0.0f, -minDistance, 0.0f);
+                break;
+            case 3: // top
+                pushBackVector = DirectX::SimpleMath::Vector3(0.0f, minDistance, 0.0f);
+                break;
+            case 4: // back
+                pushBackVector = DirectX::SimpleMath::Vector3(0.0f, 0.0f, -minDistance);
+                break;
+            case 5: // front
+                pushBackVector = DirectX::SimpleMath::Vector3(0.0f, 0.0f, minDistance);
+                break;
+            default:
+                break;
+            }
+
+            // 押し戻しベクトルが最小距離未満ならアーリーリターン
+            if (pushBackVector.Length() < MIN_PUSHBACK_DISTANCE) { return; }
+
+            // プレイヤーのポジションを押し戻す
+            player->SetPosition(player->GetPosition() + pushBackVector);
+            player->SetBoundingSphereCenter(player->GetBoundingSphere().Center + pushBackVector);
+
+            m_isWallHit = true;
+            return;
+        }
+    }
+
+    m_isWallHit = false;
+}

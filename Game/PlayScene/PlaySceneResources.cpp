@@ -46,6 +46,12 @@ void PlaySceneResources::CreateModels()
 	ResourcesManager->CreateModel(L"CrowLeftWing",		 L"Crow/CrowLeftWing.cmo");
 	ResourcesManager->CreateModel(L"CrowRightWing",		 L"Crow/CrowRightWing.cmo");
 	ResourcesManager->CreateModel(L"CrowLeg",			 L"Crow/CrowLeg.cmo");
+
+	// •Ç‚Ì¶¬
+	ResourcesManager->CreateModel(L"Wall",				 L"Wall/WallBlock.cmo");
+
+	// ‹ó‚Ì¶¬
+	ResourcesManager->CreateModel(L"Sky",				 L"Sky/celestial_sphere.cmo");
 }
 
 /// <summary>

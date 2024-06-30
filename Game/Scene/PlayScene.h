@@ -38,7 +38,8 @@ class PlayScene final :
 
 public:
 	// 位置
-	static const DirectX::SimpleMath::Vector3 HOME_POSITION;
+	static const DirectX::SimpleMath::Vector3 HOME_PLAYER_POSITION;
+	static const DirectX::SimpleMath::Vector3 HOME_CROW_POSITION;
 private:
 	// 共通リソース
 	CommonResources* m_commonResources;

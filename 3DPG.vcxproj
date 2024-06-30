@@ -219,6 +219,7 @@
     <ClInclude Include="Game\PlayScene\Player\StatePattern\State\PlayerThirdAttack.h" />
     <ClInclude Include="Game\PlayScene\PlaySceneResources.h" />
     <ClInclude Include="Game\PlayScene\Stage\GenerateStage.h" />
+    <ClInclude Include="Game\PlayScene\Stage\SkySphere.h" />
     <ClInclude Include="Game\PlayScene\Stage\StageCase.h" />
     <ClInclude Include="Game\PlayScene\Team\Team.h" />
     <ClInclude Include="Framework\StepTimer.h" />
@@ -288,6 +289,7 @@
     <ClCompile Include="Game\PlayScene\Player\StatePattern\State\PlayerThirdAttack.cpp" />
     <ClCompile Include="Game\PlayScene\PlaySceneResources.cpp" />
     <ClCompile Include="Game\PlayScene\Stage\GenerateStage.cpp" />
+    <ClCompile Include="Game\PlayScene\Stage\SkySphere.cpp" />
     <ClCompile Include="Game\PlayScene\Stage\StageCase.cpp" />
     <ClCompile Include="Game\PlayScene\Team\Team.cpp" />
     <ClCompile Include="Game\Scene\PlayScene.cpp" />

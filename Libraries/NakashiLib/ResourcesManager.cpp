@@ -67,7 +67,7 @@ void NakashiLib::ResourcesManager::CreateModel(const std::wstring& id, const std
 	std::unique_ptr<DirectX::EffectFactory> fx =
 		std::make_unique<DirectX::EffectFactory>(device);
 
-	fx->SetDirectory(L"Resources/Models");
+	fx->SetDirectory(L"Resources/Models/ddsFile");
 
 	// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ
 	std::wstring path = L"Resources/Models/" + fileName;

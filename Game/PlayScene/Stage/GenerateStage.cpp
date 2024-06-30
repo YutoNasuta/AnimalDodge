@@ -11,20 +11,21 @@
 #include"StageCase.h"
 #include"Game/CommonResources.h"
 #include "framework/DeviceResources.h"
+#include"SkySphere.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
 GenerateStage::GenerateStage()
 	:
-	m_correction{15.0f},
-	m_correctionHeight{9},
-	m_correctionNoise{20},
-	m_octaves{ 10},
-	m_normalHeight{1.5f},
+	m_correction{ 15.0f },
+	m_correctionHeight{ 9 },
+	m_correctionNoise{ 20 },
+	m_octaves{ 10 },
+	m_normalHeight{ 1.5f },
 	m_scale{ 10 },
 	m_landScape{},
-	m_stageCaseHeight{20}
+	m_stageCaseHeight{ 20 }
 {
 	m_commonResources = CommonResources::GetInstance();
 }
@@ -49,12 +50,14 @@ void GenerateStage::Initialize()
 
 	// パーリンノイズの作成
 	CreatePerlinNoise();
-	
+
 	// パーリンノイズから頂点情報を作る
-	CreateVertex(device , context);
+	CreateVertex(device, context);
 
 	// 頂点情報からステージの外側を作る
 	CreateStageCase();
+
+	m_sky = std::make_unique<SkySphere>();
 }
 
 
@@ -64,8 +67,8 @@ void GenerateStage::Initialize()
 /// <param name="states">ステート</param>
 /// <param name="view">ビュー</param>
 /// <param name="projection">プロジェクション</param>
-void GenerateStage::Render( 
-	const DirectX::SimpleMath::Matrix& view, 
+void GenerateStage::Render(
+	const DirectX::SimpleMath::Matrix& view,
 	const DirectX::SimpleMath::Matrix& projection
 )
 {
@@ -77,11 +80,17 @@ void GenerateStage::Render(
 	m_collisionMesh->DrawMesh(states, view, projection);
 	for (int i = 0; i < 4; i++)
 	{
-		m_stageCase[i]->Render();
+		m_stageCase[i]->BoundingBoxRender();
 	}
 #endif
 
-	
+	for (int i = 0; i < 4; i++)
+	{
+		m_stageCase[i]->DrawModel(view, projection);
+	}
+
+	m_sky->SkyRender(view, projection);
+
 }
 
 
@@ -178,11 +187,12 @@ void GenerateStage::CreateStageCase()
 	}
 
 	// 各StageCaseを各辺の中心に配置
-	DirectX::SimpleMath::Vector3 stagePositions[STAGE_QUANTITY] = {
-		{static_cast<float>(LAND_WIDTH) * m_scale / 2, static_cast<float>(m_correctionHeight) * m_scale / 3, 0.0f},												// 上辺の中心
-		{static_cast<float>(LAND_WIDTH) * m_scale / 2, static_cast<float>(m_correctionHeight) * m_scale / 3, (static_cast<float>(LAND_HEIGHT) - 1) * m_scale},  // 下辺の中心
-		{0.0f, static_cast<float>(m_correctionHeight) * m_scale / 3, static_cast<float>(LAND_HEIGHT) * m_scale / 2},											// 左辺の中心
-		{(static_cast<float>(LAND_WIDTH) - 1) * m_scale, static_cast<float>(m_correctionHeight) * m_scale / 3, static_cast<float>(LAND_HEIGHT) * m_scale / 2}   // 右辺の中心
+	DirectX::SimpleMath::Vector3 stagePositions[STAGE_QUANTITY] = 
+	{
+		{static_cast<float>(LAND_WIDTH - 1) * m_scale / 2, static_cast<float>(m_correctionHeight) * m_scale / 3, 0.0f},												// 上辺の中心
+		{static_cast<float>(LAND_WIDTH - 1) * m_scale / 2, static_cast<float>(m_correctionHeight) * m_scale / 3, (static_cast<float>(LAND_HEIGHT) - 1) * m_scale},  // 下辺の中心
+		{0.0f, static_cast<float>(m_correctionHeight) * m_scale / 3, static_cast<float>(LAND_HEIGHT - 1) * m_scale / 2},											// 左辺の中心
+		{(static_cast<float>(LAND_WIDTH) - 1) * m_scale, static_cast<float>(m_correctionHeight) * m_scale / 3, static_cast<float>(LAND_HEIGHT - 1) * m_scale / 2}   // 右辺の中心
 	};
 
 	// 各辺に応じたBoxのサイズを作成
@@ -194,9 +204,11 @@ void GenerateStage::CreateStageCase()
 		{5.0f, static_cast<float>(m_correctionHeight) * m_scale / 2 + m_stageCaseHeight, static_cast<float>(LAND_WIDTH) * m_scale}
 	};
 
+	
+
 	// ステージの外側の場所を作る
 	for (int i = 0; i < STAGE_QUANTITY; i++)
 	{
-		m_stageCase[i]->SetBoundingPosition(stagePositions[i], boxSize[i]);
+		m_stageCase[i]->SetPosition(stagePositions[i], boxSize[i]);
 	}
 }

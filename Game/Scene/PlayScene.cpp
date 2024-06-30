@@ -27,7 +27,8 @@
 #include"Game/PlayScene/BlackBoard.h"
 #include"Game/PlayScene/Collision/CharacterCollision.h"
 
-const DirectX::SimpleMath::Vector3 PlayScene::HOME_POSITION = DirectX::SimpleMath::Vector3(10.0f, 10.0f, 10.0f);
+const DirectX::SimpleMath::Vector3 PlayScene::HOME_PLAYER_POSITION = DirectX::SimpleMath::Vector3(10.0f, 10.0f, 10.0f);
+const DirectX::SimpleMath::Vector3 PlayScene::HOME_CROW_POSITION = DirectX::SimpleMath::Vector3(100.0f, 10.0f, 100.0f);
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -114,7 +115,7 @@ void PlayScene::Initialize()
 		m_blackBoard.get());
 	
 	m_player->Initialize();
-	m_player->SetPosition(DirectX::SimpleMath::Vector3(HOME_POSITION));
+	m_player->SetPosition(DirectX::SimpleMath::Vector3(HOME_PLAYER_POSITION));
 
 	// tpsカメラを作る
 	m_tpsCamera = std::make_unique<TPSCamera>(m_player->GetPosition());
@@ -123,11 +124,12 @@ void PlayScene::Initialize()
 
 	m_crowBoss = std::make_unique<Crow>(
 		nullptr,
-		DirectX::SimpleMath::Vector3(0.0f, 0.5f, 0.0f),
+		DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f),
 		DirectX::SimpleMath::Quaternion::CreateFromAxisAngle(DirectX::SimpleMath::Vector3::UnitY, DirectX::XMConvertToRadians(0.0f)),
 		m_blackBoard.get());
 
 	m_crowBoss->Initialize();
+	m_crowBoss->SetPosition(HOME_CROW_POSITION);
 
 	m_stage = std::make_unique<GenerateStage>();
 	m_stage->Initialize();
@@ -255,6 +257,7 @@ void PlayScene::Update(float elapsedTime)
 	m_crowBoss->Update( position, quaternion);
 
 	m_characterCollision->DetectCollisionPlayerToEnemy(m_player.get(), m_crowBoss.get());
+	m_characterCollision->DetectCollisionPlayerToWall(m_player.get(), m_stage.get());
 }
 
 //---------------------------------------------------------

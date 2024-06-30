@@ -194,6 +194,7 @@
     <ClInclude Include="Game\PlayScene\Stage\StageCase.h" />
     <ClInclude Include="Game\PlayScene\Team\Team.h" />
     <ClInclude Include="Game\PlayScene\PlaySceneResources.h" />
+    <ClInclude Include="Game\PlayScene\Stage\SkySphere.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -287,6 +288,7 @@
     <ClCompile Include="Game\PlayScene\Stage\StageCase.cpp" />
     <ClCompile Include="Game\PlayScene\Team\Team.cpp" />
     <ClCompile Include="Game\PlayScene\PlaySceneResources.cpp" />
+    <ClCompile Include="Game\PlayScene\Stage\SkySphere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

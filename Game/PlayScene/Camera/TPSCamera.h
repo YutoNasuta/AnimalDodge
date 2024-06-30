@@ -28,7 +28,7 @@ private:
 	const float NEAR_PLANE = 1.0f;
 
 	// ‰“‚¢“Š‰e–Ê
-	const float FAR_PLANE = 500.0f;
+	const float FAR_PLANE = 1000.0f;
 
 	// ƒrƒ…[s—ñ
 	DirectX::SimpleMath::Matrix m_view;
