@@ -258,6 +258,11 @@ void PlayScene::Update(float elapsedTime)
 
 	m_characterCollision->DetectCollisionPlayerToEnemy(m_player.get(), m_crowBoss.get());
 	m_characterCollision->DetectCollisionPlayerToWall(m_player.get(), m_stage.get());
+
+	if (m_crowBoss->GetHP() < 0)
+	{
+		m_isChangeScene = true;
+	}
 }
 
 //---------------------------------------------------------
@@ -281,7 +286,7 @@ void PlayScene::Render()
 	debugString->AddString("Ground: x=%f, y=%f, z=%f", m_player->GetGround().x, m_player->GetGround().y, m_player->GetGround().z);
 	/*debugString->AddString("BallPosition: x=%f, y=%f, z=%f, w=%f", m_ball->GetPosition().x , m_ball->GetPosition().y , m_ball->GetPosition().z);
 	debugString->AddString("BallQuaternion: x = %f, y = %f, z =%f, w = %f", m_ball->GetQuaternion().x, m_ball->GetQuaternion().y, m_ball->GetQuaternion().z, m_ball->GetQuaternion().w);*/
-	debugString->AddString("BallTake %f", m_player->GetBallTakeFlag());
+	
 
 
 	if (m_player->GetNowState() == m_player->GetStanding()) { debugString->AddString("P::standing"); }
@@ -290,9 +295,11 @@ void PlayScene::Render()
 	else if (m_player->GetNowState() == m_player->GetDash()) { debugString->AddString("P::Dash"); }
 
 
-	debugString->AddString("PlayerForce:: %f", m_player->GetForceCharge());
+
 	debugString->AddString("EnemyDebug:: %f", m_crowBoss->GetDebug());
 	debugString->AddString("EnemyTreeNumber:: %f", m_crowBoss->GetNumber());
+	debugString->AddString("EnemyHP:::: %f", m_crowBoss->GetHP());
+	debugString->AddString("PlayerHP::: %f", m_player->GetHP());
 	//debugString->AddString("ballDebug:: %f", m_ball->GetDebugLog());
 	//m_ray->Render();
 #endif

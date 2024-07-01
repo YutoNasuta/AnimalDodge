@@ -70,6 +70,10 @@ public:
     // ‹«ŠE‹…‚ğì¬
     DirectX::BoundingSphere CreateBoundingSphere(const float& radius);
 
+    // HP‚Ìİ’è
+    const float GetHP() const { return m_hp; }
+    void SetHP(float hp) { m_hp = hp; }
+
 private:
     // ‹¤’ÊƒŠƒ\[ƒX
     CommonResources* m_commonResources;

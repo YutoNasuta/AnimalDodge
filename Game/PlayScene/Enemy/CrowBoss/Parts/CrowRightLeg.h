@@ -30,6 +30,9 @@ public:
 
 	DirectX::SimpleMath::Vector3 GetVelocity() const { return  m_velocity; }
 	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity ) { m_velocity = velocity; }
+
+	void SetAddQuaternion(const DirectX::SimpleMath::Quaternion& quaternion) { m_addQuaternion = quaternion; }
+	DirectX::SimpleMath::Quaternion GetAddQuaternion() const { return m_addQuaternion; }
 public:
 	// コンストラクタ
 	CrowRightLeg(IComponent* parent, 
@@ -65,6 +68,8 @@ private:
 	float m_mass;
 	//	ワールド行列
 	DirectX::SimpleMath::Matrix m_worldMatrix;
+	// 追加のクォータニオン
+	DirectX::SimpleMath::Quaternion m_addQuaternion;
 	// ノード番号
 	int m_nodeNumber;
 	

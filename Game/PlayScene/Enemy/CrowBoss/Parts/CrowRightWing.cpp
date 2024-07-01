@@ -24,7 +24,7 @@ CrowRightWing::CrowRightWing(
 )
 : CrowBase(parent , position ,quaternion),
 	m_commonResources{},
-	m_partID{CrowBase::PartID::HAND_RIGHT},
+	m_partID{CrowBase::PartID::WING_RIGHT},
 	m_model{},
 	m_position{},
 	m_velocity{},

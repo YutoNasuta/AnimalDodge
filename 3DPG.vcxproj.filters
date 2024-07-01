@@ -195,6 +195,11 @@
     <ClInclude Include="Game\PlayScene\Team\Team.h" />
     <ClInclude Include="Game\PlayScene\PlaySceneResources.h" />
     <ClInclude Include="Game\PlayScene\Stage\SkySphere.h" />
+    <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\Parts\CrowUpperBeak.h" />
+    <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\Parts\CrowLowerBeak.h" />
+    <ClInclude Include="Libraries\NakashiLib\UserInterface.h" />
+    <ClInclude Include="Libraries\NakashiLib\BinaryFile.h" />
+    <ClInclude Include="Game\PlayScene\UI\Gauge.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -289,6 +294,11 @@
     <ClCompile Include="Game\PlayScene\Team\Team.cpp" />
     <ClCompile Include="Game\PlayScene\PlaySceneResources.cpp" />
     <ClCompile Include="Game\PlayScene\Stage\SkySphere.cpp" />
+    <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\Parts\CrowUpperBeak.cpp" />
+    <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\Parts\CrowLowerBeak.cpp" />
+    <ClCompile Include="Libraries\NakashiLib\UserInterface.cpp" />
+    <ClCompile Include="Libraries\NakashiLib\BinaryFile.cpp" />
+    <ClCompile Include="Game\PlayScene\UI\Gauge.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

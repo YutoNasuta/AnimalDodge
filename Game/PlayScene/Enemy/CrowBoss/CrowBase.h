@@ -19,11 +19,12 @@ public:
 	{
 		ROOT = -1,
 		BODY = 0 ,
-		HAND_RIGHT = 1,
-		HAND_LEFT = 2,
-		LEG = 3,
-		HEAD = 4,
-		TAIL = 5
+		WING_RIGHT = 1,
+		WING_LEFT = 2,
+		LEG_LEFT = 3,
+		LEG_RIGHT = 4,
+		BEAK_UPPER = 5,
+		BEAK_LOWER = 6
 	};
 
 

@@ -13,6 +13,8 @@
 #include"Game/PlayScene/Enemy/CrowBoss/Parts/CrowRightWing.h"
 #include"Game/PlayScene/Enemy/CrowBoss/Parts/CrowLeftLeg.h"
 #include"Game/PlayScene/Enemy/CrowBoss/Parts/CrowRightLeg.h"
+#include"Game/PlayScene/Enemy/CrowBoss/Parts/CrowUpperBeak.h"
+#include"Game/PlayScene/Enemy/CrowBoss/Parts/CrowLowerBeak.h"
 #include"Libraries/NakashiLib/InputManager.h"
 
 
@@ -104,6 +106,20 @@ void CrowHead::ChildInitialize()
 		DirectX::SimpleMath::Quaternion::Identity);
 	m_leftLeg = leftLeg.get();
 	SetChild(std::move(leftLeg));
+
+	auto upperBeak = std::make_unique<CrowUpperBeak>(
+		this,
+		DirectX::SimpleMath::Vector3(0.0f, 4.0f, 6.0f),
+		DirectX::SimpleMath::Quaternion::Identity);
+	m_upperBeak = upperBeak.get();
+	SetChild(std::move(upperBeak));
+
+	auto lowerBeak = std::make_unique<CrowLowerBeak>(
+		this,
+		DirectX::SimpleMath::Vector3(0.0f, 4.5f, 5.0f),
+		DirectX::SimpleMath::Quaternion::Identity);
+	m_lowerBeak = lowerBeak.get();
+	SetChild(std::move(lowerBeak));
 }
 
 /// <summary>
@@ -111,12 +127,6 @@ void CrowHead::ChildInitialize()
 /// </summary>
 void CrowHead::ModelInitialize()
 {
-	//m_commonResources->GetResourcesManager()->CreateModel(L"CrowHead", L"CrowHead.cmo");
-	//m_commonResources->GetResourcesManager()->CreateModel(L"EnemyLeftHand", L"EnemyLeftHand.cmo");
-	//m_commonResources->GetResourcesManager()->CreateModel(L"CrowHead", L"CrowHead.cmo");
-	//m_commonResources->GetResourcesManager()->CreateModel(L"EnemyLeg", L"EnemyLeg.cmo");
-	//m_commonResources->GetResourcesManager()->CreateModel(L"EnemyRightHand", L"EnemyRightHand.cmo");
-	//m_commonResources->GetResourcesManager()->CreateModel(L"EnemyTail", L"EnemyTail.cmo");
 	m_model = m_commonResources->GetResourcesManager()->GetModel(L"CrowHead");
 }
 

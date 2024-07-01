@@ -23,7 +23,7 @@ CrowLeftLeg::CrowLeftLeg(
 )
 	: CrowBase(parent , position ,quaternion),
 	m_commonResources{},
-	m_partID{CrowBase::PartID::TAIL},
+	m_partID{CrowBase::PartID::LEG_LEFT},
 	m_model{},
 	m_position{},
 	m_velocity{},

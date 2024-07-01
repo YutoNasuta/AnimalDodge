@@ -27,7 +27,8 @@ Crow::Crow(IComponent* parent,
     Number{ 1 }, 
     Debug{ 1 },
     m_head{},
-    m_mass{}
+    m_mass{},
+    m_hp{}
 {
     m_commonResources = CommonResources::GetInstance();
     m_blackBoard = blackboard;
@@ -56,7 +57,9 @@ void Crow::Initialize()
     auto tree =  m_behaviorTreeBuilder->BuildTree();
     m_behaviorExecutor = std::make_unique<BehaviorTreeExecute>(std::move(tree));
 
-    m_crowBoundingSphere = CreateBoundingSphere(1.0f);	// ‹«ŠE‹…‚Ìì¬
+    m_crowBoundingSphere = CreateBoundingSphere(5.0f);	// ‹«ŠE‹…‚Ìì¬
+
+    m_hp = 10000;       // ƒJƒ‰ƒX‚ÌHPİ’è
 }
 
 void Crow::Update(

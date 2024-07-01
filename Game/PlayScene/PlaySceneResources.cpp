@@ -46,6 +46,8 @@ void PlaySceneResources::CreateModels()
 	ResourcesManager->CreateModel(L"CrowLeftWing",		 L"Crow/CrowLeftWing.cmo");
 	ResourcesManager->CreateModel(L"CrowRightWing",		 L"Crow/CrowRightWing.cmo");
 	ResourcesManager->CreateModel(L"CrowLeg",			 L"Crow/CrowLeg.cmo");
+	ResourcesManager->CreateModel(L"CrowUpperBeak",		 L"Crow/CrowUpperBeak.cmo");
+	ResourcesManager->CreateModel(L"CrowLowerBeak",		 L"Crow/CrowLowerBeak.cmo");
 
 	// •Ç‚Ì¶¬
 	ResourcesManager->CreateModel(L"Wall",				 L"Wall/WallBlock.cmo");

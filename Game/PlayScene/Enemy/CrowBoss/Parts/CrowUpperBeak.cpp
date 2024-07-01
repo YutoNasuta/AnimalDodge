@@ -1,14 +1,15 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
-// <製作開始日>		2024/06/01
-// <file>			CrowLeftWing.cpp
-// <概要>		　　プレイヤーの左手パーツ
+// <製作開始日>		2024/06/30
+// <file>			CrowUpperBeak.h
+// <概要>		　　エネミーの上嘴
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include"pch.h"
-#include"CrowLeftWing.h"
+#include"CrowUpperBeak.h"
 #include"Interface/IComponent.h"
 #include"Libraries/NakashiLib/ResourcesManager.h"
 #include"Game/CommonResources.h"
+
 
 /// <summary>
 /// コンストラクタ
@@ -16,21 +17,21 @@
 /// <param name="parent">親</param>
 /// <param name="position">位置</param>
 /// <param name="quaternion">回転</param>
-CrowLeftWing::CrowLeftWing(
-	IComponent* parent, 
+CrowUpperBeak::CrowUpperBeak(
+	IComponent* parent,
 	const DirectX::SimpleMath::Vector3& position,
 	const DirectX::SimpleMath::Quaternion& quaternion
 )
-	: CrowBase(parent , position ,quaternion),
+	: CrowBase(parent, position, quaternion),
 	m_commonResources{},
-	m_partID{CrowBase::PartID::WING_LEFT},
+	m_partID{ CrowBase::PartID::BEAK_UPPER },
 	m_model{},
 	m_position{},
 	m_velocity{},
 	m_quaternion{},
 	m_mass{},
 	m_worldMatrix{},
-	m_nodeNumber{1}
+	m_nodeNumber{ 1 }
 {
 	m_commonResources = CommonResources::GetInstance();
 }
@@ -38,20 +39,19 @@ CrowLeftWing::CrowLeftWing(
 /// <summary>
 /// デストラクタ
 /// </summary>
-CrowLeftWing::~CrowLeftWing()
+CrowUpperBeak::~CrowUpperBeak()
 {
-
 }
 
 /// <summary>
 /// 初期化処理
 /// </summary>
-/// <param name="resources">共通リソース</param>
-void CrowLeftWing::Initialize()
+/// <param name="resources"></param>
+void CrowUpperBeak::Initialize()
 {
-	m_model = m_commonResources->GetResourcesManager()->GetModel(L"CrowLeftWing");
+	m_model = m_commonResources->GetResourcesManager()->GetModel(L"CrowUpperBeak");	//モデル取得
 
-	CrowBase::Initialize(m_nodeNumber , m_model);	// 基底クラスのInitialize呼び出し
+	CrowBase::Initialize(m_nodeNumber, m_model);	// 基底クラスのInitialize呼び出し
 }
 
 /// <summary>
@@ -60,8 +60,8 @@ void CrowLeftWing::Initialize()
 /// <param name="timer">時間</param>
 /// <param name="position">位置</param>
 /// <param name="quaternion">回転</param>
-void CrowLeftWing::Update( 
-	const DirectX::SimpleMath::Vector3& position , 
+void CrowUpperBeak::Update(
+	const DirectX::SimpleMath::Vector3& position,
 	const DirectX::SimpleMath::Quaternion& quaternion)
 {
 
@@ -92,9 +92,9 @@ void CrowLeftWing::Update(
 /// </summary>
 /// <param name="view">カメラのビュー</param>
 /// <param name="projection">カメラの投影</param>
-void CrowLeftWing::Render(
-const DirectX::SimpleMath::Matrix& view ,
-const DirectX::SimpleMath::Matrix& projection
+void CrowUpperBeak::Render(
+	const DirectX::SimpleMath::Matrix& view,
+	const DirectX::SimpleMath::Matrix& projection
 )
 {
 	CrowBase::Render(m_worldMatrix, view, projection);
@@ -103,7 +103,7 @@ const DirectX::SimpleMath::Matrix& projection
 /// <summary>
 /// 後処理
 /// </summary>
-void CrowLeftWing::Finalize()
+void CrowUpperBeak::Finalize()
 {
 
 }

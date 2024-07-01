@@ -66,7 +66,7 @@ void StageCase::DrawModel(
 
 	DirectX::SimpleMath::Matrix world
 		= DirectX::SimpleMath::Matrix::CreateScale(m_boxSize / 2)
-		* DirectX::SimpleMath::Matrix::CreateTranslation(m_position - DirectX::SimpleMath::Vector3(0.0f, 20.0f, 0.0f));
+		* DirectX::SimpleMath::Matrix::CreateTranslation(m_position - DirectX::SimpleMath::Vector3(0.0f, 25.0f, 0.0f));
 
 	// ƒ‚ƒfƒ‹‚Ì•`‰æ
 	m_model->Draw(context, *states, world, view, projection);

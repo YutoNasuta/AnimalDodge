@@ -23,7 +23,7 @@ CrowRightLeg::CrowRightLeg(
 )
 	: CrowBase(parent , position ,quaternion),
 	m_commonResources{},
-	m_partID{CrowBase::PartID::LEG},
+	m_partID{CrowBase::PartID::LEG_RIGHT},
 	m_model{},
 	m_position{},
 	m_velocity{},
@@ -80,10 +80,11 @@ void CrowRightLeg::Update(
 		m_position,
 		m_quaternion);
 
-	m_worldMatrix = DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_quaternion)
-		* DirectX::SimpleMath::Matrix::CreateTranslation(m_position)
-		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(GetInitialQuaternion())
-		* DirectX::SimpleMath::Matrix::CreateTranslation(GetInitialPosition());
+	m_worldMatrix 				//çsóÒÇÃïœçX
+		= DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_addQuaternion)
+		* DirectX::SimpleMath::Matrix::CreateTranslation(GetInitialPosition())
+		* DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_quaternion)
+		* DirectX::SimpleMath::Matrix::CreateTranslation(m_position);
 
 }
 

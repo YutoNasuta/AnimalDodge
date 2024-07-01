@@ -72,5 +72,4 @@ private:
 	DirectX::SimpleMath::Quaternion m_addQuaternion;
 	// ƒm[ƒh”Ô†
 	int m_nodeNumber;
-	
 };

@@ -86,14 +86,6 @@ public:
 	DirectX::SimpleMath::Quaternion GetCameraQuaternion() const { return m_cameraQuaternion; }	
 	void SetCameraQuaternion(const DirectX::SimpleMath::Quaternion& quaternion) { m_cameraQuaternion = quaternion; }
 
-	// ボールフラグ設定
-	bool GetBallTakeFlag() const { return m_ballTaking; }			
-	void SetBallTakeFlag(const bool& flag) { m_ballTaking = flag; }	
-
-	// ボール力設定
-	float GetForceCharge() const { return m_forceCharge; }				
-	void SetForceCharge(const float& force) { m_forceCharge = force; }	
-
 	// プレイヤーのボディ取得
 	PlayerBody* GetBody() const { return m_body; }
 
@@ -107,6 +99,10 @@ public:
 	// バウンディングボックス設定
 	DirectX::BoundingSphere GetBoundingSphere() { return m_playerBoundingSphere; }
 	void SetBoundingSphereCenter(DirectX::SimpleMath::Vector3 boundingSphere) { m_playerBoundingSphere.Center = boundingSphere; }
+
+	// HP設定
+	float GetHP() { return m_hp; }
+	void SetHP(const float& hp) { m_hp = hp; }
 public:
 	// コンストラクタ
 	Player(
@@ -159,8 +155,7 @@ private:
 	float m_mass;								 // 質量
 	DirectX::SimpleMath::Vector3 m_acceleration; // 加速度
 	DirectX::SimpleMath::Vector3 m_gravity;      // 重力
-	bool m_ballTaking;							 // ボールを持っている状態か持っていない状態か
-	float m_forceCharge;						 // ボールのチャージ量
+	float m_hp;						 // ボールのチャージ量
 
 	//  カメラの情報++++++++++++++++++++++++++++++++++++++++++++++++++
 	DirectX::SimpleMath::Matrix m_cameraView;			 // カメラのビュー行列

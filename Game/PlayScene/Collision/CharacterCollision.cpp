@@ -64,6 +64,8 @@ void CharacterCollision::DetectCollisionPlayerToEnemy(Player* player, Crow* crow
 	// エネミーのポジションを押し戻す
 	crowBoss->SetPosition(crowBoss->GetPosition() - diffVec);
 	crowBoss->SetBoundingSphereCenter(crowBoss->GetBoundingSphere().Center - diffVec);
+
+    crowBoss->SetHP(crowBoss->GetHP() - 10);
 	
 	return;
 }

@@ -41,8 +41,7 @@ Player::Player(
 	m_cameraProjection{},
 	m_cameraView{},
 	m_cameraQuaternion{},
-	m_ballTaking{false},
-	m_forceCharge{},
+	m_hp{},
 	m_body{},
 	m_standing{},
 	m_currentState{},
@@ -93,6 +92,8 @@ void Player::Initialize()
 	m_currentState->OnEnter();					// 最初のステート状態に移行
 
 	m_playerBoundingSphere = CreateBoundingSphere(1.0f);	// 境界球の作成
+
+	m_hp = 100;
 }
 
 /// <summary>
