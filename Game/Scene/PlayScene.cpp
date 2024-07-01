@@ -27,6 +27,8 @@
 #include"Game/PlayScene/BlackBoard.h"
 #include"Game/PlayScene/Collision/CharacterCollision.h"
 
+#include"Game/PlayScene/UI/Gauge.h"
+
 const DirectX::SimpleMath::Vector3 PlayScene::HOME_PLAYER_POSITION = DirectX::SimpleMath::Vector3(10.0f, 10.0f, 10.0f);
 const DirectX::SimpleMath::Vector3 PlayScene::HOME_CROW_POSITION = DirectX::SimpleMath::Vector3(100.0f, 10.0f, 100.0f);
 
@@ -141,6 +143,9 @@ void PlayScene::Initialize()
 	}
 	
 	m_characterCollision = std::make_unique<CharacterCollision>();
+
+	m_gauge = std::make_unique<Gauge>();
+	m_gauge->Initialize(1240, 760);
 
 
 }
@@ -263,6 +268,8 @@ void PlayScene::Update(float elapsedTime)
 	{
 		m_isChangeScene = true;
 	}
+
+	m_gauge->Update(m_blackBoard.get());
 }
 
 //---------------------------------------------------------
@@ -316,7 +323,7 @@ void PlayScene::Render()
 	
 	m_gridFloor->Render(device, m_tpsCamera->GetViewMatrix(), m_tpsCamera->GetProjectionMatrix());
 
-	
+	m_gauge->Render();
 }
 
 //---------------------------------------------------------

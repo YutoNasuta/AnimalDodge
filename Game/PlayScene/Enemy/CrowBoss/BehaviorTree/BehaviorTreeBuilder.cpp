@@ -6,16 +6,22 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include"pch.h"
 #include"BehaviorTreeBuilder.h"
+#include"Game/PlayScene/Enemy/CrowBoss/Crow.h"
 #include"ActionNode/CrowStanding.h"
 #include"ActionNode/CrowChasePlayer.h"
 #include"Game/PlayScene/BlackBoard.h"
 #include"ConditionNode/NearPlayerCheck.h"
+#include"ActionNode/CrowAttackPlayer.h"
+#include"Game/CommonResources.h"
+#include"Framework/StepTimer.h"
 BehaviorTreeBuilder::BehaviorTreeBuilder(BlackBoard* blackboard , Crow* crow)
 	:
-	m_nodeNumber{}
+	m_nodeNumber{},
+	m_attackInProgress(false)
 {
 	m_blackBoard = blackboard;
 	m_crow = crow;
+	m_commonResources = CommonResources::GetInstance();
 }
 
 BehaviorTreeBuilder::~BehaviorTreeBuilder()
@@ -47,21 +53,30 @@ std::unique_ptr<NakashiLib::IBehaviorNode> BehaviorTreeBuilder::BuildTree()
 /// </summary>
 std::unique_ptr<NakashiLib::IBehaviorNode> BehaviorTreeBuilder::CloseByPlayer()
 {
-	// 構造を増やす
-	auto sequence = std::make_unique<NakashiLib::SequenceNode>();
+	using namespace NakashiLib;
 
-	// プレイヤーを追う
-	sequence->AddChild(std::make_unique<CrowChase>(m_crow, m_blackBoard));
+	// 構造を増やす
+	auto sequence = std::make_unique<SequenceNode>();
+
+	auto persistentRandomSelector = std::make_unique<PersistentRandomSelectorNode>();
+
+	persistentRandomSelector->AddChild(std::make_unique<CrowChase>(m_crow, m_blackBoard));
+	persistentRandomSelector->AddChild(std::make_unique<CrowAttackPlayer>(m_crow, m_blackBoard));
+
+	sequence->AddChild(std::move(persistentRandomSelector));
 
 	return sequence;
 	
 }
 
+/// <summary>
+/// プレイヤーが近くにいない
+/// </summary>
 std::unique_ptr<NakashiLib::IBehaviorNode> BehaviorTreeBuilder::NotCloseByPlayer()
 {
-
+	// 構造を増やす
 	auto sequence = std::make_unique<NakashiLib::SequenceNode>();
-
+	// 待機する
 	sequence->AddChild(std::make_unique<CrowStanding>(m_crow));
 
 	return sequence;

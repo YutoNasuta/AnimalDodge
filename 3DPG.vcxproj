@@ -189,6 +189,7 @@
     <ClInclude Include="Game\PlayScene\BlackBoard.h" />
     <ClInclude Include="Game\PlayScene\Camera\TPSCamera.h" />
     <ClInclude Include="Game\PlayScene\Collision\CharacterCollision.h" />
+    <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowAttackPlayer.h" />
     <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowChasePlayer.h" />
     <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowStanding.h" />
     <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\BehaviorTreeBuilder.h" />
@@ -264,6 +265,7 @@
     <ClCompile Include="Game\PlayScene\BlackBoard.cpp" />
     <ClCompile Include="Game\PlayScene\Camera\TPSCamera.cpp" />
     <ClCompile Include="Game\PlayScene\Collision\CharacterCollision.cpp" />
+    <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowAttackPlayer.cpp" />
     <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowChasePlayer.cpp" />
     <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowStanding.cpp" />
     <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\BehaviorTreeBuilder.cpp" />
@@ -352,6 +354,33 @@
     <None Include="Resources\Models\PlayerLeg.cmo" />
     <None Include="Resources\Models\PlayerRightHand.cmo" />
     <None Include="Resources\Models\PlayerTail.cmo" />
+    <None Include="Resources\Shaders\UI.hlsli" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Resources\Shaders\UIGS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Geometry</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\UIPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\UIVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

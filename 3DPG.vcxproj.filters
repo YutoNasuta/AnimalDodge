@@ -200,6 +200,7 @@
     <ClInclude Include="Libraries\NakashiLib\UserInterface.h" />
     <ClInclude Include="Libraries\NakashiLib\BinaryFile.h" />
     <ClInclude Include="Game\PlayScene\UI\Gauge.h" />
+    <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowAttackPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -299,6 +300,7 @@
     <ClCompile Include="Libraries\NakashiLib\UserInterface.cpp" />
     <ClCompile Include="Libraries\NakashiLib\BinaryFile.cpp" />
     <ClCompile Include="Game\PlayScene\UI\Gauge.cpp" />
+    <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowAttackPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -371,5 +373,11 @@
     <None Include="Resources\Models\PlayerTail.cmo">
       <Filter>Resources\Models</Filter>
     </None>
+    <None Include="Resources\Shaders\UI.hlsli" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Resources\Shaders\UIGS.hlsl" />
+    <FxCompile Include="Resources\Shaders\UIPS.hlsl" />
+    <FxCompile Include="Resources\Shaders\UIVS.hlsl" />
   </ItemGroup>
 </Project>

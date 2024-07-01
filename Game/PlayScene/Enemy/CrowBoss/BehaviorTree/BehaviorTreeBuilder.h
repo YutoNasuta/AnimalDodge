@@ -9,6 +9,7 @@
 #include"Libraries/NakashiLib/BehaviorNode.h"
 
 class BlackBoard;
+class CommonResources;
 namespace NakashiLib
 {
 	class IBehaviorNode;
@@ -38,4 +39,9 @@ private:
 	Crow* m_crow;
 	// ブラックボードの取得用
 	BlackBoard* m_blackBoard;
+	// 共通ステート
+	CommonResources* m_commonResources;
+	// アタックしているかどうかのフラグ
+	bool m_attackInProgress;
+
 };

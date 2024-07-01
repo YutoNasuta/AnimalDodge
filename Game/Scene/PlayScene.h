@@ -20,6 +20,8 @@ class GenerateStage;
 class BlackBoard;
 class CharacterCollision;
 class PlaySceneResources;
+class Gauge;
+
 namespace mylib
 {
 	class GridFloor;
@@ -86,6 +88,9 @@ private:
 
 	// “–‚½‚è”»’è‚ğŒÄ‚Ô
 	std::unique_ptr<CharacterCollision> m_characterCollision;
+
+	// UIƒQ[ƒW
+	std::unique_ptr<Gauge> m_gauge;
 
 public:
 	PlayScene();

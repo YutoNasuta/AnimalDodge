@@ -74,6 +74,17 @@ public:
     const float GetHP() const { return m_hp; }
     void SetHP(float hp) { m_hp = hp; }
 
+    // 攻撃判定
+    const bool GetAttackNormal() const { return m_attackNormal; }
+    void SetAttackNormal(bool attack) { m_attackNormal = attack; }
+
+    // クールダウン
+    const float GetAttackCoolDown() const { return m_coolDownTime; }
+
+    // 攻撃終了時間設定
+    void SetLastAttackTime(float value) { m_lastAttackEndTime = value; }
+    const float GetLastAttackTime() const { return m_lastAttackEndTime; }
+
 private:
     // 共通リソース
     CommonResources* m_commonResources;
@@ -104,4 +115,12 @@ private:
 
     DirectX::BoundingSphere m_crowBoundingSphere;			// カラス当たり判定球
     DirectX::SimpleMath::Vector3 m_CrowCenter;			// カラスの中心
+
+    bool m_attackNormal;       // 通常攻撃
+
+    // 攻撃クールダウン
+    const float m_coolDownTime = 5.0f;
+
+    // 攻撃が終了した時間格納
+    float m_lastAttackEndTime;
 };

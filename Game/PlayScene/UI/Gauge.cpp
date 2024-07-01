@@ -7,6 +7,7 @@
 #include"pch.h"
 #include"Gauge.h"
 #include"Game/PlayScene/BlackBoard.h"
+#include"Game/CommonResources.h"
 
 /// <summary>
 /// コンストラクタ
@@ -22,28 +23,28 @@ Gauge::Gauge()
 	m_frame(nullptr),
 	m_ratio()
 {
-
+	m_commonResources = CommonResources::GetInstance();
 }
 
 /// <summary>
-/// コンストラクタ
+/// デストトラクタ
 /// </summary>
 Gauge::~Gauge()
 {
 
 }
 
-void Gauge::Initialize(DX::DeviceResources* pDR, int width, int height)
+void Gauge::Initialize(int width, int height)
 {
-	m_pDR = pDR;
+	m_pDR = m_commonResources->GetDeviceResources();
 	m_windowWidth = width;
 	m_windowHeight = height;
 
 	m_baseTexturePath = L"Resources/Textures/frame_back.png";
 
 	Add(L"Resources/Textures/frame.png",
-		DirectX::SimpleMath::Vector2(width / 4, height / 2),
-		DirectX::SimpleMath::Vector2(1.0f, 1.0f),
+		DirectX::SimpleMath::Vector2(320, 700),
+		DirectX::SimpleMath::Vector2(0.3f, 0.3f),
 		NakashiLib::ANCHOR::MIDDLE_LEFT);
 
 }
@@ -55,7 +56,7 @@ void Gauge::Update(BlackBoard* blackBoard)
 	m_hp /= 10000;
 	m_ratio = m_gauge->GetRenderRatio();
 
-	m_ratio -= m_hp;
+	m_ratio = m_hp;
 
 	m_gauge->SetRenderRatio(m_ratio);
 }

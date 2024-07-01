@@ -28,7 +28,8 @@ Crow::Crow(IComponent* parent,
     Debug{ 1 },
     m_head{},
     m_mass{},
-    m_hp{}
+    m_hp{},
+    m_lastAttackEndTime{}
 {
     m_commonResources = CommonResources::GetInstance();
     m_blackBoard = blackboard;
@@ -79,6 +80,8 @@ void Crow::Update(
     m_crowBoundingSphere.Center = m_position;
 
     Number = m_behaviorTreeBuilder->GetNodeNumber();
+
+    m_blackBoard->SetCrowHP(m_hp);
 }
 
 

@@ -56,13 +56,19 @@ namespace NakashiLib
 	};
 
 	/// <summary>
-	/// ランダムなセレクタノード
-	/// </summary>
-	class RandomSelectorNode : public IBehaviorNode
+   /// 持続的なランダムセレクターノード
+   /// </summary>
+	class PersistentRandomSelectorNode : public IBehaviorNode
 	{
 	public:
 		// コンストラクタ
-		RandomSelectorNode() = default;
+		PersistentRandomSelectorNode()
+		{
+			std::random_device rd;
+			m_gen = std::mt19937(rd());
+			m_dis = std::uniform_int_distribution<size_t>(0, 1);
+			m_currentNode = nullptr;
+		}
 
 		// 子の追加
 		void AddChild(std::unique_ptr<IBehaviorNode> child)
@@ -73,22 +79,27 @@ namespace NakashiLib
 		// 実行する
 		bool Execute() override
 		{
-			// ランダムの中に何もないならfalseを返す
 			if (m_children.empty()) { return false; }
 
-			// ランダムにするための準備
-			std::random_device rd;
-			std::mt19937 gen(rd());
-			// ランダムの最小と最大を設定
-			std::uniform_int_distribution<size_t> dis(0, m_children.size() - 1);
+			if (!m_currentNode)
+			{
+				size_t randomIndex = m_dis(m_gen) % m_children.size();
+				m_currentNode = m_children[randomIndex].get();
+			}
 
-			size_t randomIndex = dis(gen);
-			// ランダムに選ばれた実行を返す
-			return m_children[randomIndex]->Execute();
+			if (!m_currentNode->Execute())
+			{
+				m_currentNode = nullptr;
+			}
+
+			return true;
 		}
 
 	private:
 		std::vector<std::unique_ptr<IBehaviorNode>> m_children;
+		IBehaviorNode* m_currentNode;
+		std::mt19937 m_gen;
+		std::uniform_int_distribution<size_t> m_dis;
 	};
 
 	/// <summary>

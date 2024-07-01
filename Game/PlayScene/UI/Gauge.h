@@ -11,6 +11,8 @@
 #include"Libraries/NakashiLib/UserInterface.h"
 
 class BlackBoard;
+class CommonResources;
+
 class Gauge
 {
 private:
@@ -31,12 +33,14 @@ private:
 
 	float m_ratio;
 
+	CommonResources* m_commonResources;
+
 public:
 
 	Gauge();
 	~Gauge();
 
-	void Initialize(DX::DeviceResources* pDR, int width, int height);
+	void Initialize(int width, int height);
 	void Update(BlackBoard* blackBoard);
 	void Render();
 

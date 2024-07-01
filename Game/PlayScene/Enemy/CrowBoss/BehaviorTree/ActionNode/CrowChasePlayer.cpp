@@ -33,9 +33,8 @@ bool CrowChase::Execute()
 	// 時間を計る
 	
 		MoveParts();
-		Chase();
 	
-		return true;
+		return Chase();
 	
 
 }
@@ -83,7 +82,7 @@ void CrowChase::MoveHand()
 	leftHand->SetAddQuaternion(slerpRotationLeft);
 }
 
-void CrowChase::Chase()
+bool CrowChase::Chase()
 {
 	
 	// プレイヤーの位置を取得
@@ -93,6 +92,16 @@ void CrowChase::Chase()
 	// カラスからプレイヤーへのベクトルを計算
 	DirectX::SimpleMath::Vector3 direction = playerPosition - crowPosition;
 	direction.y = 0.0f; // y成分を無視して水平面での方向を計算
+
+	// プレイヤーとの距離を計算
+	float distanceToPlayer = direction.Length();
+
+	// プレイヤーに十分に近づいた場合はfalseを返す
+	float closeEnoughDistance = 7.0f;
+	if (distanceToPlayer < closeEnoughDistance)
+	{
+		return false;
+	}
 
 	// カラスの向きをプレイヤーの方向に向ける
 	if (direction.LengthSquared() > 0.0001f) {
@@ -116,5 +125,7 @@ void CrowChase::Chase()
 	// カラスの位置と速度を更新
 	m_crow->SetPosition(crowPosition + velocity);
 	m_crow->SetVelocity(velocity * 0.25f);
+
+	return true;
 	  
 }

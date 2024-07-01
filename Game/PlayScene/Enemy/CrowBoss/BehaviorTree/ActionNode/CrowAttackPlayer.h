@@ -1,27 +1,26 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // <製作者>			NakashimaYuto	
-// <製作開始日>		2024/06/21
-// <file>			CrowStanding.h
-// <概要>			エネミーがプレイヤーを追う
+// <製作開始日>		2024/07/01
+// <file>			CrowAttackPlayer.h
+// <概要>			カラスがプレイヤーを攻撃する
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #pragma once
 #include"Libraries/NakashiLib/BehaviorNode.h"
 #include"Game/CommonResources.h"
+
 class Crow;
 class BlackBoard;
 
-class CrowChase : public NakashiLib::ActionNode
+class CrowAttackPlayer : public NakashiLib::ActionNode
 {
-
-
 public:
 	// コンストラクタ
-	CrowChase(Crow* Crow , BlackBoard* blackboard);
+	CrowAttackPlayer(Crow* crow, BlackBoard* blackBoard);
 	// 実行する
 	bool Execute() override;
 
 private:
-	// エネミー取得
+	// カラス取得
 	Crow* m_crow;
 	CommonResources* m_commonResources;
 	BlackBoard* m_blackBoard;
@@ -29,7 +28,9 @@ private:
 	float m_timeExit;
 	const float EXITTIME = 10;
 
+	float m_startTime;
+
 	void MoveParts();
 	void MoveHand();
-	bool Chase();
+
 };
