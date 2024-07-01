@@ -21,9 +21,9 @@ public:
 	 DirectX::SimpleMath::Vector3 GetEnemyPosition() { return m_enemyPosition; }
 	 void SetEnemyPosition(DirectX::SimpleMath::Vector3 position) { m_enemyPosition = position; }
 
-	 // ボール位置設定
-	 DirectX::SimpleMath::Vector3 GetBallPosition() { return m_ballPosition; }
-	 void SetBallPosition(DirectX::SimpleMath::Vector3 position) { m_ballPosition = position; }
+	 // カラスHP取得
+	float GetCrowHP() { return m_crowHP; }
+	void SetCrowHP(float hp) { m_crowHP = hp; }
 
 	 float GetGameTime() { return m_gameTime; }
 
@@ -42,8 +42,8 @@ private:
 	DirectX::SimpleMath::Vector3 m_playerPosition;
 	// 敵のポジション
 	DirectX::SimpleMath::Vector3 m_enemyPosition;
-	// ボールの位置
-	DirectX::SimpleMath::Vector3 m_ballPosition;
+	// カラスのHP
+	float m_crowHP;
 
 	// ゲーム内時間
 	float m_gameTime;

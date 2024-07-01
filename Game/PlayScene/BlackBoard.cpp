@@ -10,7 +10,7 @@
 BlackBoard::BlackBoard()
 	:
 	m_acceleration{},
-	m_ballPosition{},
+	m_crowHP{},
 	m_enemyPosition{},
 	m_gameTime{},
 	m_gravity{},
