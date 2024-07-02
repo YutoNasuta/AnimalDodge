@@ -14,7 +14,6 @@
 #include"ActionNode/CrowAttackPlayer.h"
 #include"Game/CommonResources.h"
 #include"Framework/StepTimer.h"
-#include"Game/PlayScene/Enemy/CrowBoss/AttackInformation/CrowAttackParameter.h"
 BehaviorTreeBuilder::BehaviorTreeBuilder(BlackBoard* blackboard , Crow* crow)
 	:
 	m_nodeNumber{},
@@ -56,17 +55,14 @@ std::unique_ptr<NakashiLib::IBehaviorNode> BehaviorTreeBuilder::CloseByPlayer()
 {
 	using namespace NakashiLib;
 
+	// ç\ë¢ÇëùÇ‚Ç∑
 	auto sequence = std::make_unique<SequenceNode>();
+
 	auto persistentRandomSelector = std::make_unique<PersistentRandomSelectorNode>();
 
 	persistentRandomSelector->AddChild(std::make_unique<CrowChase>(m_crow, m_blackBoard));
+	persistentRandomSelector->AddChild(std::make_unique<CrowAttackPlayer>(m_crow, m_blackBoard));
 
-	auto attackCondition = std::make_unique<ConditionDecoratorNode>(
-		[this]() { return m_crow->GetAttackParameter()->GetAttack1(); },
-		std::make_unique<CrowAttackPlayer>(m_crow, m_blackBoard)
-	);
-
-	persistentRandomSelector->AddChild(std::move(attackCondition));
 	sequence->AddChild(std::move(persistentRandomSelector));
 
 	return sequence;

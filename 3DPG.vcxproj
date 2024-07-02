@@ -189,7 +189,6 @@
     <ClInclude Include="Game\PlayScene\BlackBoard.h" />
     <ClInclude Include="Game\PlayScene\Camera\TPSCamera.h" />
     <ClInclude Include="Game\PlayScene\Collision\CharacterCollision.h" />
-    <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\AttackInformation\CrowAttackParameter.h" />
     <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowAttackPlayer.h" />
     <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowChasePlayer.h" />
     <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowStanding.h" />
@@ -266,7 +265,6 @@
     <ClCompile Include="Game\PlayScene\BlackBoard.cpp" />
     <ClCompile Include="Game\PlayScene\Camera\TPSCamera.cpp" />
     <ClCompile Include="Game\PlayScene\Collision\CharacterCollision.cpp" />
-    <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\AttackInformation\CrowAttackParameter.cpp" />
     <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowAttackPlayer.cpp" />
     <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowChasePlayer.cpp" />
     <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowStanding.cpp" />

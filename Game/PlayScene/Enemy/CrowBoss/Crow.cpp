@@ -12,7 +12,6 @@
 #include"Game/PlayScene/Enemy/CrowBoss/BehaviorTree/BehaviorTreeBuilder.h"
 #include"Game/PlayScene/Enemy/CrowBoss/BehaviorTree/BehaviorTreeExecute.h"
 #include"Game/PlayScene/BlackBoard.h"
-#include"Game/PlayScene/Enemy/CrowBoss/AttackInformation/CrowAttackParameter.h"
 
 Crow::Crow(IComponent* parent,
     const DirectX::SimpleMath::Vector3& position,
@@ -62,8 +61,6 @@ void Crow::Initialize()
     m_crowBoundingSphere = CreateBoundingSphere(5.0f);	// ã´äEãÖÇÃçÏê¨
 
     m_hp = 10000;       // ÉJÉâÉXÇÃHPê›íË
-
-    m_crowAttackParameter = std::make_unique<CrowAttackParameter>();
 }
 
 void Crow::Update(

@@ -4,39 +4,50 @@
 // <file>			CrowAttackPlayer.cpp
 // <概要>			カラスがプレイヤーを攻撃する
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#include "pch.h"
-#include "CrowAttackPlayer.h"
-#include "Game/PlayScene/Enemy/CrowBoss/Crow.h"
-#include "Game/PlayScene/BlackBoard.h"
-#include "Game/PlayScene/Enemy/CrowBoss/Parts/CrowHead.h"
-#include "Game/PlayScene/Enemy/CrowBoss/Parts/CrowLeftWing.h"
-#include "Game/PlayScene/Enemy/CrowBoss/Parts/CrowRightWing.h"
-#include "Game/PlayScene/Enemy/CrowBoss/AttackInformation/CrowAttackParameter.h"
+#include"pch.h"
+#include"CrowAttackPlayer.h"
+#include"Game/PlayScene/Enemy/CrowBoss/Crow.h"
+#include"Game/PlayScene/BlackBoard.h"
+#include"Game/PlayScene/Enemy/CrowBoss/Parts/CrowHead.h"
+#include"Game/PlayScene/Enemy/CrowBoss/Parts/CrowLeftWing.h"
+#include"Game/PlayScene/Enemy/CrowBoss/Parts/CrowRightWing.h"
 
+
+/// <summary>
+/// イニシャライズ
+/// </summary>
+/// <param name="crow">カラス</param>
+/// <param name="blackBoard">黒板</param>
 CrowAttackPlayer::CrowAttackPlayer(Crow* crow, BlackBoard* blackBoard)
 {
-    m_crow = crow;
-    m_commonResources = CommonResources::GetInstance();
-    m_timeExit = 0;
-    m_blackBoard = blackBoard;
+	m_crow = crow;
+	m_commonResources = CommonResources::GetInstance();
+	m_timeExit = 0;
+	m_blackBoard = blackBoard;
     m_startTime = -1;
 }
 
+/// <summary>
+/// 実行
+/// </summary>
+/// <returns></returns>
 bool CrowAttackPlayer::Execute()
 {
     auto Timer = m_commonResources->GetStepTimer();
     float currentTime = Timer->GetTotalSeconds();
 
     // クールダウン期間中は攻撃しない
-    if (currentTime < m_crow->GetAttackParameter()->GetLastAttack1Time() + CrowAttackParameter::m_attack1Cooldown)
+    if (currentTime < m_crow->GetLastAttackTime() + m_crow->GetAttackCoolDown())
     {
         return false;
     }
 
     // 攻撃を開始
     if (m_startTime < 0) {
-        m_crow->GetAttackParameter()->SetAttack1(true); // 攻撃1開始
+        m_crow->SetAttackNormal(true); // 攻撃開始
         m_startTime = currentTime; // 開始時間を記録
+
+        
     }
 
     MoveParts();
@@ -44,19 +55,28 @@ bool CrowAttackPlayer::Execute()
     // 攻撃が終了した場合
     if (currentTime >= m_startTime + 1.0f + 0.5f) // preparationTime + attackTime
     {
-        m_crow->GetAttackParameter()->SetAttack1(false); // 攻撃1終了
-        m_crow->GetAttackParameter()->SetLastAttack1Time(currentTime); // 攻撃終了時間を記録
+        m_crow->SetAttackNormal(false);  // 攻撃終了
+        m_crow->SetLastAttackTime(currentTime); // 攻撃終了時間を記録
         m_startTime = -1; // リセット
     }
 
     return true;
 }
 
+
+/// <summary>
+/// カラスのパーツを動かす
+/// </summary>
 void CrowAttackPlayer::MoveParts()
 {
-    MoveHand();
+	// 手を動かす
+	MoveHand();
 }
 
+
+/// <summary>
+/// 手の動き
+/// </summary>
 void CrowAttackPlayer::MoveHand()
 {
     auto Timer = m_commonResources->GetStepTimer();
