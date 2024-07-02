@@ -201,6 +201,7 @@
     <ClInclude Include="Libraries\NakashiLib\BinaryFile.h" />
     <ClInclude Include="Game\PlayScene\UI\Gauge.h" />
     <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowAttackPlayer.h" />
+    <ClInclude Include="Game\PlayScene\Enemy\CrowBoss\AttackInformation\CrowAttackParameter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -301,6 +302,7 @@
     <ClCompile Include="Libraries\NakashiLib\BinaryFile.cpp" />
     <ClCompile Include="Game\PlayScene\UI\Gauge.cpp" />
     <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\BehaviorTree\ActionNode\CrowAttackPlayer.cpp" />
+    <ClCompile Include="Game\PlayScene\Enemy\CrowBoss\AttackInformation\CrowAttackParameter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

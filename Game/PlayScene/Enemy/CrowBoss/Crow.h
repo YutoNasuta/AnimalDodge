@@ -19,6 +19,8 @@ class BlackBoard;
 
 class BehaviorTreeExecute;
 
+class CrowAttackParameter;
+
 
 class Crow : public CrowBase 
 {
@@ -36,6 +38,7 @@ public:
 
 
     CrowHead* GetHead() const { return m_head; }
+    CrowAttackParameter* GetAttackParameter() const { return m_crowAttackParameter.get(); }
 
 public: //プロパティ
 
@@ -73,17 +76,6 @@ public:
     // HPの設定
     const float GetHP() const { return m_hp; }
     void SetHP(float hp) { m_hp = hp; }
-
-    // 攻撃判定
-    const bool GetAttackNormal() const { return m_attackNormal; }
-    void SetAttackNormal(bool attack) { m_attackNormal = attack; }
-
-    // クールダウン
-    const float GetAttackCoolDown() const { return m_coolDownTime; }
-
-    // 攻撃終了時間設定
-    void SetLastAttackTime(float value) { m_lastAttackEndTime = value; }
-    const float GetLastAttackTime() const { return m_lastAttackEndTime; }
 
 private:
     // 共通リソース
@@ -123,4 +115,7 @@ private:
 
     // 攻撃が終了した時間格納
     float m_lastAttackEndTime;
+
+    // 攻撃パラメータ
+    std::unique_ptr<CrowAttackParameter> m_crowAttackParameter;
 };
